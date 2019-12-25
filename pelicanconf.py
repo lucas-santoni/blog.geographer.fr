@@ -15,6 +15,9 @@ THEME = 'theme'
 GITHUB_URL = "https://github.com/geospace"
 TWITTER_URL = "https://twitter.com/geographeur"
 
+# STATIC_PATHS
+STATIC_PATHS = ['assets']
+
 # SITE INTRO
 SITE_INTRO = """
 I am a computer science enthusiast. My fields of
@@ -41,6 +44,7 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # DO NOT GENERATE
+PAGE_SAVE_AS = "{slug}.html"
 AUTHOR_SAVE_AS = ""
 CATEGORY_SAVE_AS = ""
 TAG_SAVE_AS = ""

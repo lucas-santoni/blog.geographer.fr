@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<p class="content-title">{{ SITENAME }}</p>
+<p class="content-title">{{ page.title }}</p>
 
 <div class="content-content">
-  {{ content }}
+  {{ page.content }}
 </div>
 
 {% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content-box posts-box">
+  <p class="box-title">{{ page.title }}</p>
+
+  <dl class="post-selection">
+  {% for article in articles %}
+    <div class="post-entry">
+      <dt class="post-date">{{ article.date.strftime('%d/%m/%Y') }}</dt>
+      <dd class="post-link"><a href="/posts/{{ article.slug }}">{{ article.title }}</a></dd>
+    </div>
+  {% endfor %}
+  </dl>
+
+  <p class="see-all-link"><a href="/">← Back to the index</a></p>
+</div>
+
+{{ content }}
+
+{% endblock %}
