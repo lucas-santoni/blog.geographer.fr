@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p class="site-intro">{{ SITE_INTRO }}</p>
+
+<div class="content-box posts-box">
+  <p class="box-title">Latest blog posts</p>
+
+  <dl class="post-selection">
+  {% for article in articles[:5] %}
+    <div class="post-entry">
+      <dt class="post-date">{{ article.date.strftime('%d/%m/%Y') }}</dt>
+      <dd class="post-link"><a href="/{{ article.slug }}">{{ article.title }}</a></dd>
+    </div>
+  {% endfor %}
+  </dl>
+
+  <p class="see-all-link"><a href="/posts">Browse all posts →</a></p>
+</div>
+
+{% endblock %}

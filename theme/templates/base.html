@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="icon" href="/{{ THEME_STATIC_DIR }}/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/styles.css">
+  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/mobile.css">
+  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/pygments.css">
+
+  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+
+  <title>{{ SITENAME }}</title>
+</head>
+
+<body>
+  <div class="header-container">
+    <div class="avatar-container">
+      <img class="avatar" src="/{{ THEME_STATIC_DIR }}/avatar.jpg">
+      <p class="site-title">
+        <a href="/"><span class="site-title-text">{{ SITENAME }}</span></a>
+      </p>
+    </div>
+
+    <ul class="navbar">
+      <li class="navbar-element"><a href="/about">About</a></li>
+      <li class="navbar-element"><a href="{{ GITHUB_URL }}">GitHub</a></li>
+      <li class="navbar-element"><a href="{{ TWITTER_URL }}">Twitter</a></li>
+    </ul>
+  </div>
+
+  {% block content %}
+  {% endblock %}
+
+  <div class="footer">
+    <p class="footer-text">
+      {{ FOOTER_TEXT }}
+    </p>
+  </div>
+</body>
+
+<script>twemoji.parse(document.body);</script>
+</html>

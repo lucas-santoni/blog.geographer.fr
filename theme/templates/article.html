@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p class="content-title">{{ article.title }}</p>
+<p class="content-meta">
+  2 minutes read • published {{ article.date.strftime('%d/%m/%Y') }}
+</p>
+
+<div class="content-content">
+  {{ article.content}}
+</div>
+
+{% endblock %}

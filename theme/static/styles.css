@@ -1,0 +1,277 @@
+@font-face {
+  font-family: "Iosevka";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/theme/fonts/iosevka-italic.woff2");
+}
+
+@font-face {
+  font-family: "Iosevka";
+  font-style: italic;
+  font-weight: 700;
+  src: url("/theme/fonts/iosevka-bolditalic.woff2");
+}
+
+@font-face {
+  font-family: "Iosevka";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/theme/fonts/iosevka-regular.woff2");
+}
+
+@font-face {
+  font-family: "Iosevka";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/theme/fonts/iosevka-bold.woff2");
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/theme/fonts/merriweather-italic.ttf");
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: italic;
+  font-weight: 700;
+  src: url("/theme/fonts/merriweather-bolditalic.ttf");
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/theme/fonts/merriweather-light.ttf");
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-weight: normal;
+  font-weight: 400;
+  src: url("/theme/fonts/merriweather-regular.ttf");
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-weight: normal;
+  font-weight: 700;
+  src: url("/theme/fonts/merriweather-bold.ttf");
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-weight: normal;
+  font-weight: 900;
+  src: url("/theme/fonts/merriweather-black.ttf");
+}
+
+html {
+  font-family: "Merriweather", serif;
+  line-height: 1.5;
+  margin-left: calc(100vw - 100%);
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+pre, code {
+  font-family: "Iosevka", monospace;
+}
+
+dl {
+  margin: 12px 0 10px 0;
+}
+
+body {
+  max-width: 42em;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+:not(pre) > code {
+  padding: 3px 3px;
+}
+
+pre {
+  padding: 1em;
+  overflow: auto;
+  line-height: 1.5;
+  border: 1px solid #ddd;
+}
+
+pre, code {
+  background: #f8f8f8 !important;
+}
+
+a {
+  color: #004e98;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00274d;
+}
+
+.nice-box {
+  border: 1px solid #ccc;
+  box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 35px;
+}
+
+.box-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.content-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.content-meta {
+  margin: 5px 0 20px 0;
+  color: #555;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 25px 0;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 1.69em;
+  font-weight: lighter;
+  margin: 0 0 0 12px;
+}
+
+.site-title-text {
+  font-style: normal;
+}
+
+.site-title a {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar {
+  margin: 0;
+  list-style-type: none;
+}
+
+.navbar-element {
+  float: right;
+}
+
+.navbar-element a {
+  padding: 10px 12px;
+}
+
+.navbar-element a:hover {
+  background-color: #eee;
+  border-radius: 3px;
+  color: #004e98;
+}
+
+.see-all-link {
+  margin: 0;
+}
+
+.post-entry {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+.post-date {
+  grid-column-start: 1;
+  width: 100px;
+  text-align: right;
+}
+
+.post-link {
+  grid-column-start: 2;
+  margin: 0;
+  margin-left: 12px;
+}
+
+.project-title {
+  font-weight: bold;
+  margin: 12px 0 3px 0;
+}
+
+.project-description {
+  margin: -12px 0 10px 0;
+  text-align: justify;
+}
+
+.footer {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin: 0 0 20px 0;
+  font-size: 0.9em;
+}
+
+.footer-text {
+  margin: 0;
+}
+
+.emoji {
+  font-style: normal;
+}
+
+.content-box {
+  margin-bottom: 40px;
+}
+
+.site-intro {
+  text-align: justify;
+}
+
+.content-content p {
+  text-align: justify;
+}
+
+.content-content img:not(.emoji) {
+  margin: 20px auto 20px auto;
+  max-width: 100%;
+  display: block;
+  border: 1px solid #ddd;
+}
+
+.content-content hr {
+  max-width: 60%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+}
+
+img.avatar {
+  height: 3.37em;
+  width: auto;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}

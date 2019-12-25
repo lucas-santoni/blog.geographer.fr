@@ -1,0 +1,47 @@
+@media screen and (max-width: 45em) {
+  html {
+    margin-left: 0;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  pre {
+    margin-left: -12px;
+    margin-right: -12px;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .footer {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  .footer-text {
+    max-width: 70%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .post-date {
+    float: left;
+    text-align: left;
+    width: 100%;
+  }
+
+  .post-link {
+    margin: 0;
+  }
+
+  .post-entry {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .post-selection {
+    margin-bottom: 20px;
+  }
+}
