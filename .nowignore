@@ -1,4 +1,7 @@
 .vscode
 README.md
+Makefile
+Pipfile
+Pipfile.lock
 public
 output

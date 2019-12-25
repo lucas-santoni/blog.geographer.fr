@@ -1,13 +1,7 @@
 {
-  "name": "pelican",
-  "version": "1.0.0",
+  "name": "blog.geographer.fr",
   "private": true,
-  "description": "A Pelican project, ready for deployment with ZEIT Now.",
-  "main": "index.js",
   "scripts": {
-    "build": "pelican ./ -o public -s publishconf.py"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "build": "pelican content -o public -s pelicanconf.py"
+  }
 }
