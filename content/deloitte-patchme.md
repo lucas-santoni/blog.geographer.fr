@@ -1,5 +1,5 @@
 ---
-title: "Deloitte CTF Quals 2019: PatchMe 🤕"
+title: Deloitte CTF Quals 2019: PatchMe 🤕
 slug: deloitte-patchme
 date: 06/11/2019
 ---

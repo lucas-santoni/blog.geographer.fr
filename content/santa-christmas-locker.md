@@ -1,5 +1,5 @@
 ---
-title: "Santhacklaus 2019: Christmas Locker"
+title: Santhacklaus 2019: Christmas Locker
 slug: santa-christmas-locker
 date: 23/12/2019
 ---

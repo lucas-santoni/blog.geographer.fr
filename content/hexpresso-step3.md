@@ -1,5 +1,5 @@
 ---
-title: "Hexpresso FIC Quals 2019: Step 3"
+title: Hexpresso FIC Quals 2019: Step 3
 slug: hexpresso-fic-3
 date: 19/12/2019
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Deloitte CTF Quals 2019: Sea shells, she sails, nooo! 🏖️"
+title: Deloitte CTF Quals 2019: Sea shells, she sails, nooo! 🏖️
 slug: deloitte-sea-shells-she-sails
 date: 06/11/2019
 ---

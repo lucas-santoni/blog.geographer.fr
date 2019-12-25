@@ -1,5 +1,5 @@
 ---
-title: "Santhacklaus 2019: NSAR"
+title: Santhacklaus 2019: NSAR
 slug: santa-nsar
 date: 23/12/2019
 ---

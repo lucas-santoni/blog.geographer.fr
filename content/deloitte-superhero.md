@@ -1,5 +1,5 @@
 ---
-title: "Deloitte CTF Quals 2019: Superhero 🦸"
+title: Deloitte CTF Quals 2019: Superhero 🦸
 slug: deloitte-superhero
 date: 06/11/2019
 ---

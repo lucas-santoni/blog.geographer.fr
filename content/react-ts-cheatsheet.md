@@ -1,5 +1,5 @@
 ---
-title: "React TypeScript Cheatsheet"
+title: React TypeScript Cheatsheet
 slug: react-typescript-cheatsheet
 date: 11/05/2019
 ---

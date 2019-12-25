@@ -1,5 +1,5 @@
 ---
-title: "[FRENCH] La vie d'un pingouin à Epitech Paris"
+title: [FRENCH] La vie d'un pingouin à Epitech Paris
 slug: pingouin-epitech
 date: 12/08/2017
 ---

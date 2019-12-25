@@ -1,5 +1,5 @@
 ---
-title: "LeHack 2019: Alphajet, and PGM fun"
+title: LeHack 2019: Alphajet, and PGM fun
 slug: lehack-alphajet
 date: 08/07/2019
 ---

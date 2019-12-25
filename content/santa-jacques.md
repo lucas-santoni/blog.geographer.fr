@@ -1,5 +1,5 @@
 ---
-title: "Santhacklaus 2019: Jacques ! Au secours !"
+title: Santhacklaus 2019: Jacques ! Au secours !
 slug: santa-jacques
 date: 23/12/2019
 ---

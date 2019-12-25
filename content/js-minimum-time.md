@@ -1,5 +1,5 @@
 ---
-title: "[FRENCH] JavaScript : durée minimum à l'exécution d'une fonction asynchrone"
+title: [FRENCH] JavaScript : durée minimum à l'exécution d'une fonction asynchrone
 slug: js-minimum-time
 date: 12/10/2018
 ---

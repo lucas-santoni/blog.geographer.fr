@@ -1,5 +1,5 @@
 ---
-title: "Deloitte CTF Quals 2019"
+title: Deloitte CTF Quals 2019
 slug: deloitte-quals
 date: 06/11/2019
 ---

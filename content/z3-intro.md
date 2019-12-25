@@ -1,5 +1,5 @@
 ---
-title: "[FRENCH] Introduction à z3, solveur de crackmes"
+title: [FRENCH] Introduction à z3, solveur de crackmes
 slug: z3-intro
 date: 13/07/2017
 ---

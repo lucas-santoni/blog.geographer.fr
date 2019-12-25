@@ -1,5 +1,5 @@
 ---
-title: "Hexpresso FIC Quals 2019"
+title: Hexpresso FIC Quals 2019
 slug: hexpresso-fic
 date: 19/12/2019
 ---
