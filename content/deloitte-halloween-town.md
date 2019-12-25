@@ -1,7 +1,7 @@
 ---
 title: Deloitte CTF Quals 2019: Halloween Town 🎃
 slug: deloitte-halloween-town
-date: 06/11/2019
+date: 06/11/2019 02
 ---
 
 *Halloween Town* 🎃 was a task labelled cryptography and worth 135 points.

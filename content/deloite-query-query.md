@@ -1,7 +1,7 @@
 ---
 title: Deloitte CTF Quals 2019: Query Query 👸🏻
 slug: deloitte-query-query
-date: 06/11/2019
+date: 06/11/2019 04
 ---
 
 *Query query on the wall.. Who's the fairest of them all? 👸🏻* was a task

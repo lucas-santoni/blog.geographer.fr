@@ -1,7 +1,7 @@
 ---
 title: Deloitte CTF Quals 2019: PatchMe 🤕
 slug: deloitte-patchme
-date: 06/11/2019
+date: 06/11/2019 01
 ---
 
 *PatchMe* 🤕 was a task labelled reversing and worth 150 points. It is a PE

@@ -1,7 +1,7 @@
 ---
 title: Deloitte CTF Quals 2019: Superhero 🦸
 slug: deloitte-superhero
-date: 06/11/2019
+date: 06/11/2019 05
 ---
 
 *Superhero* 🦸 was a task labelled infrastructure and worth 75 points. It is

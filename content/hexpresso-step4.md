@@ -1,7 +1,7 @@
 ---
 title: Hexpresso FIC Quals 2019: Step 4
 slug: hexpresso-fic-4
-date: 19/12/2019
+date: 19/12/2019 04
 ---
 
 The fourth step is a reverse engineering challenge.

@@ -1,7 +1,7 @@
 ---
 title: Hexpresso FIC Quals 2019: Step 3
 slug: hexpresso-fic-3
-date: 19/12/2019
+date: 19/12/2019 03
 ---
 
 The third step is a forensics challenge.

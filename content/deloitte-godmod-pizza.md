@@ -1,7 +1,7 @@
 ---
 title: Deloitte CTF Quals 2019: g0dmode's Pizza Shop 🍕
 slug: deloitte-godmod-pizza
-date: 06/11/2019
+date: 06/11/2019 03
 ---
 
 *g0dmode's Pizza Shop* 🍕 was a task labelled web and worth 300 points. It is

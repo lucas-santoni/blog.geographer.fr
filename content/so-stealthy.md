@@ -1,5 +1,5 @@
 ---
-title: '[FRENCH] NDH Quals 18 : SoStealthy'
+title: [FRENCH] NDH Quals 18 : SoStealthy
 slug: so-stealthy
 date: 04/01/2018
 ---

@@ -1,7 +1,7 @@
 ---
 title: Deloitte CTF Quals 2019
 slug: deloitte-quals
-date: 06/11/2019
+date: 06/11/2019 00
 ---
 
 I am currently studying at Kent University in the UK so I had the chance to

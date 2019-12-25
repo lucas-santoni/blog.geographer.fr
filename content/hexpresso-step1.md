@@ -1,7 +1,7 @@
 ---
 title: Hexpresso FIC Quals 2019: Step 1
 slug: hexpresso-fic-1
-date: 19/12/2019
+date: 19/12/2019 01
 ---
 
 The first step is a JavaScript challenge.

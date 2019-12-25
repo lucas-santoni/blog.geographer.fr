@@ -1,7 +1,7 @@
 ---
 title: Hexpresso FIC Quals 2019
 slug: hexpresso-fic
-date: 19/12/2019
+date: 19/12/2019 00
 ---
 
 The FIC (*Forum International de la Cybersécurité*) is an event that takes

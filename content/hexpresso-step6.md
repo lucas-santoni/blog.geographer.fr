@@ -1,7 +1,7 @@
 ---
 title: Hexpresso FIC Quals 2019: Step 6
 slug: hexpresso-fic-6
-date: 20/12/2019
+date: 20/12/2019 06
 ---
 
 The sixth step is a WEB application that allows us to fetch an URL.

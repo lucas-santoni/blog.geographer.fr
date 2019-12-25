@@ -1,7 +1,7 @@
 ---
 title: Deloitte CTF Quals 2019: Sea shells, she sails, nooo! 🏖️
 slug: deloitte-sea-shells-she-sails
-date: 06/11/2019
+date: 06/11/2019 06
 ---
 
 *Why oh why I try again... sea shells she sails, nooo!* was a task labelled

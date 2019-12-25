@@ -1,7 +1,7 @@
 ---
 title: Hexpresso FIC Quals 2019: Step 2
 slug: hexpresso-fic-2
-date: 19/12/2019
+date: 19/12/2019 02
 ---
 
 The second step is some network forensics.
