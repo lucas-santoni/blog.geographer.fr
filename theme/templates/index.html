@@ -18,4 +18,15 @@
   <p class="see-all-link"><a href="/posts">Browse all posts →</a></p>
 </div>
 
+<div class="content-box projects-box">
+  <p class="box-title">Projects selection</p>
+
+  {% for project in PROJECTS %}
+    <p class="project-title">{{ project.emoji }}&nbsp;&nbsp;{{ project.name }}</p>
+    <div class="project-description"><p>{{ project.description }}</p></div>
+  {% endfor %}
+
+  <p class="see-all-link"><a href="{{ GITHUB_URL }}">Browse more on GitHub →</a></p>
+</div>
+
 {% endblock %}
