@@ -11,6 +11,19 @@ SITEURL = ""
 # THEME
 THEME = "theme"
 
+# MARKDOWN EXTENSIONS
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {
+            'css_class': 'highlight',
+            "guess_lang": False
+        },
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+    },
+    'output_format': 'html5',
+}
+
 # LINKS
 GITHUB_URL = "https://github.com/geospace"
 TWITTER_URL = "https://twitter.com/geographeur"
