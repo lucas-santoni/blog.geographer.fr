@@ -99,7 +99,7 @@ finally:
 
 We can see that the encryption process uses an LFSR logic.
 
-An LFSR (for *__L__inear __F__eedback __S__hift __R__egisters*) can, in this
+An LFSR (for **L**inear **F**eedback **S**hift **R**egisters) can, in this
 implementation, be described as :
 
 * A 32 bits register (see `lfsr_size` variable). The choice of 32 bits is convenient because it is the size of an integer.

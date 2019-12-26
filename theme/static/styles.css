@@ -3,6 +3,7 @@
   font-style: italic;
   font-weight: 400;
   src: url("/theme/fonts/iosevka-italic.woff2");
+  font-display: swap;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
   font-style: italic;
   font-weight: 700;
   src: url("/theme/fonts/iosevka-bolditalic.woff2");
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
   font-style: normal;
   font-weight: 400;
   src: url("/theme/fonts/iosevka-regular.woff2");
+  font-display: swap;
 }
 
 @font-face {
@@ -24,6 +27,7 @@
   font-style: normal;
   font-weight: 700;
   src: url("/theme/fonts/iosevka-bold.woff2");
+  font-display: swap;
 }
 
 @font-face {
@@ -31,6 +35,7 @@
   font-style: italic;
   font-weight: 400;
   src: url("/theme/fonts/merriweather-italic.ttf");
+  font-display: swap;
 }
 
 @font-face {
@@ -38,6 +43,7 @@
   font-style: italic;
   font-weight: 700;
   src: url("/theme/fonts/merriweather-bolditalic.ttf");
+  font-display: swap;
 }
 
 @font-face {
@@ -45,27 +51,23 @@
   font-style: normal;
   font-weight: 300;
   src: url("/theme/fonts/merriweather-light.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Merriweather";
-  font-weight: normal;
+  font-style: normal;
   font-weight: 400;
   src: url("/theme/fonts/merriweather-regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Merriweather";
-  font-weight: normal;
+  font-style: normal;
   font-weight: 700;
   src: url("/theme/fonts/merriweather-bold.ttf");
-}
-
-@font-face {
-  font-family: "Merriweather";
-  font-weight: normal;
-  font-weight: 900;
-  src: url("/theme/fonts/merriweather-black.ttf");
+  font-display: swap;
 }
 
 html {
@@ -74,9 +76,12 @@ html {
   margin-left: calc(100vw - 100%);
 }
 
-h2 {
-  font-size: 1.2em;
-  font-weight: bold;
+h1, h2, h3 {
+  line-height: 1.3em;
+}
+
+h2, h3 {
+  margin-top: 1.7em;
 }
 
 pre, code {
@@ -98,13 +103,13 @@ body {
 }
 
 pre {
-  padding: 1em;
+  padding: 1.5em;
   overflow: auto;
   line-height: 1.5;
   border: 1px solid #ddd;
 }
 
-pre, code {
+code {
   background: #f8f8f8 !important;
 }
 
@@ -117,27 +122,14 @@ a:hover {
   color: #00274d;
 }
 
-.nice-box {
-  border: 1px solid #ccc;
-  box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  padding: 35px;
-}
-
-.box-title {
-  font-size: 1.3em;
-  font-weight: bold;
+.title-meta {
   margin: 0;
-}
-
-.content-title {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin: 0;
+  margin-bottom: 3px;
 }
 
 .content-meta {
-  margin: 5px 0 20px 0;
+  margin: 0;
+  margin-bottom: 20px;
   color: #555;
 }
 
@@ -159,10 +151,6 @@ a:hover {
   font-size: 1.69em;
   font-weight: lighter;
   margin: 0 0 0 12px;
-}
-
-.site-title-text {
-  font-style: normal;
 }
 
 .site-title a {
@@ -208,11 +196,6 @@ a:hover {
   grid-column-start: 2;
   margin: 0;
   margin-left: 12px;
-}
-
-.project-title {
-  font-weight: bold;
-  margin: 12px 0 3px 0;
 }
 
 .project-description {
