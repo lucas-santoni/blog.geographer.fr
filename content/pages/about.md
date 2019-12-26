@@ -20,12 +20,12 @@ Various links:
 
 ## About this blog
 
-This blog is statically generated using a [custom Python project](https://github.com/Geospace/geoblog).
-It does not have a lot of features right now but I wanted to have my own
-codebase and incrementally add more features and optimizations.
+This blog is statically generated using [Pelican](https://blog.getpelican.com/).
+It is hosted on [Now](https://zeit.co/) and managed
+on [GitHub](https://github.com/Geospace/blog.geographer.fr).
 
-I also like the idea that anyone can contribute to this blog simply by
-making a pull request.
+I like the idea that anyone can contribute to this blog simply by making a
+pull request. Please, feel free!
 
 ## About emojis
 

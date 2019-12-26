@@ -99,8 +99,9 @@ THIS_BLOG = project()
 THIS_BLOG.name = "This blog"
 THIS_BLOG.emoji = "📖"
 THIS_BLOG.description = """
-This blog is statically generated using a custom Python script. Feel free to
-<a href="https://github.com/Geospace/geoblog">contribute</a>.
+This blog is statically generated using <a href="https://blog.getpelican.com/">Pelican</a>,
+and hosted on <a href="https://zeit.co/dashboard">Now</a>. Feel free
+to <a href="https://github.com/Geospace/geoblog">contribute</a>.
 """
 
 SQLI_PLATFORM = project()
