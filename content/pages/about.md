@@ -21,8 +21,9 @@ Various links:
 ## About this blog
 
 This blog is statically generated using [Pelican](https://blog.getpelican.com/).
-It is hosted on [Now](https://zeit.co/) and managed
-on [GitHub](https://github.com/Geospace/blog.geographer.fr).
+It is hosted on [Now](https://zeit.co/), and managed
+on [GitHub](https://github.com/Geospace/blog.geographer.fr). The theme I use
+is in the repository.
 
 I like the idea that anyone can contribute to this blog simply by making a
 pull request. Please, feel free!
