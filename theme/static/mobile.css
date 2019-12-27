@@ -7,12 +7,13 @@
     display: none;
   }
 
-  pre {
+  .highlight {
     margin-left: -12px;
     margin-right: -12px;
     border: none;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    border-radius: 0;
   }
 
   .footer {

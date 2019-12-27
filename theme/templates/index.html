@@ -3,8 +3,8 @@
 
 <p class="site-intro">{{ SITE_INTRO }}</p>
 
-<div class="content-box posts-box">
-  <p class="box-title">Latest blog posts</p>
+<div class="content-box">
+  <h2>Latest blog posts</h2>
 
   <dl class="post-selection">
   {% for article in articles[:5] %}
@@ -18,8 +18,8 @@
   <p class="see-all-link"><a href="/posts">Browse all posts →</a></p>
 </div>
 
-<div class="content-box projects-box">
-  <p class="box-title">Projects selection</p>
+<div class="content-box">
+  <h2>Projects selection</h2>
 
   {% for project in PROJECTS %}
     <p class="project-title">{{ project.emoji }}&nbsp;&nbsp;{{ project.name }}</p>

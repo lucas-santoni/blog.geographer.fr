@@ -87,11 +87,11 @@ class project():
 
 
 POOL_2019 = project()
-POOL_2019.name = "PoC Security Pool 2018 [French]"
+POOL_2019.name = "PoC Security Pool 2019 [French]"
 POOL_2019.emoji = "🏊‍♂️"
 POOL_2019.description = """
-In 2018, I teached ~30 EPITECH students the basics of computer security. This
-is the teaching material I wrote for this occasion.
+In early 2019, I teached ~30 EPITECH students the basics of computer
+security. This is the teaching material I wrote for this occasion.
 <a href="/piscine-poc-2019">Browse it here.</a>
 """
 
@@ -99,8 +99,9 @@ THIS_BLOG = project()
 THIS_BLOG.name = "This blog"
 THIS_BLOG.emoji = "📖"
 THIS_BLOG.description = """
-This blog is statically generated using <a href="https://blog.getpelican.com/">Pelican</a>,
-and hosted on <a href="https://zeit.co/dashboard">Now</a>. Feel free
+This blog is statically generated using
+<a href="https://blog.getpelican.com/">Pelican</a>, and hosted on
+<a href="https://zeit.co/dashboard">Now</a>. Feel free
 to <a href="https://github.com/Geospace/geoblog">contribute</a>.
 """
 
