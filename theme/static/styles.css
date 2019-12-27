@@ -72,6 +72,7 @@
 
 html {
   font-family: "Merriweather", serif;
+  font-size: 1.05em;
   line-height: 1.5;
   margin-left: calc(100vw - 100%);
 }
@@ -82,6 +83,18 @@ h1, h2, h3 {
 
 h2, h3 {
   margin-top: 1.7em;
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.3em;;
 }
 
 pre, code {
@@ -102,11 +115,13 @@ body {
   padding: 3px 3px;
 }
 
-pre {
-  padding: 1.5em;
+.highlight {
   overflow: auto;
-  line-height: 1.5;
-  border: 1px solid #ddd;
+}
+
+.highlight pre {
+  margin: 1em;
+  display: inline-block;
 }
 
 code {
@@ -198,8 +213,8 @@ a:hover {
   margin-left: 12px;
 }
 
-.project-description {
-  margin: -12px 0 10px 0;
+.project-description p {
+  margin: 3px 0 20px 0;
   text-align: justify;
 }
 
@@ -224,6 +239,7 @@ a:hover {
 
 .site-intro {
   text-align: justify;
+  margin-bottom: 0;
 }
 
 .content-content p {
@@ -258,4 +274,9 @@ img.avatar {
   width: auto;
   border-radius: 50%;
   border: 2px solid #ddd;
+}
+
+.project-title {
+  font-weight: bold;
+  margin: 0;
 }

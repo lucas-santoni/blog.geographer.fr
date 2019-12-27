@@ -20,7 +20,7 @@ but already performs very well in CTF. Go follow him!
 
 The description of the challenge lets us know that the goal is to reverse
 engineer a custom file format (NSAR) used to compress and encrypt multiple
-files. We download the two files :
+files. We download the two files:
 
 ### nsar
 
@@ -85,7 +85,7 @@ this archive. One of them surely contains the flag!
 
 To extract the files stored in the NSAR archive, we need to understand how
 this file format works. To do so, we start reversing the NSAR program. First
-let's have an overview of the binary :
+let's have an overview of the binary:
 
 ```
 ➜  file nsar 
@@ -144,11 +144,11 @@ std::basic_ofstream<char,std::char_traits<char>>::basic_ofstream((__int64)&OSSTR
 std::ostream::write((std::ostream *)&OSSTREAM, &v29, 16LL);
 ```
 
-Those few lines show us the beginning of the NSAR header : the bytes `NSAR`
+Those few lines show us the beginning of the NSAR header: the bytes `NSAR`
 are written, followed by 12 NULL bytes (because the write() is done on 16
 bytes). Note that here, `OSSTREAM` refers to the output file stream.
 
-Then the program iterates over all input files :
+Then the program iterates over all input files:
 
 ```cpp
 while ( (unsigned __int8)std::operator!=(&beginning, &end) )
@@ -258,7 +258,7 @@ At first I thought that it wouldn't compress anything because we use
 `gzwrite` to write one byte at the time. To check if my assumption was
 correct, I created a new NSAR archive containing only a `toast.pdf` file.
 Thanks to what we've learnt so far, we can tell the length of the
-corresponding archive header : `len("NSAR") + 12 + len("toast.pdf") + 1 + 4 = 30`
+corresponding archive header: `len("NSAR") + 12 + len("toast.pdf") + 1 + 4 = 30`
 
 ```
 ➜  tail -c +31 out.nsar | hexdump -C | head
@@ -353,7 +353,7 @@ def get_fileinfos(content: bytes) -> Tuple[str, int]:
     return filename, offset
 ```
 
-We can now open the file and read all header :
+We can now open the file and read all header:
 
 ```python
 with open("/tmp/archive.nsar", "rb") as f:
@@ -415,7 +415,7 @@ def guess_png_key(files: dict, content: bytes, filename: str) -> None:
     guessed_key = ""
     for nb in range(len(header)):
         x = content[offset + nb] ^ header[nb]
-        # don't forget the conditions we saw in the cpp code :
+        # don't forget the conditions we saw in the cpp code:
         if x == 0:  
             guessed_key += chr(content[offset + nb])
         else:

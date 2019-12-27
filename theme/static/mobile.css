@@ -7,7 +7,7 @@
     display: none;
   }
 
-  pre {
+  .highlight {
     margin-left: -12px;
     margin-right: -12px;
     border: none;
