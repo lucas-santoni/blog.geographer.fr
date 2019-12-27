@@ -111,12 +111,25 @@ body {
   padding: 0 12px;
 }
 
+blockquote {
+  margin: 0;
+  padding: .5em 0 .5em 1em;
+  border-left: 3px solid #eee;
+  font-style: italic;
+}
+
+blockquote p {
+  margin: 0 !important;
+}
+
 :not(pre) > code {
   padding: 3px 3px;
 }
 
 .highlight {
   overflow: auto;
+  margin-left: -24px;
+  margin-right: -24px;
   border-radius: 10px;
 }
 
@@ -244,6 +257,10 @@ a:hover {
 
 .content-content p {
   text-align: justify;
+}
+
+.content-content p, .content-content img, .highlight {
+  margin-bottom: 1.4em;
 }
 
 .content-content img:not(.emoji) {
