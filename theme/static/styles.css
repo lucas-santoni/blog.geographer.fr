@@ -117,6 +117,7 @@ body {
 
 .highlight {
   overflow: auto;
+  border-radius: 10px;
 }
 
 .highlight pre {
@@ -164,7 +165,6 @@ a:hover {
 
 .site-title {
   font-size: 1.69em;
-  font-weight: lighter;
   margin: 0 0 0 12px;
 }
 
@@ -250,7 +250,7 @@ a:hover {
   margin: 20px auto 20px auto;
   max-width: 100%;
   display: block;
-  border: 1px solid #ddd;
+  border: 1px solid #aaa;
 }
 
 .content-content hr {
