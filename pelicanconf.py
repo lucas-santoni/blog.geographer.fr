@@ -35,8 +35,14 @@ STATIC_PATHS = ["assets"]
 SITE_INTRO = """
 I am a computer science enthusiast. My fields of
 interest are cybersecurity and software development. This blog is mostly
-about CTF writeups, personnal projects, and memos. Please,
-<a href="/about">click here</a> if you want to know more.
+about CTF writeups, personnal projects, and memos. Please, see the
+<a href="/about">about page</a> if you want to know more.
+"""
+
+# META DESCRIPTION
+SITE_DESCRIPTION = """
+Personnal blog of Geographer: computer security, programming, CTF writeups,
+personnal projects, memos...
 """
 
 # FOOTER
