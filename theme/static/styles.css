@@ -124,6 +124,7 @@ blockquote p {
 
 :not(pre) > code {
   padding: 3px 3px;
+  word-break: break-all;
 }
 
 .highlight {
