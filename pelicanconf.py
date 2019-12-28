@@ -13,15 +13,15 @@ THEME = "theme"
 
 # MARKDOWN EXTENSIONS
 MARKDOWN = {
-    'extension_configs': {
-        'markdown.extensions.codehilite': {
-            'css_class': 'highlight',
+    "extension_configs": {
+        "markdown.extensions.codehilite": {
+            "css_class": "highlight",
             "guess_lang": False
         },
-        'markdown.extensions.extra': {},
-        'markdown.extensions.meta': {},
+        "markdown.extensions.extra": {},
+        "markdown.extensions.meta": {},
     },
-    'output_format': 'html5',
+    "output_format": "html5",
 }
 
 # LINKS
@@ -29,7 +29,13 @@ GITHUB_URL = "https://github.com/geospace"
 TWITTER_URL = "https://twitter.com/geographeur"
 
 # STATIC_PATHS
-STATIC_PATHS = ["assets"]
+STATIC_PATHS = ["assets", "static-root"]
+
+# STATIC FILES AT ROOT
+EXTRA_PATH_METADATA = {
+    "static-root/service-worker.js": {"path": "service-worker.js"},
+    "static-root/favicon.ico": {"path": "favicon.ico"}
+}
 
 # SITE INTRO
 SITE_INTRO = """
