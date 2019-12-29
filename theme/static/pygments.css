@@ -9,22 +9,22 @@
 */
 .highlight .hll { background-color: #303030 }
 .highlight  { background: #151515; color: #f5f5f5 }
-.highlight .c { color: #505050 } /* Comment */
+.highlight .c { color: #888888 } /* Comment */
 .highlight .err { color: #fb9fb1 } /* Error */
 .highlight .k { color: #e1a3ee } /* Keyword */
 .highlight .l { color: #eda987 } /* Literal */
 .highlight .n { color: #f5f5f5 } /* Name */
 .highlight .o { color: #12cfc0 } /* Operator */
 .highlight .p { color: #f5f5f5 } /* Punctuation */
-.highlight .cm { color: #505050 } /* Comment.Multiline */
-.highlight .cp { color: #505050 } /* Comment.Preproc */
-.highlight .c1 { color: #505050 } /* Comment.Single */
-.highlight .cs { color: #505050 } /* Comment.Special */
+.highlight .cm { color: #888888 } /* Comment.Multiline */
+.highlight .cp { color: #888888 } /* Comment.Preproc */
+.highlight .c1 { color: #888888 } /* Comment.Single */
+.highlight .cs { color: #888888 } /* Comment.Special */
 .highlight .gd { color: #fb9fb1 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
 .highlight .gh { color: #f5f5f5; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #acc267 } /* Generic.Inserted */
-.highlight .gp { color: #505050; font-weight: bold } /* Generic.Prompt */
+.highlight .gp { color: #888888; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #12cfc0; font-weight: bold } /* Generic.Subheading */
 .highlight .kc { color: #e1a3ee } /* Keyword.Constant */
@@ -58,7 +58,7 @@
 .highlight .mo { color: #eda987 } /* Literal.Number.Oct */
 .highlight .sb { color: #acc267 } /* Literal.String.Backtick */
 .highlight .sc { color: #f5f5f5 } /* Literal.String.Char */
-.highlight .sd { color: #505050 } /* Literal.String.Doc */
+.highlight .sd { color: #888888 } /* Literal.String.Doc */
 .highlight .s2 { color: #acc267 } /* Literal.String.Double */
 .highlight .se { color: #eda987 } /* Literal.String.Escape */
 .highlight .sh { color: #acc267 } /* Literal.String.Heredoc */

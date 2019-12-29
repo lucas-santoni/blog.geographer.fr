@@ -13,15 +13,15 @@ THEME = "theme"
 
 # MARKDOWN EXTENSIONS
 MARKDOWN = {
-    'extension_configs': {
-        'markdown.extensions.codehilite': {
-            'css_class': 'highlight',
+    "extension_configs": {
+        "markdown.extensions.codehilite": {
+            "css_class": "highlight",
             "guess_lang": False
         },
-        'markdown.extensions.extra': {},
-        'markdown.extensions.meta': {},
+        "markdown.extensions.extra": {},
+        "markdown.extensions.meta": {},
     },
-    'output_format': 'html5',
+    "output_format": "html5",
 }
 
 # LINKS
@@ -29,14 +29,29 @@ GITHUB_URL = "https://github.com/geospace"
 TWITTER_URL = "https://twitter.com/geographeur"
 
 # STATIC_PATHS
-STATIC_PATHS = ["assets"]
+STATIC_PATHS = ["assets", "static-root"]
+
+# STATIC FILES AT ROOT
+EXTRA_PATH_METADATA = {
+    "static-root/service-worker.js": {"path": "service-worker.js"},
+    "static-root/favicon.ico": {"path": "favicon.ico"},
+    "static-root/pwa-icon.png": {"path": "pwa-icon.png"},
+    "static-root/apple-touch-icon.png": {"path": "apple-touch-icon.png"},
+    "static-root/manifest.json": {"path": "manifest.json"}
+}
 
 # SITE INTRO
 SITE_INTRO = """
 I am a computer science enthusiast. My fields of
 interest are cybersecurity and software development. This blog is mostly
-about CTF writeups, personnal projects, and memos. Please,
-<a href="/about">click here</a> if you want to know more.
+about CTF writeups, personnal projects, and memos. Please, see the
+<a href="/about">about page</a> if you want to know more.
+"""
+
+# META DESCRIPTION
+SITE_DESCRIPTION = """
+Personnal blog of Geographer: computer security, programming, CTF writeups,
+personnal projects, memos...
 """
 
 # FOOTER

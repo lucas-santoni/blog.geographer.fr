@@ -3,13 +3,8 @@ title: About
 slug: about
 ---
 
-My name is Lucas SANTONI, this is my personnal website.
-
-Most of my content is related to software development and/or computer
-security.
-
-You can do whatever you want with the content I authored. I always appreciate
-to be cited but really there is no licence.
+My name is Lucas SANTONI, this is my personnal website. Most of my content is
+related to software development and/or computer security.
 
 Various links:
 
@@ -17,6 +12,9 @@ Various links:
 * [GitHub](https://github.com/geospace)
 * [Linkedin](https://www.linkedin.com/in/lucas1337/)
 * [Root-Me profile](https://www.root-me.org/Geographer)
+
+You can do whatever you want with the content I authored. I always appreciate
+to be cited but really there is no licence.
 
 ## About this blog
 
