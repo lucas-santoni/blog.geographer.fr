@@ -2,6 +2,6 @@
   "name": "blog.geographer.fr",
   "private": true,
   "scripts": {
-    "build": "pelican content -o public -s pelicanconf.py && optimize-images public"
+    "build": "pelican content -o public -s pelicanconf.py"
   }
 }
