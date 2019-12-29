@@ -3,7 +3,7 @@
   "name": "Geographer",
   "icons": [
     {
-      "src": "/pwn-icon.png",
+      "src": "/pwa-icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
