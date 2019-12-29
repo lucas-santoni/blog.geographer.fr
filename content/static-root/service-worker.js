@@ -3,7 +3,11 @@ const SW_PATH = '/service-worker.js';
 const CACHE_NAME = 'cache';
 const CACHE_VERSION = '1::';
 
+const DEBUG = false;
+
+const NO_INTERNET_PAGE = '/internet-error';
 const URLS_TO_CACHE = [
+  NO_INTERNET_PAGE,
   '/theme/avatar.jpg',
   '/theme/mobile.css',
   '/theme/pygments.css',
@@ -20,10 +24,18 @@ const URLS_TO_CACHE = [
 ];
 
 const log = msg => {
+  if (!DEBUG) {
+    return;
+  }
+
   console.log(`[service-worker] ${msg}`);
 };
 
 const logerr = (msg, err) => {
+  if (!DEBUG) {
+    return;
+  }
+
   console.error(`[service-worker] ${msg}`);
   console.error(err);
 };
@@ -35,28 +47,21 @@ const fetchedFromNetwork = (response, event) => {
   caches
     .open(CACHE_VERSION + 'pages')
     .then(cache => cache.put(event.request, cacheCopy))
-    .then(() => console.log(`response stored in cache @ ${event.request.url}`));
+    .then(() => log(`response stored in cache @ ${event.request.url}`));
 
   return response;
 };
 
-const unableToResolve = (err, url) => {
-  logerr(`request failed in both cache, and network @ ${url}`, err);
-
-  // TODO: Fix this
-  return new Response('<h1>Service Unavailable</h1>', {
-    status: 503,
-    statusText: 'Service Unavailable',
-    headers: new Headers({
-      'Content-Type': 'text/html'
-    })
-  });
+const unableToResolve = () => {
+  return Response.redirect(NO_INTERNET_PAGE, 302);
 };
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register(SW_PATH);
-} else {
-  logerr('not supported', new Error('/'));
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(SW_PATH)
+      .then(() => log('registered'))
+      .catch(err => logerr('registration failed', err))
+  })
 }
 
 self.addEventListener('install', event => {
@@ -79,8 +84,8 @@ self.addEventListener('fetch', event => {
       .match(event.request)
       .then(cached => {
         const networked = fetch(event.request)
-          .then(response => fetchedFromNetwork(response, event))
-          .catch(error => unableToResolve(error, event.request.url));
+          .then(response => fetchedFromNetwork(response, event), unableToResolve)
+          .catch(unableToResolve);
 
 
         log(`fetch event ${cached ? '(cached)' : '(network)'} @ ${event.request.url}`)

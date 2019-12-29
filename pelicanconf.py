@@ -34,7 +34,8 @@ STATIC_PATHS = ["assets", "static-root"]
 # STATIC FILES AT ROOT
 EXTRA_PATH_METADATA = {
     "static-root/service-worker.js": {"path": "service-worker.js"},
-    "static-root/favicon.ico": {"path": "favicon.ico"}
+    "static-root/favicon.ico": {"path": "favicon.ico"},
+    "static-root/manifest.json": {"path": "manifest.json"}
 }
 
 # SITE INTRO
