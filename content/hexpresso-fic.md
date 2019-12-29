@@ -53,12 +53,12 @@ to flex.
 
 Here are my writeups:
 
-* [Step 1](/posts/hexpresso-fic-1)
-* [Step 2](/posts/hexpresso-fic-2)
-* [Step 3](/posts/hexpresso-fic-3)
-* [Step 4](/posts/hexpresso-fic-4)
-* [Step 5](/posts/hexpresso-fic-5)
-* [Step 6](/posts/hexpresso-fic-6)
+* [Step 1](/hexpresso-fic-1)
+* [Step 2](/hexpresso-fic-2)
+* [Step 3](/hexpresso-fic-3)
+* [Step 4](/hexpresso-fic-4)
+* [Step 5](/hexpresso-fic-5)
+* [Step 6](/hexpresso-fic-6)
 
 If you are interested in step 7 (a Use After Free, definitely the hardest
 challenge of this qualification round), please take a look at
