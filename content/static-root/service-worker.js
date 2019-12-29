@@ -7,6 +7,7 @@ const DEBUG = false;
 
 const NO_INTERNET_PAGE = '/internet-error';
 const URLS_TO_CACHE = [
+  '/',
   NO_INTERNET_PAGE,
   '/theme/avatar.jpg',
   '/theme/mobile.css',
