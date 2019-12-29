@@ -3,9 +3,9 @@
   "name": "Geographer",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "type": "image/ico",
-      "sizes": "256x256"
+      "src": "/pwn-icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",
