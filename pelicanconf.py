@@ -35,6 +35,7 @@ STATIC_PATHS = ["assets", "static-root"]
 EXTRA_PATH_METADATA = {
     "static-root/service-worker.js": {"path": "service-worker.js"},
     "static-root/favicon.ico": {"path": "favicon.ico"},
+    "static-root/pwa-icon.png": {"path": "pwa-icon.png"},
     "static-root/manifest.json": {"path": "manifest.json"}
 }
 
