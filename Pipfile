@@ -11,6 +11,8 @@ autopep8 = "*"
 pelican = "*"
 markdown = "*"
 pygments = "*"
+pillow = "*"
+optimize-images = "*"
 
 [requires]
 python_version = "3.7"
