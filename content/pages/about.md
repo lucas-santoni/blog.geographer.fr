@@ -3,7 +3,7 @@ title: About
 slug: about
 ---
 
-My name is Lucas SANTONI, this is my personnal website. Most of my content is
+My name is Lucas SANTONI, this is my personal website. Most of my content is
 related to software development and/or computer security.
 
 Various links:

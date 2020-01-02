@@ -44,14 +44,14 @@ EXTRA_PATH_METADATA = {
 SITE_INTRO = """
 I am a computer science enthusiast. My fields of
 interest are cybersecurity and software development. This blog is mostly
-about CTF writeups, personnal projects, and memos. Please, see the
+about CTF writeups, personal projects, and memos. Please, see the
 <a href="/about">about page</a> if you want to know more.
 """
 
 # META DESCRIPTION
 SITE_DESCRIPTION = """
-Personnal blog of Geographer: computer security, programming, CTF writeups,
-personnal projects, memos...
+Personal blog of Geographer: computer security, programming, CTF writeups, side
+projects, memos...
 """
 
 # FOOTER
