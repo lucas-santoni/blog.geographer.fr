@@ -117,7 +117,7 @@ THIS_BLOG.description = """
 This blog is statically generated using
 <a href="https://blog.getpelican.com/">Pelican</a>, and hosted on
 <a href="https://zeit.co/dashboard">Now</a>. Feel free
-to <a href="https://github.com/Geospace/geoblog">contribute</a>.
+to <a href="https://github.com/Geospace/blog.geographer.fr">contribute</a>.
 """
 
 SQLI_PLATFORM = project()
