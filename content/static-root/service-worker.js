@@ -80,6 +80,10 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  if (event.request.url.match('^.*\.(google-analytics|googletagmanager)\.com.*$')) {
+    return;
+  }
+
   event.respondWith(
     caches
       .match(event.request)
