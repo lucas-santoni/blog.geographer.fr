@@ -2,16 +2,7 @@
   "version": 2,
   "routes": [
     {
-      "src": "/assets/(.+)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/theme/(.+)",
-      "dest": "/theme/$1"
-    },
-    {
-      "src": "/(.+)",
-      "dest": "/$1.html"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
