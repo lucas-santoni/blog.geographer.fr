@@ -9,6 +9,7 @@ const NO_INTERNET_PAGE = '/internet-error';
 const URLS_TO_CACHE = [
   '/',
   NO_INTERNET_PAGE,
+  '/404',
   '/theme/avatar.png',
   '/theme/mobile.css',
   '/theme/pygments.css',
