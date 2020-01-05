@@ -1,21 +1,10 @@
 {
   "version": 2,
-  "routes": [
+  "cleanUrls": true,
+  "rewrites": [
     {
-      "src": "/assets/(.+)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/theme/(.+)",
-      "dest": "/theme/$1"
-    },
-    {
-      "src": "/(.+)",
-      "dest": "/$1.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/(.*)",
+      "destination": "/404"
     }
   ]
 }

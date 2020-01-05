@@ -86,4 +86,4 @@ $ echo -n "aHR0cHM6Ly9jdGYuaGV4cHJlc3NvLmZyLzFlYTk2N2Y1MmQxYWFiMzI3ZDA4NGVmZDI0Z
 https://ctf.hexpresso.fr/1ea967f52d1aab327d084efd24d04957
 ```
 
-[Click here](/posts/hexpresso-fic-4) for the next step!
+[Click here](/hexpresso-fic-4) for the next step!

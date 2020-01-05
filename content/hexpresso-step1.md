@@ -88,4 +88,4 @@ const play = () => {
 console.log(play());
 ```
 
-It outputs the flag: `1f1bd383026a5db8145258efb869c48f`. [Click here](/posts/hexpresso-fic-2) for the next step!
+It outputs the flag: `1f1bd383026a5db8145258efb869c48f`. [Click here](/hexpresso-fic-2) for the next step!

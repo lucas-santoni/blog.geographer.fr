@@ -161,4 +161,4 @@ Well done buddy !!!!
 Next step : https://ctf.hexpresso.fr/6bd1d24ab3aa08784f868a533bcdc215
 ```
 
-[Click here](/posts/hexpresso-fic-5) for the next step!
+[Click here](/hexpresso-fic-5) for the next step!

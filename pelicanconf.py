@@ -3,6 +3,9 @@
 
 from __future__ import unicode_literals
 
+# PLUGINS
+PLUGINS = ['plugins.api']
+
 # SITE INFORMATION
 AUTHOR = "Geographer"
 SITENAME = "Geographer"
@@ -33,6 +36,7 @@ STATIC_PATHS = ["assets", "static-root"]
 
 # STATIC FILES AT ROOT
 EXTRA_PATH_METADATA = {
+    "static-root/levenshtein.js": {"path": "levenshtein.js"},
     "static-root/service-worker.js": {"path": "service-worker.js"},
     "static-root/favicon.ico": {"path": "favicon.ico"},
     "static-root/pwa-icon.png": {"path": "pwa-icon.png"},
@@ -71,8 +75,11 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# DO NOT GENERATE
+# GENERATE
 PAGE_SAVE_AS = "{slug}.html"
+ARTICLE_SAVE_AS = "{slug}.html"
+
+# DO NOT GENERATE
 AUTHOR_SAVE_AS = ""
 CATEGORY_SAVE_AS = ""
 TAG_SAVE_AS = ""
