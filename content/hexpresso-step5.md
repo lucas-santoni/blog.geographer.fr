@@ -114,4 +114,4 @@ This payload is actually very simple:
 * Go back another scope (to `main`)
 * Print the local variables (of `main`)
 
-[Click here](/posts/hexpresso-fic-6) for the next step!
+[Click here](/hexpresso-fic-6) for the next step!

@@ -219,4 +219,4 @@ Which decodes to our flag:
 https://ctf.hexpresso.fr/5798ca47dace5c5e6d3529690c863375
 ```
 
-You can [click here](/posts/hexpresso-fic-3) for the next step.
+You can [click here](/hexpresso-fic-3) for the next step.
