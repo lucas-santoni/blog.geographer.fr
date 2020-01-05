@@ -15,14 +15,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/404.html",
+      "dest": "/404",
       "status": 404
     }
   ]
