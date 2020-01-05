@@ -16,7 +16,8 @@ FILENAME = 'api.js'
 EXCLUDE_SLUGS = [
     '404',
     'internet-error',
-    'posts'
+    'posts',
+    'about'
 ]
 
 
