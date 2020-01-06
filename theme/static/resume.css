@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,600,700&display=swap');
+
 .resume-wrapper {
   max-width: 50em;
   margin: 0 auto;
   margin-top: 2em;
   color: #4a5568;
-  font-family: Fira Sans, Arial, Helvetica, sans-serif;
+  font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
 }
 
 .resume-wrapper .meta {
