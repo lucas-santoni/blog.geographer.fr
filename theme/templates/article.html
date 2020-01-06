@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="title-meta">{{ article.title }}</h1>
+<h1 class="title-meta">{{ article.smart_title or article.title }}</h1>
 <p class="content-meta">
   2 minutes read • published {{ article.date.strftime('%d/%m/%Y') }}
 </p>
