@@ -1,5 +1,5 @@
 ---
-title: Deloitte CTF Quals 2019: g0dmode's Pizza Shop 🍕
+title: Deloitte CTF Quals 2019: g0dmode's Pizza Shop
 slug: deloitte-godmod-pizza
 date: 06/11/2019 03
 ---

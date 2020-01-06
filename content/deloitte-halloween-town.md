@@ -1,5 +1,5 @@
 ---
-title: Deloitte CTF Quals 2019: Halloween Town 🎃
+title: Deloitte CTF Quals 2019: Halloween Town
 slug: deloitte-halloween-town
 date: 06/11/2019 02
 ---

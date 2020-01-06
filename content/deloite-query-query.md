@@ -1,5 +1,5 @@
 ---
-title: Deloitte CTF Quals 2019: Query Query 👸🏻
+title: Deloitte CTF Quals 2019: Query Query
 slug: deloitte-query-query
 date: 06/11/2019 04
 ---
