@@ -20,7 +20,11 @@ def smart_break(document):
 
         # Glue the title back together
         final = f'{start} {end}'
-        document.title = final
+
+        # Write to a custom property
+        # Writing the title directly leads to &nbsp; not being
+        # interpreted at various places
+        document.smart_title = final
 
 
 def run(generators):
