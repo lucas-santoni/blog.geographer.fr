@@ -1,60 +1,31 @@
-<!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}">
-<head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155297229-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-155297229-1');
-  </script>
-
-  <meta charset="UTF-8">
-  <meta name="theme-color" content="#000000">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ SITE_DESCRIPTION }}">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/styles.css">
-  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/mobile.css">
-  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/pygments.css">
-
-  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
-  <script src="/service-worker.js"></script>
-  <script src="/api.js"></script>
-  <script src="/levenshtein.js"></script>
-
-  <title>{{ SITENAME }}</title>
-</head>
+{% include 'head.html' %}
 
 <body>
-  <div class="header-container">
-    <div class="avatar-container">
-      <img class="avatar" src="/{{ THEME_STATIC_DIR }}/avatar.png" alt="Avatar">
-      <p class="site-title">
-        <a href="/">{{ SITENAME }}</a>
+  <div class="blog-wrapper">
+    <div class="header-container">
+      <div class="avatar-container">
+        <img class="avatar" src="/{{ THEME_STATIC_DIR }}/avatar.png" alt="Avatar">
+        <p class="site-title">
+          <a href="/">{{ SITENAME }}</a>
+        </p>
+      </div>
+  
+      <ul class="navbar">
+        <li class="navbar-element"><a href="/about">About</a></li>
+        <li class="navbar-element"><a href="{{ GITHUB_URL }}">GitHub</a></li>
+        <li class="navbar-element"><a href="{{ TWITTER_URL }}">Twitter</a></li>
+      </ul>
+    </div>
+  
+    {% block content %}
+    {% endblock %}
+    <div class="footer">
+      <p class="footer-text">
+        {{ FOOTER_TEXT }}
       </p>
     </div>
-
-    <ul class="navbar">
-      <li class="navbar-element"><a href="/about">About</a></li>
-      <li class="navbar-element"><a href="{{ GITHUB_URL }}">GitHub</a></li>
-      <li class="navbar-element"><a href="{{ TWITTER_URL }}">Twitter</a></li>
-    </ul>
-  </div>
-
-  {% block content %}
-  {% endblock %}
-
-  <div class="footer">
-    <p class="footer-text">
-      {{ FOOTER_TEXT }}
-    </p>
   </div>
 </body>
 
-<script>twemoji.parse(document.body);</script>
-</html>
+
+{% include 'end.html' %}

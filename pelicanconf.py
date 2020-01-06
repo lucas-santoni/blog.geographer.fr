@@ -28,8 +28,13 @@ MARKDOWN = {
 }
 
 # LINKS
+TWITTER_HANDLE = 'geographeur'
+MAIL = 'lucas.santoni@live.fr'
+SITE = 'geographer.fr'
+SITE_URL = 'https://' + SITE + '/'
+TWITTER_URL = 'https://twitter.com/' + TWITTER_HANDLE
 GITHUB_URL = 'https://github.com/geospace'
-TWITTER_URL = 'https://twitter.com/geographeur'
+MAIL_URL = 'mailto:' + MAIL
 
 # STATIC_PATHS
 STATIC_PATHS = ['assets', 'static-root']

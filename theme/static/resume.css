@@ -1,0 +1,98 @@
+.resume-wrapper {
+  max-width: 50em;
+  margin: 0 auto;
+  margin-top: 2em;
+  color: #4a5568;
+  font-family: Fira Sans, Arial, Helvetica, sans-serif;
+}
+
+.resume-wrapper .meta {
+  color: #68778d;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.resume-wrapper p {
+  margin: 0;
+  margin-top: .4rem;
+  line-height: 1.45;
+}
+
+.resume-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.resume-intro h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #44505f;
+  margin: 0;
+}
+
+.resume-content {
+  column-count: 2;
+  column-gap: 2.5rem;
+}
+
+@media screen and (max-width: 42em) {
+  .resume-content {
+    column-count: 1;
+  }
+}
+
+.resume-content h2 {
+  color: #8e9cb4;
+  font-size: 0.94em;
+  letter-spacing: .1em;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.resume-content h3 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.resume-content ul {
+  margin: 0;
+  margin-top: .4rem;
+  list-style-type: none;
+  padding: 0;
+}
+
+.resume-content .tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.resume-content .tags li {
+  line-height: 1.6;
+  margin-top: .4rem;
+  margin-right: .4rem;
+  color: #44505f;
+  background-color: #edf2f7;
+  padding-left: .75rem;
+  padding-right: .75rem;
+  font-size: 0.9rem;
+}
+
+.resume-content section {
+  break-inside: avoid;
+  text-align: justify;
+  margin-bottom: 2rem;
+}
+
+.resume-content section section {
+  margin-bottom: 1rem;
+}
+
+.resume-content .contact li {
+  margin-top: 0.25rem;
+}
