@@ -1,10 +1,10 @@
 ---
-title: Deloitte CTF Quals 2019: Sea shells, she sails, nooo! 🏖️
+title: Deloitte CTF Quals 2019: Sea shells, she sails, nooo!
 slug: deloitte-sea-shells-she-sails
 date: 06/11/2019 06
 ---
 
-*Why oh why I try again... sea shells she sails, nooo!* was a task labelled
+*Why oh why I try again... sea shells she sails, nooo! 🏖️* was a task labelled
 reversing and worth 200 points (which was quite a lot for this CTF).
 
 ![Task Description](/assets/sea-shells/intro.png)
