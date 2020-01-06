@@ -3,13 +3,13 @@ import os
 from pelican import signals
 
 # Generate an "API" for the blog
-# it is actually a JavaScript module that can be easily imported
+# It is actually a JavaScript array that can be easily consumed
 # and allows to search for an article
 
-JS_BASE = """const API = [
+JS_BASE = '''const API = [
   {}
 ];
-"""
+'''
 
 FILENAME = 'api.js'
 
@@ -47,7 +47,7 @@ class APIGenerator():
 
         # Format objects
         objs = [
-            f"""{{ title: '{title}', slug: '{slug}' }}"""
+            f'{{ title: \'{title}\', slug: \'{slug}\' }}'
             for title, slug in zip(titles, slugs)
         ]
 
