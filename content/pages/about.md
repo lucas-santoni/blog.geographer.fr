@@ -8,6 +8,7 @@ related to software development and/or computer security.
 
 Various links:
 
+* [Resume](/resume)
 * [Twitter](https://twitter.com/geographeur)
 * [GitHub](https://github.com/geospace)
 * [Linkedin](https://www.linkedin.com/in/lucas1337/)
