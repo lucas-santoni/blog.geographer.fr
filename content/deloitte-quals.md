@@ -11,12 +11,12 @@ university) are then qualified for the finals that take place in London.
 
 Here are my writeups:
 
-* [Superhero 🦸](/posts/superhero)
-* [Why oh why I try again… sea shells she sails, nooo! 🏖️](/posts/deloitte-sea-shells-she-sails)
-* [Query query on the wall.. Who’s the fairest of them all? 👸🏻](/posts/deloitte-query-query)
-* [PatchMe 🤕](/posts/deloitte-patchme)
-* [Halloween Town 🎃](/posts/deloitte-halloween-town)
-* [g0dmode’s Pizza Shop 🍕](/posts/deloitte-godmod-pizza)
+* [Superhero 🦸](/deloitte-superhero)
+* [Why oh why I try again… sea shells she sails, nooo! 🏖️](/deloitte-sea-shells-she-sails)
+* [Query query on the wall.. Who’s the fairest of them all? 👸🏻](/deloitte-query-query)
+* [PatchMe 🤕](/deloitte-patchme)
+* [Halloween Town 🎃](/deloitte-halloween-town)
+* [g0dmode’s Pizza Shop 🍕](/deloitte-godmod-pizza)
 
 I played with a bunch of friends also from EPITECH (my school in France)
 and we managed to end up at the second place. Really looking forward for
