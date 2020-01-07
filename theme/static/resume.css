@@ -2,7 +2,7 @@
 
 @media print {
   @page {
-    margin-top: 0.5in;
+    margin-top: 0.8in;
     margin-bottom: 0in;
     margin-left: 0in;
     margin-right: 0in;
@@ -29,8 +29,8 @@
 
 .resume-wrapper {
   max-width: 52em;
-  margin: 0 auto;
-  margin-top: 2em;
+  margin: 3rem auto .4rem auto;
+  padding: .5rem;
   color: #4a5568;
   font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
 }
@@ -44,7 +44,6 @@
 
 .resume-wrapper p {
   margin: 0;
-  margin-top: .4rem;
   line-height: 1.45;
 }
 
@@ -68,6 +67,10 @@
 }
 
 @media screen and (max-width: 42em) {
+  .resume-wrapper {
+    margin: .5rem auto .4rem auto;
+  }
+
   .resume-content {
     column-count: 1;
   }
@@ -132,7 +135,6 @@
 
 .resume-footer {
   margin-top: 2.5em;
-  margin-bottom: 1em;
   border-top: 1px solid #eee;
   font-size: 0.9em;
 }
