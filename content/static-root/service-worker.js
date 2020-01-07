@@ -1,7 +1,8 @@
 const SW_PATH = '/service-worker.js';
 
-const CACHE_NAME = 'cache';
-const CACHE_VERSION = '1::';
+const CACHE_COMMON = 'common';
+const CACHE_PAGES = 'pages';
+const CACHE_VERSION = '2::';
 
 const DEBUG = false;
 
@@ -47,7 +48,7 @@ const fetchedFromNetwork = (response, event) => {
   log(`fetching response from network @ ${event.request.url}`);
 
   caches
-    .open(CACHE_VERSION + 'pages')
+    .open(CACHE_VERSION + CACHE_PAGES)
     .then(cache => cache.put(event.request, cacheCopy))
     .then(() => log(`response stored in cache @ ${event.request.url}`));
 
@@ -69,7 +70,7 @@ if ('serviceWorker' in navigator) {
 self.addEventListener('install', event => {
   event.waitUntil(
     caches
-      .open(CACHE_VERSION + 'common')
+      .open(CACHE_VERSION + CACHE_COMMON)
       .then(cache => cache.addAll(URLS_TO_CACHE))
       .then(() => log('installation completed, cached common'))
       .catch(e => logerr('installation failed', e))
@@ -98,4 +99,24 @@ self.addEventListener('fetch', event => {
         return cached || networked;
       })
   );
+});
+
+self.addEventListener('activate', event => {
+  log('activate');
+
+  const cacheWhitelist = [
+    CACHE_VERSION + CACHE_COMMON,
+    CACHE_VERSION + CACHE_PAGES
+  ];
+
+  event.waitUntil(
+    caches.keys().then(cacheNames => Promise.all(
+      cacheNames.map(cacheName => {
+        if (cacheWhitelist.indexOf(cacheName) === -1) {
+          log(`delete ${cacheName}`);
+          return caches.delete(cacheName);
+        }
+      })
+    ))
+  )
 });
