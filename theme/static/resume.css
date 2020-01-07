@@ -71,6 +71,10 @@
   .resume-content {
     column-count: 1;
   }
+
+  .resume-footer {
+    margin-top: 0 !important;
+  }
 }
 
 .resume-content h2 {
