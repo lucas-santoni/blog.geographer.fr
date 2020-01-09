@@ -2,7 +2,7 @@ const SW_PATH = '/service-worker.js';
 
 const CACHE_COMMON = 'common';
 const CACHE_PAGES = 'pages';
-const CACHE_VERSION = '4::';
+const CACHE_VERSION = '5::';
 
 const DEBUG = false;
 
@@ -11,7 +11,7 @@ const URLS_TO_CACHE = [
   '/',
   NO_INTERNET_PAGE,
   '/404',
-  '/theme/avatar.png',
+  '/theme/avatar.jpg',
   '/theme/mobile.css',
   '/theme/pygments.css',
   '/theme/styles.css',
