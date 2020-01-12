@@ -35,8 +35,8 @@ Finally, we'll edit `pelicanconf.py` and register our plugin:
 PLUGINS = ['plugins.nice_plugin'] # Obviously matches the directory names
 ```
 
-That's it! If the plugin correctly connected to one (or more) signals, it
-will have a chance to run during the build process.
+That's it! If the plugin correctly connected to one (or more) signals (keep
+reading to know more), it will have a chance to run during the build process.
 
 Consuming plugins is very easy but sometimes, you have to write your own, or
 patch an existing one.
@@ -46,10 +46,10 @@ patch an existing one.
 Pelican's build process is a sequential procedure. Oversimplified, it would
 look like this:
 
-- Scan for all the posts' paths
-- Read their content
-- Transform their content to HTML
-- Write the HTML to the output directory
+1. Scan for all the posts' paths
+2. Read their content
+3. Transform their content to HTML
+3. Write the HTML to the output directory
 
 Now, let's imagine that, for each of these steps, you could have a chance
 to run a function. On step 2, the function could look like this:
@@ -84,19 +84,36 @@ by the caller (Pelican's core) and must be respected.
 
 Here are signals that are often used:
 
-* `initialized` happens on Pelican's startup. Nothing has happened yet.
-* `get_generators` happens when Pelican collects the generator objects. Use it
-if you want to create a custom generator (keep reading to know more).
-* `article_generator_write_article` happens before writing each article.
-You get the generator instance for the article being processed, and the
-actual article (including its metadatas) as parameters. You could write
-a plugin to calculate the read time of an article here.
-* `page_generator_write_page` same as `article_generator_write_article`, but
-for pages instead of articles.
-* `all_generators_finalized` happens before the writing to the output directory.
-You get generator objects for all documents as parameters. This would be a
-good place to generate a sitemap, for example.
-* `finalized` happens when Pelican has finished and is about to exit. As stated
+**`initialized`**
+
+Happens on Pelican's startup. Nothing has happened yet.
+
+**`get_generators`**
+
+Happens when Pelican collects the generator objects. Use it if you want to
+create a custom generator (keep reading to know more).
+
+**`article_generator_write_article`**
+
+Happens before writing each article. You get the generator instance for the
+article being processed, and the actual article (including its metadatas) as
+parameters. You could write a plugin to calculate the read time of an article
+here.
+
+**`page_generator_write_page`**
+
+The same as `article_generator_write_article`, but for pages instead of
+articles.
+
+**`all_generators_finalized`**
+
+Happens before the writing to the output directory. You get generator objects
+for all documents as parameters. This would be a good place to generate a
+sitemap, for example.
+
+**`finalized`**
+
+Happens when Pelican has finished and is about to exit. As stated
 in the documentation, this is the right place to minify assets for instance.
 
 ## Toy module
@@ -216,3 +233,30 @@ In this particular case, there is a little difference.
 `article_generator_write_article` is called *before* the article is written,
 whereas `content_written` is called *after*. Depending on what you exactly
 want to do, this could matter.
+
+## Read, Generate, and Write
+
+Pelican's [internals documentation]() teaches us that the build process
+is divided between different entities. They are the readers, the generators,
+and the writers.
+
+A **reader** is responsible for reading the raw files from the disk. For each
+file, it parses its metadatas and transforms its content into the desired
+target output format. Pelican ships with a bunch of readers and the most used
+one probably is the Markdown one. [Click here to see how it looks.](https://github.com/getpelican/pelican/blob/master/pelican/readers.py#L283)
+Its format aside, readers does not have any clue about the document they are
+working with. A generator has.
+
+A **generator** receives inputs (including the readers' outputs) and transform
+them into actual pages for your sites. Articles, pages, categories, tags,
+archives... It all happens here. The generator organizes the data that it got
+from the readers and execute the [Jinja]() templates. [Click here to take a look at the generator for the articles](https://github.com/getpelican/pelican/blob/master/pelican/generators.py#L277).
+When he is finished, the generator calls a writer.
+
+A **writer**, as its name suggets, writes the output directory and transform the
+in-memory documents that the generator crafted into actual files that
+ultimately constitutes your website. Pelican ships with a single writer,
+[see it here](https://github.com/getpelican/pelican/blob/master/pelican/writers.py#L19).
+
+Pelican's plugin API allows you to write custom readers, generators, and
+writers.
