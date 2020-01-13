@@ -260,3 +260,110 @@ ultimately constitutes your website. Pelican ships with a single writer,
 
 Pelican's plugin API allows you to write custom readers, generators, and
 writers.
+
+Writing a **custom reader** allows to integrate a new source format to
+Pelican. For example, you could be very fond of the [AsciiDoc]() syntax
+and develop a reader plugin so that you can write you posts in AsciiDoc.
+This is the perfect use case and such module actually [already exist](https://github.com/getpelican/pelican-plugins/tree/master/asciidoc_reader).
+Of course, the parsing can be delegated to a module. You are writing Python
+after all!
+
+Writing a **custom generator** is great if you want to create an entierely
+custom page for you site. A lot can be done by tweaking your theme and its
+templates but sometimes, you feel that a generator is necessary, especially
+if you need to implement a lot of logic. See the next section to know more.
+
+Writing a **custom writer** is not a very common tasks. Most plugins
+developers end up doing the writing part directly into the generator, which
+does not seem to be a bad practice of anything.
+
+## JavaScript Index Generator Module
+
+Let's write another plugin. This one is going to be a custom generator. Our
+aim is to generate a JavaScript "index" for our site. Basically, I want to
+have some kind of *instrospection* that allows me to write client side
+code like this:
+
+```js
+const url_split = window.location.href.split("/");
+const last = url_split[url_split.length-1].replace('.html', '');
+
+const distances = API.map(({ title, slug }) => ({ title, slug, score: levenshtein(last, slug) }));
+const sorted = distances.sort((a, b) => a.score > b.score);
+const results = sorted.slice(0, 5);
+```
+
+I use this piece of code in my 404 page in order to automatically fix some
+broken links. I have a complete article coming on this topic but here was this
+script does:
+
+1. Retrieve the slug that the user requested
+2. For each page of the site, compute the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) between
+  its slug, and the one the user required
+3. Sort the results
+4. Extract the top 5 results, at most
+
+How does this script now about all the slugs of my site and their associated
+titles? What is this `API` object? Here is how it looks:
+
+![API outout](/assets/pelican-plugins/api.png)
+
+This is what our plugin generates. It looks quite simple and it actually is!
+We only need to iterate over the pages, buffer their titles and slugs, and
+finally generate a valid JavaScript file.
+
+Let's begin with the signals:
+
+```py
+def get_generators(generators):
+    return APIGenerator
+
+
+def register():
+    signals.get_generators.connect(get_generators)
+```
+
+The `get_generators` function is called at some point and the `APIGenerator`
+class. What does this class look like?
+
+```
+class APIGenerator():
+    def __init__(self, context, settings, path, theme, output_path):
+        self.context = context
+        self.output_path = output_path
+
+    def generate_output(self, writer):
+        # Final file path
+        path = os.path.join(self.output_path, FILENAME)
+
+        # Extract pages and articles
+        content = \
+            self.context['articles'] + \
+            self.context['pages']
+
+        # Remove the content that must be excluded
+        content = [c for c in content if c.slug not in EXCLUDE_SLUGS]
+
+        # Get all the slugs, and titles
+        slugs = [c.slug for c in content]
+        titles = [c.title for c in content]
+
+        # Escape quotes in the title
+        titles = [title.replace('\'', '\\\'') for title in titles]
+
+        # Format objects
+        objs = [
+            f'{{ title: \'{title}\', slug: \'{slug}\' }}'
+            for title, slug in zip(titles, slugs)
+        ]
+
+        # JavaScript array content
+        js_array_elements = ',\n  '.join(objs)
+
+        # Put content into array
+        js = JS_BASE.format(js_array_elements)
+
+        # Write JS file
+        with open(path, 'w+') as fd:
+            fd.write(js)
+```

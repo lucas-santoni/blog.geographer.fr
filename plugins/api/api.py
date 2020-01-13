@@ -4,7 +4,7 @@ from pelican import signals
 
 # Generate an "API" for the blog
 # It is actually a JavaScript array that can be easily consumed
-# and allows to search for an article
+# and allows to search for an article, via title or slug
 
 JS_BASE = '''const API = [
   {}
