@@ -64,7 +64,7 @@ def on_read_content(content):
 ```
 
 Of course, `on_read_content` would be called for each article that Pelican
-is able to read. Moreover, any modification that you would do to the `content`
+is able to read. Moreover, any modification that you do to the `content`
 object that is received as parameter would be preserved for the rest of the
 build process.
 
@@ -120,7 +120,7 @@ in the documentation, this is the right place to minify assets for instance.
 ## Toy module
 
 Let's write a toy module that outputs the title of the articles when they are
-written as HTML to the output folder, and the path they are written to.
+written as HTML to the output folder, as well as the path they are written to.
 
 First, let's find the right signal to subscribe to. Looking at the
 documentation, `content_written` looks like a good candidate. Here is the
@@ -245,13 +245,13 @@ A **reader** is responsible for reading the raw files from the disk. For each
 file, it parses its metadatas and transforms its content into the desired
 target output format. Pelican ships with a bunch of readers and the most used
 one probably is the Markdown one. [Click here to see how it looks.](https://github.com/getpelican/pelican/blob/master/pelican/readers.py#L283)
-Its format aside, readers does not have any clue about the document they are
+Beside its format, a reader does not have any clue about the document it is
 working with. A generator has.
 
 A **generator** receives inputs (including the readers' outputs) and transform
 them into actual pages for your sites. Articles, pages, categories, tags,
 archives... It all happens here. The generator organizes the data that it got
-from the readers and update the `context`. [Click here to take a look at the generator for the articles](https://github.com/getpelican/pelican/blob/master/pelican/generators.py#L277).
+from the readers and updates the `context`. [Click here to take a look at the generator for the articles](https://github.com/getpelican/pelican/blob/master/pelican/generators.py#L277).
 When he is finished, the generator calls a writer.
 
 A **writer**, as its name suggests, writes the output directory and transform the
@@ -264,7 +264,7 @@ writers.
 
 Writing a **custom reader** allows to integrate a new source format to
 Pelican. For example, you could be very fond of the [AsciiDoc](http://asciidoc.org/) syntax
-and develop a reader plugin so that you can write you posts in AsciiDoc.
+and develop a reader plugin so that you can write your posts in AsciiDoc.
 This is the perfect use case and such module actually [already exist](https://github.com/getpelican/pelican-plugins/tree/master/asciidoc_reader).
 Of course, the parsing can be delegated to a module. You are writing Python
 after all!
@@ -369,7 +369,7 @@ other module that were based on the API, we would surely do it though.
 
 Finally, let's define the `generate_output` method. Note that we don't use
 the `writer` that we get as parameter as it is mostly made for the
-articles/pages generators that use template. In our case, it is much simpler
+articles/pages generators and use templates. In our case, it is much simpler
 to directly implement the writing logic.
 
 ```py
@@ -421,7 +421,7 @@ Our generator is now complete!
 ## Wrapping up
 
 This the end of this guide. You might want to take at look at [this series](http://adamcot.com/posts/2018/02/building-pelican-plugins-i/)
-that go through the development of a teaser image plugin.
+that go through the development of a teaser image plugin next.
 
 The best learning resource for Pelican modules definitely is the Pelican source
 code itself. It is totally readable and is always up to date. Reading other
