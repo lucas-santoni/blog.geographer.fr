@@ -72,21 +72,20 @@ how do we associate an event and a hook function?
 
 ## The signals
 
-In order to associate an event (something like *an article has been read*)
-to an actual hook function, we use Pelican's signals API. Pelican emits
-signals at each step of the build process, so we just subscribe to these
-signals and wait for our functions to be called.
+In order to associate an event to an actual hook function, we use Pelican's
+signals API. Pelican emits signals at each step of the build process, so we
+just subscribe to these signals and wait for our functions to be called.
 
 Take a look at [the documentation]() for a complete list of signals. Each
 signals is associated with arguments. These are the arguments your hook
 functions **must** receive. Hook function signatures are strictly enforced
 by the caller (Pelican's core) and must be respected.
 
-Here are signals that are often used:
+Here are signals that are often used, associated with example plugins:
 
 **`initialized`**
 
-Happens on Pelican's startup. Nothing has happened yet.
+Pelican's startup: nothing has happened yet.
 
 **`get_generators`**
 
@@ -250,7 +249,7 @@ working with. A generator has.
 A **generator** receives inputs (including the readers' outputs) and transform
 them into actual pages for your sites. Articles, pages, categories, tags,
 archives... It all happens here. The generator organizes the data that it got
-from the readers and execute the [Jinja]() templates. [Click here to take a look at the generator for the articles](https://github.com/getpelican/pelican/blob/master/pelican/generators.py#L277).
+from the readers and update the `context`. [Click here to take a look at the generator for the articles](https://github.com/getpelican/pelican/blob/master/pelican/generators.py#L277).
 When he is finished, the generator calls a writer.
 
 A **writer**, as its name suggets, writes the output directory and transform the
@@ -293,9 +292,9 @@ const sorted = distances.sort((a, b) => a.score > b.score);
 const results = sorted.slice(0, 5);
 ```
 
-I use this piece of code in my 404 page in order to automatically fix some
-broken links. I have a complete article coming on this topic but here was this
-script does:
+I use this piece of code in my [404](/pelican-plugin) page in order to
+automatically fix some broken links. I have a complete article coming on this
+topic but here was this script does:
 
 1. Retrieve the slug that the user requested
 2. For each page of the site, compute the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) between
@@ -309,7 +308,7 @@ titles? What is this `API` object? Here is how it looks:
 ![API outout](/assets/pelican-plugins/api.png)
 
 This is what our plugin generates. It looks quite simple and it actually is!
-We only need to iterate over the pages, buffer their titles and slugs, and
+We only need to iterate over the documents, get their titles and slugs, and
 finally generate a valid JavaScript file.
 
 Let's begin with the signals:
@@ -323,47 +322,105 @@ def register():
     signals.get_generators.connect(get_generators)
 ```
 
-The `get_generators` function is called at some point and the `APIGenerator`
-class. What does this class look like?
+The `get_generators` function will be called when Pelican collects the
+generator and `APIGenerator` will be returned. This class is a Pelican
+generator. What does it look like?
 
-```
+```python
 class APIGenerator():
     def __init__(self, context, settings, path, theme, output_path):
-        self.context = context
-        self.output_path = output_path
+        pass
+
+    def generate_context(self):
+        pass
 
     def generate_output(self, writer):
-        # Final file path
-        path = os.path.join(self.output_path, FILENAME)
-
-        # Extract pages and articles
-        content = \
-            self.context['articles'] + \
-            self.context['pages']
-
-        # Remove the content that must be excluded
-        content = [c for c in content if c.slug not in EXCLUDE_SLUGS]
-
-        # Get all the slugs, and titles
-        slugs = [c.slug for c in content]
-        titles = [c.title for c in content]
-
-        # Escape quotes in the title
-        titles = [title.replace('\'', '\\\'') for title in titles]
-
-        # Format objects
-        objs = [
-            f'{{ title: \'{title}\', slug: \'{slug}\' }}'
-            for title, slug in zip(titles, slugs)
-        ]
-
-        # JavaScript array content
-        js_array_elements = ',\n  '.join(objs)
-
-        # Put content into array
-        js = JS_BASE.format(js_array_elements)
-
-        # Write JS file
-        with open(path, 'w+') as fd:
-            fd.write(js)
+        pass
 ```
+
+The constructor receives quite a few parameters. Here they are:
+
+* `context` (dictionary), the same context object we talked about before. In the 
+  constructor, it is almost the same as `settings`. However, it will be
+  updated by other generators and eventually allow us to access all our
+  articles and pages.
+* `settings` (dictionary), all the global site settings. Mostly parsed from
+  `pelicanconf.py`.
+* `path` (string), absolute path to the content directory.
+* `theme` (string) absolute path to active theme directory.
+* `outut_path` (string) absolute path to the output directory.
+
+The two parameters we are interested in are `context`, in order to go through
+the articles and pages, and `output_path`, in order to know where to write
+our output. So let's just save references to them:
+
+
+```py
+def __init__(self, context, settings, path, theme, output_path):
+    self.context = context
+    self.output_path = output_path
+```
+
+We are done with the contructor. We are not going to define the
+`generate_context` method as we will not update the context. If we had some
+other module that were based on the API, we would surely do it though.
+
+Finally, let's define the `generate_output` method. Note that we don't use
+the `writer` that we get as parameter as it is mostly made for the
+articles/pages generators that use template. In our case, it is much simpler
+to directly implement the writing logic.
+
+```py
+def generate_output(self, writer):
+    # Final file path
+    path = os.path.join(self.output_path, FILENAME)
+
+    # Extract pages and articles
+    content = \
+        self.context['articles'] + \
+        self.context['pages']
+
+    # Remove the content that must be excluded
+    content = [c for c in content if c.slug not in EXCLUDE_SLUGS]
+
+    # Get all the slugs, and titles
+    slugs = [c.slug for c in content]
+    titles = [c.title for c in content]
+
+    # Escape quotes in the title
+    titles = [title.replace('\'', '\\\'') for title in titles]
+
+    # Format objects
+    objs = [
+        f'{{ title: \'{title}\', slug: \'{slug}\' }}'
+        for title, slug in zip(titles, slugs)
+    ]
+
+    # JavaScript array content
+    js_array_elements = ',\n  '.join(objs)
+
+    # Put content into array
+    js = JS_BASE.format(js_array_elements)
+
+    # Write JS file
+    with open(path, 'w+') as fd:
+        fd.write(js)
+```
+
+The actual logic is not important. You can [take a look here](https://github.com/Geospace/blog.geographer.fr/tree/master/plugins/api) to get the
+source code for this module.
+
+What we can observe is that `self.context` has been updated with the articles
+and pages of our site so we can easily get all the information we want. And
+of course, we reuse `self.output_path` in order to know where to write.
+
+Our generator is now complete!
+
+## Wrapping up
+
+This the end of this guide. You might want to take at look at [this serie](http://adamcot.com/posts/2018/02/building-pelican-plugins-i/)
+that go through the development of a teaser image plugin.
+
+The best learning resource for Pelican modules definitely is the Pelican source
+code itself. It is totally readable and is always up to date. Reader other
+people's modules also help a ton.
