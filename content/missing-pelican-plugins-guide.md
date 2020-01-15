@@ -10,7 +10,7 @@ and sane defaults.
 
 Pelican's functionalities can be extended by writing **plugins**. These
 pieces of code, also written in Python, allow to perform actions at the
-different stages of the build processs.
+different stages of the build process.
 
 The [documentation](http://docs.getpelican.com/en/latest/plugins.html) does
 not say much about plugins development. The aim of this post is to provide
@@ -33,11 +33,12 @@ up with something like `plugins/nice_plugin`.
 Finally, we'll edit `pelicanconf.py` and register our plugin:
 
 ```py
-PLUGINS = ['plugins.nice_plugin'] # Obviously matches the directory names
+PLUGINS = ['plugins.nice_plugin'] # Obviously matches the names of the directories
 ```
 
-That's it! If the plugin correctly connected to one (or more) signals (keep
-reading to know more), it will have a chance to run during the build process.
+That's it! Provided that the plugin correctly connected to one (or more)
+signals (keep reading to know more), it will have a chance to run during the
+build process.
 
 Consuming plugins is very easy but sometimes, you have to write your own, or
 patch an existing one.
@@ -78,7 +79,7 @@ signals API. Pelican emits signals at each step of the build process, so we
 just subscribe to these signals and wait for our functions to be called.
 
 Take a look at [this page](http://docs.getpelican.com/en/latest/plugins.html#list-of-signals) for a complete
-list of signals. Each signals is associated with arguments. These are the
+list of signals. Each signal is associated with arguments. These are the
 arguments your hook functions **must** receive. Hook function signatures are
 strictly enforced by the caller (Pelican's core) and must be respected.
 
@@ -127,18 +128,18 @@ description:
 
 > Invoked each time a content file is written.
 
-The paramaters we must receive in our callback are named `path` and
+The parameters we must receive in our callback are named `path` and
 `context`. There is no type definition in the documentation to my knowledge
 so you will have to explore Pelican's source code or read other people's
 module in order to understand the actual types of these variables. Of course,
 you can also use Python's introspection with `dir` or `.keys()` while writing
 the module.
 
-For this particular signal, `path` is exactly what you thing it is: a string,
+For this particular signal, `path` is exactly what you think it is: a string,
 that stores the path of the output file that the article being processed is
 written to. `context` is a bit more complex. It is a global **dictionary**
 object that is used virtually everywhere and contains any piece of
-information you would need. As its name suggets, its content changes
+information you would need. As its name suggests, its content changes
 depending on the context.
 
 So let's start writing code. First, create the `plugins/toy` subdirectory
@@ -160,7 +161,7 @@ def register():
     signals.content_written.connect(run)
 ```
 
-The `register` function is you plugin's entry point. This is usually where
+The `register` function is your plugin's entry point. This is usually where
 you would connect your hook functions to the signals. The `run` function can
 have any name but must have the right function signature.
 
@@ -253,7 +254,7 @@ archives... It all happens here. The generator organizes the data that it got
 from the readers and update the `context`. [Click here to take a look at the generator for the articles](https://github.com/getpelican/pelican/blob/master/pelican/generators.py#L277).
 When he is finished, the generator calls a writer.
 
-A **writer**, as its name suggets, writes the output directory and transform the
+A **writer**, as its name suggests, writes the output directory and transform the
 in-memory documents that the generator crafted into actual files that
 ultimately constitutes your website. Pelican ships with a single writer,
 [see it here](https://github.com/getpelican/pelican/blob/master/pelican/writers.py#L19).
@@ -268,7 +269,7 @@ This is the perfect use case and such module actually [already exist](https://gi
 Of course, the parsing can be delegated to a module. You are writing Python
 after all!
 
-Writing a **custom generator** is great if you want to create an entierely
+Writing a **custom generator** is great if you want to create an entirely
 custom page for you site. A lot can be done by tweaking your theme and its
 templates but sometimes, you feel that a generator is necessary, especially
 if you need to implement a lot of logic. See the next section to know more.
@@ -281,7 +282,7 @@ does not seem to be a bad practice of anything.
 
 Let's write another plugin. This one is going to be a custom generator. Our
 aim is to generate a JavaScript "index" for our site. Basically, I want to
-have some kind of *instrospection* that allows me to write client side
+have some kind of *introspection* that allows me to write client side
 code like this:
 
 ```js
@@ -306,7 +307,7 @@ have a complete article coming on this topic but here was this script does:
 How does this script now about all the slugs of my site and their associated
 titles? What is this `API` object? Here is how it looks:
 
-![API outout](/assets/pelican-plugins/api.png)
+![API output](/assets/pelican-plugins/api.png)
 
 This is what our plugin generates. It looks quite simple and it actually is!
 We only need to iterate over the documents, get their titles and slugs, and
@@ -362,7 +363,7 @@ def __init__(self, context, settings, path, theme, output_path):
     self.output_path = output_path
 ```
 
-We are done with the contructor. We are not going to define the
+We are done with the constructor. We are not going to define the
 `generate_context` method as we will not update the context. If we had some
 other module that were based on the API, we would surely do it though.
 
@@ -419,9 +420,9 @@ Our generator is now complete!
 
 ## Wrapping up
 
-This the end of this guide. You might want to take at look at [this serie](http://adamcot.com/posts/2018/02/building-pelican-plugins-i/)
+This the end of this guide. You might want to take at look at [this series](http://adamcot.com/posts/2018/02/building-pelican-plugins-i/)
 that go through the development of a teaser image plugin.
 
 The best learning resource for Pelican modules definitely is the Pelican source
-code itself. It is totally readable and is always up to date. Reader other
+code itself. It is totally readable and is always up to date. Reading other
 people's modules also help a ton.
