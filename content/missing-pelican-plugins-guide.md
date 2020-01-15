@@ -4,25 +4,26 @@ slug: pelican-plugins
 date: 01/11/2020
 ---
 
-[Pelican]() is the static site generator that powers this blog. It is written
-in Python and I like it for its simplicity and sane defaults.
+[Pelican](https://blog.getpelican.com/) is the static site generator that
+powers this blog. It is written in Python and I like it for its simplicity
+and sane defaults.
 
 Pelican's functionalities can be extended by writing **plugins**. These
 pieces of code, also written in Python, allow to perform actions at the
 different stages of the build processs.
 
-The [documentation]() does not say much about plugins development. The aim of
-this post is to provide enough information so that you could write your own
-plugins.
+The [documentation](http://docs.getpelican.com/en/latest/plugins.html) does
+not say much about plugins development. The aim of this post is to provide
+enough information so that you could write your own plugins.
 
 ## Install plugins
 
 Before we talk about plugin development, let's see how we can use plugins
 written by other people.
 
-There is this [GitHub repository]() that hosts a large collection of plugins.
-We can observe here that a plugin is just a bunch of Python files, and
-sometimes a few static assets.
+There is this [GitHub repository](https://github.com/getpelican/pelican-plugins) that hosts a large
+collection of plugins. We can observe here that a plugin is just a bunch of
+Python files, and sometimes a few static assets.
 
 In order to install a plugin, create a directory at the root of your Pelican
 installation. Let's say that this directory is called `plugins`. Then, we'll
@@ -76,10 +77,10 @@ In order to associate an event to an actual hook function, we use Pelican's
 signals API. Pelican emits signals at each step of the build process, so we
 just subscribe to these signals and wait for our functions to be called.
 
-Take a look at [the documentation]() for a complete list of signals. Each
-signals is associated with arguments. These are the arguments your hook
-functions **must** receive. Hook function signatures are strictly enforced
-by the caller (Pelican's core) and must be respected.
+Take a look at [this page](http://docs.getpelican.com/en/latest/plugins.html#list-of-signals) for a complete
+list of signals. Each signals is associated with arguments. These are the
+arguments your hook functions **must** receive. Hook function signatures are
+strictly enforced by the caller (Pelican's core) and must be respected.
 
 Here are signals that are often used, associated with example plugins:
 
@@ -235,7 +236,7 @@ want to do, this could matter.
 
 ## Read, Generate, and Write
 
-Pelican's [internals documentation]() teaches us that the build process
+Pelican's [internals documentation](http://docs.getpelican.com/en/latest/internals.html) teaches us that the build process
 is divided between different entities. They are the readers, the generators,
 and the writers.
 
@@ -261,7 +262,7 @@ Pelican's plugin API allows you to write custom readers, generators, and
 writers.
 
 Writing a **custom reader** allows to integrate a new source format to
-Pelican. For example, you could be very fond of the [AsciiDoc]() syntax
+Pelican. For example, you could be very fond of the [AsciiDoc](http://asciidoc.org/) syntax
 and develop a reader plugin so that you can write you posts in AsciiDoc.
 This is the perfect use case and such module actually [already exist](https://github.com/getpelican/pelican-plugins/tree/master/asciidoc_reader).
 Of course, the parsing can be delegated to a module. You are writing Python
@@ -292,9 +293,9 @@ const sorted = distances.sort((a, b) => a.score > b.score);
 const results = sorted.slice(0, 5);
 ```
 
-I use this piece of code in my [404](/pelican-plugin) page in order to
-automatically fix some broken links. I have a complete article coming on this
-topic but here was this script does:
+I use this piece of code in my [404](/pelican-plugin) (note the missing *s*
+in the link's URL) page in order to automatically fix some broken links. I
+have a complete article coming on this topic but here was this script does:
 
 1. Retrieve the slug that the user requested
 2. For each page of the site, compute the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) between
