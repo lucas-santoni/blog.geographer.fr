@@ -4,7 +4,11 @@
 from __future__ import unicode_literals
 
 # PLUGINS
-PLUGINS = ['plugins.title-smart-break', 'plugins.api', 'plugins.readtime']
+PLUGINS = [
+    'plugins.title-smart-break',
+    'plugins.api',
+    'plugins.readtime'
+]
 
 # SITE INFORMATION
 AUTHOR = 'Geo'
