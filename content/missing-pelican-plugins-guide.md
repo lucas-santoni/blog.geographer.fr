@@ -205,11 +205,10 @@ Our toy module is now complete!
 
 ## The right signal
 
-Our toy module works great but the key presence checking part to determine
-the actual type of the article feels a bit hacky. There is actually another
-signal that may be useful to us: `article_generator_write_article`. It
-happens when an article (no need for key presence checking then) is about to
-be written.
+Our toy module works great but the key presence checking part to determine the
+actual type of the article feels a bit hacky. There is actually another signal
+that is useful to us: `article_generator_write_article`. It happens when an
+article is about to be written (no need for key presence checking then).
 
 We can refactor our toy module to use this signal instead:
 
@@ -248,7 +247,7 @@ one probably is the Markdown one. [Click here to see how it looks.](https://gith
 Beside its format, a reader does not have any clue about the document it is
 working with. A generator has.
 
-A **generator** receives inputs (including the readers' outputs) and transform
+A **generator** receives inputs (including the readers' outputs) and transforms
 them into actual pages for your sites. Articles, pages, categories, tags,
 archives... It all happens here. The generator organizes the data that it got
 from the readers and updates the `context`. [Click here to take a look at the generator for the articles](https://github.com/getpelican/pelican/blob/master/pelican/generators.py#L277).
@@ -262,7 +261,7 @@ ultimately constitutes your website. Pelican ships with a single writer,
 Pelican's plugin API allows you to write custom readers, generators, and
 writers.
 
-Writing a **custom reader** allows to integrate a new source format to
+Writing a **custom reader** allows you to integrate a new source format to
 Pelican. For example, you could be very fond of the [AsciiDoc](http://asciidoc.org/) syntax
 and develop a reader plugin so that you can write your posts in AsciiDoc.
 This is the perfect use case and such module actually [already exist](https://github.com/getpelican/pelican-plugins/tree/master/asciidoc_reader).
@@ -274,9 +273,9 @@ custom page for you site. A lot can be done by tweaking your theme and its
 templates but sometimes, you feel that a generator is necessary, especially
 if you need to implement a lot of logic. See the next section to know more.
 
-Writing a **custom writer** is not a very common tasks. Most plugins
+Writing a **custom writer** is not a very common task. Most plugins
 developers end up doing the writing part directly into the generator, which
-does not seem to be a bad practice of anything.
+does not seem to be a bad practice.
 
 ## JavaScript Index Generator Module
 
@@ -350,7 +349,7 @@ The constructor receives quite a few parameters. Here they are:
   `pelicanconf.py`.
 * `path` (string), absolute path to the content directory.
 * `theme` (string) absolute path to active theme directory.
-* `outut_path` (string) absolute path to the output directory.
+* `output_path` (string) absolute path to the output directory.
 
 The two parameters we are interested in are `context`, in order to go through
 the articles and pages, and `output_path`, in order to know where to write
@@ -365,10 +364,10 @@ def __init__(self, context, settings, path, theme, output_path):
 
 We are done with the constructor. We are not going to define the
 `generate_context` method as we will not update the context. If we had some
-other module that were based on the API, we would surely do it though.
+other module that was based on the API, we would surely do it though.
 
 Finally, let's define the `generate_output` method. Note that we don't use
-the `writer` that we get as parameter as it is mostly made for the
+the `writer` that we get as a parameter as it is mostly made for the
 articles/pages generators and use templates. In our case, it is much simpler
 to directly implement the writing logic.
 
@@ -421,7 +420,7 @@ Our generator is now complete!
 ## Wrapping up
 
 This the end of this guide. You might want to take at look at [this series](http://adamcot.com/posts/2018/02/building-pelican-plugins-i/)
-that go through the development of a teaser image plugin next.
+that goes through the development of a teaser image plugin next.
 
 The best learning resource for Pelican modules definitely is the Pelican source
 code itself. It is totally readable and is always up to date. Reading other
