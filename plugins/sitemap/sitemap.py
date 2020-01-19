@@ -13,18 +13,14 @@ EXCLUDE_SLUGS = [
     'internet-error',  # The WPA internet error page, not relevant
 ]
 
-# TODO: Get custom frequencies from configuration file
 CHANGE_FREQUENCIES = {
-    'resume': 'yearly',
     '_index': 'daily',
     '_articles': 'monthly',
     '_pages': 'monthly',
     '_default': 'weekly'
 }
 
-# TODO: Get custom frequencies from configuration file
 PRIORITIES = {
-    'hexpresso-fix': 0.6,
     '_default': 0.5
 }
 
@@ -79,6 +75,10 @@ class SitemapGenerator():
         self.context = context
         self.output_path = output_path
 
+        # Merge constants with configuration
+        CHANGE_FREQUENCIES.update(context['CHANGE_FREQUENCIES'])
+        PRIORITIES.update(context['PRIORITIES'])
+
     def generate_output(self, writer):
         # Final file path
         path = os.path.join(self.output_path, FILENAME)
@@ -98,10 +98,9 @@ class SitemapGenerator():
         for c in content:
             # Date can be YYYY-MM-DD or nothing
             date = get_content_last_date(c)
+            date_formated = None
             if date is not None:
-                date = DATE_TEMPLATE.format(date.strftime('%Y-%m-%d'))
-            else:
-                date = ''
+                date_formated = DATE_TEMPLATE.format(date.strftime('%Y-%m-%d'))
 
             # Join site url and content slug
             url = urllib.parse.urljoin(self.context['SITE_URL'], c.slug)
@@ -113,12 +112,17 @@ class SitemapGenerator():
             # Store the URL block
             buffer.append(URL_TEMPLATE.format(
                 loc=url,
-                lastmod=date,
+                lastmod=date_formated or '',
                 changefreq=frequency,
                 priority=priority
             ))
 
-        # TODO: Do not forget the index
+        buffer.append(URL_TEMPLATE.format(
+            loc=self.context['SITE_URL'],
+            lastmod=None,
+            changefreq=CHANGE_FREQUENCIES['_index'],
+            priority=PRIORITIES['_default']
+        ))
 
         # Join all the URL blocks into the final template
         sitemap = SITEMAP_TEMPLATE.format('\n'.join(buffer))

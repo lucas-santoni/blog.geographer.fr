@@ -15,6 +15,18 @@ PLUGINS = [
 AUTHOR = 'Geo'
 SITENAME = 'Geographer'
 
+# CHANGE FREQUENCY
+# See sitemap plugin
+CHANGE_FREQUENCIES = {
+    'resume': 'yearly',
+}
+
+# DOCUMENT PRIORITIES
+# See sitemap plugin
+PRIORITIES = {
+    'hexpresso-fic': 0.6,
+}
+
 # THEME
 THEME = 'theme'
 
