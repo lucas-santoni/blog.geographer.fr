@@ -7,13 +7,34 @@ from __future__ import unicode_literals
 PLUGINS = [
     'plugins.title-smart-break',
     'plugins.api',
+    'plugins.sitemap',
     'plugins.readtime'
 ]
 
 # SITE INFORMATION
 AUTHOR = 'Geo'
 SITENAME = 'Geographer'
-SITEURL = ''
+
+# CHANGE FREQUENCY
+# See sitemap plugin
+CHANGE_FREQUENCIES = {
+    'resume': 'yearly'
+}
+
+# DOCUMENT PRIORITIES
+# See sitemap plugin
+PRIORITIES = {
+    'hexpresso-fic': 0.6
+}
+
+# EXCLUDE FROM SITE API
+# See API plugin
+API_EXCLUDE_SLUGS = [
+    '404',
+    'internet-error',
+    'posts',
+    'about'
+]
 
 # THEME
 THEME = 'theme'
@@ -26,16 +47,16 @@ MARKDOWN = {
             'guess_lang': False
         },
         'markdown.extensions.extra': {},
-        'markdown.extensions.meta': {},
+        'markdown.extensions.meta': {}
     },
-    'output_format': 'html5',
+    'output_format': 'html5'
 }
 
 # LINKS
 TWITTER_HANDLE = 'geographeur'
 MAIL = 'lucas.santoni@live.fr'
-SITE = 'geographer.fr'
-SITE_URL = 'https://' + SITE + '/'
+SITE = 'blog.geographer.fr'
+SITE_URL = f'https://{SITE}'
 TWITTER_URL = 'https://twitter.com/' + TWITTER_HANDLE
 GITHUB_URL = 'https://github.com/geospace'
 MAIL_URL = 'mailto:' + MAIL
@@ -50,7 +71,8 @@ EXTRA_PATH_METADATA = {
     'static-root/favicon.ico': {'path': 'favicon.ico'},
     'static-root/pwa-icon.png': {'path': 'pwa-icon.png'},
     'static-root/apple-touch-icon.png': {'path': 'apple-touch-icon.png'},
-    'static-root/manifest.json': {'path': 'manifest.json'}
+    'static-root/manifest.json': {'path': 'manifest.json'},
+    'static-root/robots.txt': {'path': 'robots.txt'}
 }
 
 # SITE INTRO
@@ -62,7 +84,7 @@ read <a href="/resume">my resume</a> if you want to know more.
 
 # META DESCRIPTION
 SITE_DESCRIPTION = '''
-Personal blog of Geographer: computer security, programming, CTF writeups, side
+A blog about computer security and programming. With CTF writeups, side
 projects, memos...
 '''
 
