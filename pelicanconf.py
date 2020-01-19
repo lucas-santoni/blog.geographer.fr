@@ -50,7 +50,8 @@ EXTRA_PATH_METADATA = {
     'static-root/favicon.ico': {'path': 'favicon.ico'},
     'static-root/pwa-icon.png': {'path': 'pwa-icon.png'},
     'static-root/apple-touch-icon.png': {'path': 'apple-touch-icon.png'},
-    'static-root/manifest.json': {'path': 'manifest.json'}
+    'static-root/manifest.json': {'path': 'manifest.json'},
+    'static-root/robots.txt': {'path': 'robots.txt'}
 }
 
 # SITE INTRO
