@@ -7,13 +7,13 @@ from __future__ import unicode_literals
 PLUGINS = [
     'plugins.title-smart-break',
     'plugins.api',
+    'plugins.sitemap',
     'plugins.readtime'
 ]
 
 # SITE INFORMATION
 AUTHOR = 'Geo'
 SITENAME = 'Geographer'
-SITEURL = ''
 
 # THEME
 THEME = 'theme'
@@ -34,8 +34,8 @@ MARKDOWN = {
 # LINKS
 TWITTER_HANDLE = 'geographeur'
 MAIL = 'lucas.santoni@live.fr'
-SITE = 'geographer.fr'
-SITE_URL = 'https://' + SITE + '/'
+SITE = 'blog.geographer.fr'
+SITE_URL = f'https://{SITE}'
 TWITTER_URL = 'https://twitter.com/' + TWITTER_HANDLE
 GITHUB_URL = 'https://github.com/geospace'
 MAIL_URL = 'mailto:' + MAIL
@@ -62,7 +62,7 @@ read <a href="/resume">my resume</a> if you want to know more.
 
 # META DESCRIPTION
 SITE_DESCRIPTION = '''
-Personal blog of Geographer: computer security, programming, CTF writeups, side
+A blog about computer security and programming. With CTF writeups, side
 projects, memos...
 '''
 
