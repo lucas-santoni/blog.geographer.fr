@@ -32,7 +32,7 @@ up with something like `plugins/nice_plugin`.
 
 Finally, we'll edit `pelicanconf.py` and register our plugin:
 
-```py
+```python
 PLUGINS = ['plugins.nice_plugin'] # Obviously matches the names of the directories
 ```
 
@@ -56,7 +56,7 @@ look like this:
 Now, let's imagine that, for each of these steps, you could have a chance
 to run a function. On step 2, the function could look like this:
 
-```py
+```python
 def on_read_content(content):
   # content is the "raw" content of an article, before it is
   # transformed to HTML
@@ -146,7 +146,7 @@ So let's start writing code. First, create the `plugins/toy` subdirectory
 and register the module in Pelican's configuration. Then, we'll create the
 `plugins/toy/toy.py` file and populate it with:
 
-```py
+```python
 from pelican import signals
 
 
@@ -173,7 +173,7 @@ Wups! Our plugin actually is a Python package so Pelican imports it and try
 to call its `register` function. In order to expose it, let's create the
 `plugins/toy/__init__.py` file with the following content:
 
-```py
+```python
 from .toy import register
 ```
 
@@ -189,7 +189,7 @@ processed? The `context` can help.
 Indeed, if the document being processed is an article, context would have an
 `article` key. Otherwise, it would not. Let's update our `run` function:
 
-```py
+```python
 def run(path, context):
     if 'article' in context:  # Is the current document an article?
         title = context['article'].title  # Retrieve its title
@@ -212,7 +212,7 @@ article is about to be written (no need for key presence checking then).
 
 We can refactor our toy module to use this signal instead:
 
-```py
+```python
 from pelican import signals
 
 
@@ -314,7 +314,7 @@ finally generate a valid JavaScript file.
 
 Let's begin with the signals:
 
-```py
+```python
 def get_generators(generators):
     return APIGenerator
 
@@ -356,7 +356,7 @@ the articles and pages, and `output_path`, in order to know where to write
 our output. So let's just save references to them:
 
 
-```py
+```python
 def __init__(self, context, settings, path, theme, output_path):
     self.context = context
     self.output_path = output_path
@@ -371,7 +371,7 @@ the `writer` that we get as a parameter as it is mostly made for the
 articles/pages generators and use templates. In our case, it is much simpler
 to directly implement the writing logic.
 
-```py
+```python
 def generate_output(self, writer):
     # Final file path
     path = os.path.join(self.output_path, FILENAME)
