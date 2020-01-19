@@ -13,13 +13,6 @@ JS_BASE = '''const API = [
 
 FILENAME = 'api.js'
 
-EXCLUDE_SLUGS = [
-    '404',
-    'internet-error',
-    'posts',
-    'about'
-]
-
 
 class APIGenerator():
     def __init__(self, context, settings, path, theme, output_path):
@@ -35,8 +28,11 @@ class APIGenerator():
             self.context['articles'] + \
             self.context['pages']
 
+        # Get slugs to exclude
+        exclude = self.context['API_EXCLUDE_SLUGS']
+
         # Remove the content that must be excluded
-        content = [c for c in content if c.slug not in EXCLUDE_SLUGS]
+        content = [c for c in content if c.slug not in exclude]
 
         # Get all the slugs, and titles
         slugs = [c.slug for c in content]

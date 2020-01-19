@@ -18,14 +18,23 @@ SITENAME = 'Geographer'
 # CHANGE FREQUENCY
 # See sitemap plugin
 CHANGE_FREQUENCIES = {
-    'resume': 'yearly',
+    'resume': 'yearly'
 }
 
 # DOCUMENT PRIORITIES
 # See sitemap plugin
 PRIORITIES = {
-    'hexpresso-fic': 0.6,
+    'hexpresso-fic': 0.6
 }
+
+# EXCLUDE FROM SITE API
+# See API plugin
+API_EXCLUDE_SLUGS = [
+    '404',
+    'internet-error',
+    'posts',
+    'about'
+]
 
 # THEME
 THEME = 'theme'
@@ -38,9 +47,9 @@ MARKDOWN = {
             'guess_lang': False
         },
         'markdown.extensions.extra': {},
-        'markdown.extensions.meta': {},
+        'markdown.extensions.meta': {}
     },
-    'output_format': 'html5',
+    'output_format': 'html5'
 }
 
 # LINKS
