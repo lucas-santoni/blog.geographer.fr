@@ -231,8 +231,7 @@ install-peerdeps`. This is because the configuration package has peer
 dependencies. This is actually the case for most ESLint configuration packages
 as they usually depend on ESLint plugins, or even other configuration packages.
 
-Once the configuration package is installed, let's use it in our
-configuration:
+Once the package is installed, let's use it in our configuration:
 
 ```yaml
 extends:
@@ -291,10 +290,10 @@ rules:
 
 Our settings override the configuration packages we are inheriting.
 
-The report also mentions the `--fix` option. It works really well in
-order to automatically fix simple problems such as indentation or missing
-semicolons. There is also `--fix-dry-run` which gives an overview of the
-fixes, without actually writing the filesystem.
+The report also mentions the `--fix` option. It works really well when it comes
+to automatically fix simple problems such as indentation or missing semicolons.
+There is also `--fix-dry-run` which gives an overview of the fixes, without
+actually writing the filesystem.
 
 For a plain JavaScript project, this is enough configuration for me. I try not
 to override Airbnb's rules as this configuration is super popular as it is and
@@ -432,7 +431,7 @@ const compute = (expr: string): number => eval(expr);
 compute(3 + 3);
 ```
 
-It is obviously incorrect as `3 + 3` is not a string. However, ESLint
+It is obviously incorrect as `3 + 3` is not a `string`. However, ESLint
 will not complain about that. Why? Simply because it is not a linting
 issue, but an actual compilation error:
 
