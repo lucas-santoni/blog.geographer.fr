@@ -35,6 +35,22 @@ you take a look at the following pieces of documentation:
 There are explanations for every settings. It is also a great starting
 point if you wish to design your own configuration.
 
+**Summary**
+
+* Why ESLint?
+* ESLint installation
+* ESLint configuration file
+* Getting Started / Plain JavaScript
+* TypeScript configuration
+* React Configuration
+    * JavaScript Project
+    * TypeScript project
+* VSCode configuration
+* Final words
+
+Complete configurations are available at the end of each section, when
+appropriate.
+
 
 ## Why ESLint?
 
@@ -64,7 +80,7 @@ A few alternatives I had the chance to try are:
     [deprecated](https://github.com/palantir/tslint/issues/4534) and is
     being merged with ESLint. The exact situation is a bit vague but in
     reality, TypeScript linting is totally possible inside ESLint, with
-    the [approtiate
+    the [appropriate
     tooling](https://github.com/typescript-eslint/typescript-eslint).
 
 It is also worth mentioning that most text editors have ESLint plugins.
@@ -90,7 +106,7 @@ It would make sense to install ESLint at the global level so that it
 could be invoked from anywhere. However, I prefer to install it at the
 project level for a few reasons:
 
--   Different versions of ESLint for different projects
+-   Allows to have different versions of ESLint for different projects
 -   Does not *hide* the ESLint dependecy. There is not reason not to
     make it explicit.
 -   Coworkers and automation tools (such as a CI) will install ESLint
@@ -187,7 +203,7 @@ We could create a configuration from scratch, tweaking the
 [rules](https://eslint.org/docs/rules/) that ESLint exposes to us. But
 it is not a very good idea for multiple reasons:
 
--   It is time consumming
+-   It is time consuming
 -   It is hard to maintain
 -   It reflects your *own* understanding of JavaScript
 
@@ -246,7 +262,7 @@ Here is what a report looks like:
 For each file, we get a list of errors.
 
 -   The first column tells us the line number and the column of the error
--   The second conlumn is the severity of the error
+-   The second column is the severity of the error
 -   The third column describes the error itself
 -   The fourth column is the *internal name* of the error
 
@@ -280,9 +296,9 @@ order to automatically fix simple problems such as indentation or missing
 semicolons. There is also `--fix-dry-run` which gives an overview of the
 fixes, without actually writing the filesystem.
 
-For a plain JavaScript project, this is enough configuration for me. I
-try not to override Airbnb's rules as it this configuration is super
-popular as it is and it might disturb my coworkers.
+For a plain JavaScript project, this is enough configuration for me. I try not
+to override Airbnb's rules as this configuration is super popular as it is and
+it might disturb my coworkers.
 
 Let's recap! The dependencies are:
 
@@ -320,10 +336,11 @@ rules:
 
 Let's move on and configure ESLint to work with a TypeScript project.
 
-The main problem with TypeScript is that ESLint is not able to parse it
-(well, its [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree), to
-be exact) out of the box. Therefore we need to use a custom parser:
+The main problem with TypeScript is that ESLint is not able to parse it (its
+[AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree), to be exact) out of
+the box. Therefore we need to use a custom parser:
 [@typescript-eslint/parser](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser).
+
 Let's install it:
 
 ```
@@ -429,8 +446,8 @@ issue, but an actual compilation error:
 Found 1 error.
 ```
 
-If you are using an IDE, both ESLint and the TypeScript compiler outputs
-are often combined, which is even more powerful.
+When using an IDE, both the ESLint, and the TypeScript compiler outputs are
+often combined, which is even more powerful.
 
 Finally, you will see a lot of articles recommending that you include
 this in you ESLint configuration:
@@ -498,7 +515,7 @@ React indeed uses JSX, but in such a way that ESLint can not deal with it. In
 order to add React support to ESLint, we should use a plugin called
 `eslint-plugin-react`.
 
-**JavaScript project**
+**JavaScript Project**
 
 When dealing with a JavaScript project, replace `eslint-config-airbnb-base` by
 `eslint-config-airbnb`, which has React support.
@@ -507,7 +524,7 @@ When dealing with a JavaScript project, replace `eslint-config-airbnb-base` by
 npx install-peerdeps --dev eslint-config-airbnb
 ```
 
-Then, in ESLint configuration, inherit from it:
+Then, in the ESLint configuration, inherit from it:
 
 ```yaml
 extends:
@@ -515,7 +532,7 @@ extends:
 ```
 
 It might also be a good idea to update the `env` setting, since we
-are not in Node.js project anymore:
+are not in a Node.js project anymore:
 
 ```yaml
 env:
@@ -530,7 +547,7 @@ Update `package.json` and tell ESLint to also parse `.jsx` files:
 }
 ```
 
-That's it. We can now lint our React project. If you are dealing
+That's it! We can now lint our React project. If you are dealing
 with [Next.js](https://nextjs.org/), or any framework that
 automatically inject `react` in JSX files, you might be interested
 in this setting:
@@ -669,3 +686,52 @@ There are no specific settings for the React + TypeScript combo to
 my knowledge. Components are just functions (or classes, if you are
 old-school :p) so the TypeScript linting just deals with them as
 such. Therefore I can not recommend more documentation to you!
+
+
+## VSCode configuration
+
+VSCode has great support of ESLint through [this plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint). Here are my
+recommended settings:
+
+```json
+"eslint.run": "onSave",
+```
+
+Running ESLint on save feels less laggy.
+
+```json
+"eslint.validate": [
+  "javascript",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact"
+]
+```
+
+The setting ensure that VSCode will lint JS, JSX, TS, and TSX files.
+
+```json
+"javascript.preferences.quoteStyle": "single",
+"typescript.preferences.quoteStyle": "single",
+```
+
+VSCode has its own setting when it comes to quote style. Just set it so that it
+follows your ESLint configuration.
+
+```json
+"javascript.updateImportsOnFileMove.enabled": "always",
+"typescript.updateImportsOnFileMove.enabled": "always",
+```
+
+This setting allows to update `import` declarations when moving files around.
+Not related to ESLint but very cool so here it is!
+
+
+## Final words
+
+I see a lot of incomplete tutorials and overkill configurations online. I hope
+that his guide helped you better understand ESLint, and the Airbnb configuration
+packages.
+
+You can now read rules documentation, experiment with different style guides,
+and design your perfect setup!
