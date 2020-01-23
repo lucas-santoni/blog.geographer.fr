@@ -1,0 +1,81 @@
+==================================================================
+https://keybase.io/geographer
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blog.geographer.fr
+  * I am geographer (https://keybase.io/geographer) on keybase.
+  * I have a public key with fingerprint B11A ABD1 6AD3 4347 2A73  0992 28B9 C2C0 398F 3407
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101f01c5744a97ce5af47c2858f89dd18fb7f78e7624fac3aeb70559fcfd106ea8c0a",
+      "fingerprint": "b11aabd16ad343472a73099228b9c2c0398f3407",
+      "host": "keybase.io",
+      "key_id": "28b9c2c0398f3407",
+      "kid": "0101f01c5744a97ce5af47c2858f89dd18fb7f78e7624fac3aeb70559fcfd106ea8c0a",
+      "uid": "be60583fcccc37fd93a27d3bacf1a319",
+      "username": "geographer"
+    },
+    "merkle_root": {
+      "ctime": 1579817026,
+      "hash_meta": "0d2bc7b332316cd6b240e0f3563a346a01567c723d74c1650b70b979efe7b777",
+      "seqno": 14342651
+    },
+    "revoke": {
+      "sig_ids": [
+        "56894a376df0d77f48646b2f7f2a100f852f3b05991c1767c7d452f27e5847380f"
+      ]
+    },
+    "service": {
+      "hostname": "blog.geographer.fr",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1579817025,
+  "expire_in": 157680000,
+  "prev": "ba1f897e2bf0babf9f54ad9e18879e47fe6ee2d41af6ff047068888d0b326f08",
+  "seqno": 59,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.3
+Comment: https://keybase.io/crypto
+
+yMK7AnicrZNtiFVFGMfv1mrsjeLCuovCRnXqS7ItM2fmzMstP6gZbrUlSWpp3ub1
+7vHunnP3nLN3XdallSgIlhRD8UMRBbVKLZQWlUtYIpSVWUuCSS8YW2CwZCRpFNac
+iyFEH3u+HOY5z/P8//ObmaPXXV0otnwIzzw13IvPtXxy5PHhwuali5ePeTLWo155
+zKuZ5scMaJNmlVqovbIHIIAWQBVQjAWnygTCYqp8FjDLuNaQWUktZYYSH1uhkDCS
+giDgVlkNATGCKSC8bs+GUdUk9SSMMjdWQiiE1JAIjTDC1BcUAc59n0mufAUQZxZh
+QF1jf5zmHc6cFKnpCWOXc4tK095/1P/Pvoeb46QhIGDIKheIWs2R8KlGUigLBYI8
+L0xNEolB46qrJq4mot5vEm+82xs0SW3AVJI4znK8KgvzIhhQziAFPnFbFGl/ZdBk
+IjeufamoRMhHkChNpI+BARYFBAmEiQAwIFRRH2mKFSQBcLYlp9xYQyWlOYHUDEWx
+U3BgfRJAZyExjbhmcvU0rDpyqVfe6AWEcSwQJdoCTanFjGAnZ6n1BQTAssC3SIKA
+c6ggzUU1dimfmoBhihiw3qPjuVrSCFVzeH5UlxHIgbjac4VDj02csXoSZ7GKB9z/
+/iyrp+UcTzZazxtGjKxcHlWRYaTddXEdDZOkYRy5zbjKf5MLuj2ztR4mphJGzTRh
+wEWuYxq5BwHdWVPjSwukkJbbAAvNDWTM8cLUGmKMrzEUllgLMAWEudBAIp9YwK6g
+DLjzKapupuMXiWw4Md74kfc3tRZaioWFC67K31Gh2Fb653V903XNpWU91dfO29/n
+Wqcrna1f7BzqK7VPd76zr/Tz0Me3952YnD//6cjKW+54MN747ewvWx4u7fjj3pUL
+k7Wtu9sORO9N7r/zIdItnhlddbrxKj86fmL1r/OLvnxzZm79roP0h13XtrU3Jjpm
+Z/CSBXsv7pnmZ8DMsbmhHS9c+O7U6tmtT9/1nLdm30TXbYfuSZ598tTzT6hzN37/
+7g3mlePeTbunOn585Nb1F79eG225Wa6Z73j7q2x5Ue8523nyL2/so8M/Ld2WfT4B
+D5+8XqzqPbDz/q7J7R33Lbn00kj7FB384O4Xg2VdbxUfS7bJqTdoywOb1v22ecWK
+Y+Wzi2rH113Y3rvh9Zft4r7PTpf+PLR/799a7IDk
+=fIN8
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/geographer
+
+==================================================================

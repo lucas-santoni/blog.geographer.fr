@@ -72,7 +72,8 @@ EXTRA_PATH_METADATA = {
     'static-root/pwa-icon.png': {'path': 'pwa-icon.png'},
     'static-root/apple-touch-icon.png': {'path': 'apple-touch-icon.png'},
     'static-root/manifest.json': {'path': 'manifest.json'},
-    'static-root/robots.txt': {'path': 'robots.txt'}
+    'static-root/robots.txt': {'path': 'robots.txt'},
+    'static-root/keybase.txt': {'path': 'keybase.txt'}
 }
 
 # SITE INTRO
