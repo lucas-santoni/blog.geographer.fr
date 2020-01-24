@@ -99,7 +99,7 @@ invoked from anywhere. However, I prefer to install it at the project level for
 a few reasons:
 
 -   Allows to have different versions of ESLint for different projects
--   Does not *hide* the ESLint dependecy. There is not reason not to make it
+-   Does not *hide* the ESLint dependency. There is no reason not to make it
     explicit.
 -   Coworkers and automation tools (such as a CI) will install ESLint just like
     they install the other development dependencies of the project. No extra
