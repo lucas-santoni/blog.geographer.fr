@@ -123,7 +123,7 @@ npm i eslint --save-dev
 In order to run ESLint inside the project:
 
 ```
-npx run eslint
+npx eslint
 ```
 
 It may be a good idea to rely on npm's task running mechanism to hide the
