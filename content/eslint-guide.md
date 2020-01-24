@@ -716,3 +716,6 @@ packages.
 
 You can now read rules documentation, experiment with different style guides,
 and design your perfect setup!
+
+A little exercise for the reader: integrate [Prettier](https://prettier.io/) to
+our current ESLint setup.
