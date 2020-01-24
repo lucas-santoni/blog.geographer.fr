@@ -357,9 +357,13 @@ lint `.js` (the default) files but `.ts` files instead:
 },
 ```
 
-ESLint can now correctly parse our TypeScript files. Just like we did
-with the JavaScript project, we are now going to install Airbnb base
-configuration:
+ESLint can now correctly parse our TypeScript files.
+
+*Note: the `typescript` package has to be installed. I assume that you are in a
+TypeScript project already.*
+
+Just like we did with the JavaScript project, we are now going to install Airbnb
+base configuration:
 
 ```
 npx install-peerdeps --dev eslint-config-airbnb-typescript
