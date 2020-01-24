@@ -4,6 +4,8 @@ slug: eslint-guide
 date: 23/01/2020
 ---
 
+🗨️ You can discuss this article [on Reddit](https://www.reddit.com/r/javascript/comments/etaj6h/eslint_configuration_and_best_practices/).
+
 This post describes how I setup [ESLint](https://eslint.org/) in different
 scenarios. We'll start with a simple plain JavaScript project and then we'll
 deal with TypeScript, and also React. The aim is to do the things *right* and
@@ -632,6 +634,14 @@ extends:
   - airbnb-typescript
   - airbnb/hooks
   - plugin:@typescript-eslint/recommended
+```
+
+And our `package.json` so that we can deal with `.tsx` files:
+
+```json
+"scripts": {
+  "lint": "eslint . --ext .ts,.tsx"
+}
 ```
 
 That's all! Here are the dependencies:
