@@ -11,6 +11,7 @@ PLUGINS = [
     'plugins.readtime'
 ]
 
+
 # SITE INFORMATION
 AUTHOR = 'Geo'
 SITENAME = 'Geographer'
@@ -47,7 +48,8 @@ MARKDOWN = {
             'guess_lang': False
         },
         'markdown.extensions.extra': {},
-        'markdown.extensions.meta': {}
+        'markdown.extensions.meta': {},
+        'markdown.extensions.toc': {}
     },
     'output_format': 'html5'
 }
