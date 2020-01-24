@@ -109,6 +109,10 @@ dl {
   margin: 12px 0 10px 0;
 }
 
+ul {
+  margin-right: 2em;
+}
+
 .blog-wrapper {
   max-width: 42em;
   margin: 0 auto;
