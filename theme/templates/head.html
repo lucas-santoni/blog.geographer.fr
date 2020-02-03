@@ -58,12 +58,12 @@
   <meta name="twitter:creator" content="@{{ TWITTER_HANDLE }}" />
   {% endif %}
 
-  <!-- Twitter card when possible -->
+  <!-- Twitter card description -->
   {% if article and article.description -%}
   <meta name="twitter:card" content="{{ article.description }}" />
   {% elif page and page.description -%}
   <meta name="twitter:card" content="{{ page.description }}"/>
-  {% elif not article and not page -%}
+  {% else -%}
   <meta name="twitter:card" content="{{ SITE_DESCRIPTION }}"/>
   {%- endif %}
 
