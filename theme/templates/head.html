@@ -53,18 +53,25 @@
   {%- endif%}
 
   <!-- Twitter card guaranteed -->
-  {% if (article or page) and TWITTER_HANDLE %}
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@{{ TWITTER_HANDLE }}" />
-  <meta name="twitter:creator" content="@{{ TWITTER_HANDLE }}" />
-  {% endif %}
+
+  <!-- Twitter card title -->
+  {% if article -%}
+  <meta name="twitter:title" content="{{ article.title }}" />
+  {% elif page -%}
+  <meta name="twitter:title" content="{{ page.title }}"/>
+  {% else -%}
+  <meta name="twitter:title" content="{{ SITE_TITLE }}"/>
+  {%- endif %}
 
   <!-- Twitter card description -->
   {% if article and article.description -%}
-  <meta name="twitter:card" content="{{ article.description }}" />
+  <meta name="twitter:description" content="{{ article.description }}" />
   {% elif page and page.description -%}
-  <meta name="twitter:card" content="{{ page.description }}"/>
+  <meta name="twitter:description" content="{{ page.description }}"/>
   {% else -%}
-  <meta name="twitter:card" content="{{ SITE_DESCRIPTION }}"/>
+  <meta name="twitter:description" content="{{ SITE_DESCRIPTION }}"/>
   {%- endif %}
 
   <!-- Canonical article -->
