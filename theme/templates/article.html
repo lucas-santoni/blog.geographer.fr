@@ -3,7 +3,7 @@
 
 <h1 class="title-meta">{{ article.smart_title or article.title }}</h1>
 <p class="content-meta">
-  {{ article.date.strftime('%d %B, %Y') }} • {{ article.readtime }} minute{{ 's' if article.readtime > 1 else '' }} read
+  Published {{ article.date.strftime('%B %d, %Y') }} • {{ article.readtime }} minute{{ 's' if article.readtime > 1 else '' }} read
 </p>
 
 <div class="content-content">
