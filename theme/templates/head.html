@@ -22,7 +22,7 @@
   <meta name="description" content="{{ article.description }}">
   {% elif page and page.description -%}
   <meta name="description" content="{{ page.description }}">
-  {% elif not article and not page -%}
+  {% else -%}
   <meta name="description" content="{{ SITE_DESCRIPTION }}">
   {%- endif %}
 
@@ -43,12 +43,12 @@
   <meta property="og:url" content="{{ SITE_URL }}/{{ page.slug }}" />
   {% endif%}
 
-  <!-- OG description when available -->
+  <!-- OG description  -->
   {% if article and article.description -%}
   <meta property="og:description" content="{{ article.description }}" />
   {% elif page and page.description -%}
   <meta name="og:description" content="{{ page.description }}"/>
-  {% elif not article and not page -%}
+  {% else -%}
   <meta name="og:description" content="{{ SITE_DESCRIPTION }}"/>
   {%- endif%}
 
@@ -62,7 +62,7 @@
   {% elif page -%}
   <meta name="twitter:title" content="{{ page.title }}"/>
   {% else -%}
-  <meta name="twitter:title" content="{{ SITE_TITLE }}"/>
+  <meta name="twitter:title" content="{{ SITENAME }}"/>
   {%- endif %}
 
   <!-- Twitter card description -->
