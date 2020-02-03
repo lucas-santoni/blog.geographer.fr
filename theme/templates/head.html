@@ -15,6 +15,14 @@
   <meta name="description" content="{{ SITE_DESCRIPTION }}">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  {% if article %}
+  <link rel="canonical" href="{{ SITE_URL }}/{{ article.slug }}"/>
+  {% endif %}
+
+  {% if page %}
+  <link rel="canonical" href="{{ SITE_URL }}/{{ page.slug }}"/>
+  {% endif %}
+
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">

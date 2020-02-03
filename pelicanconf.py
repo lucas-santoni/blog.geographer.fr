@@ -15,7 +15,6 @@ PLUGINS = [
     'plugins.readtime'
 ]
 
-
 # SITE INFORMATION
 AUTHOR = 'Geo'
 SITENAME = 'Geographer'
