@@ -2,6 +2,7 @@
 title: ESLint configuration and best practices
 slug: eslint-guide
 date: 23/01/2020
+description: Learn how to use and configure ESLint in order to keep your JavaScript codebase clean and consistent. We'll take a loot at different setups, including TypeScript and React.
 ---
 
 🗨️ You can discuss this article [on Reddit](https://www.reddit.com/r/javascript/comments/etaj6h/eslint_configuration_and_best_practices/).
@@ -684,7 +685,7 @@ more documentation to you!
 
 ## VSCode configuration
 
-VSCode has great support of ESLint 
+VSCode has great support of ESLint
 through [this plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 Here are my recommended settings:
 

@@ -12,13 +12,67 @@
   <meta charset="UTF-8">
   <meta name="theme-color" content="#000000">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ SITE_DESCRIPTION }}">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <!-- General author information -->
+  <meta name="author" content="{{ AUTHOR }}">
+
+  <!-- General description information when available -->
+  {% if article and article.description -%}
+  <meta name="description" content="{{ article.description }}">
+  {% elif page and page.description -%}
+  <meta name="description" content="{{ page.description }}">
+  {% elif not article and not page -%}
+  <meta name="description" content="{{ SITE_DESCRIPTION }}">
+  {%- endif %}
+
+  <!-- OG data guaranteed to exist -->
+  <meta property="og:site_name" content="{{ SITENAME }}" />
+  <meta property="og:type" content="article" />
+
+  <!-- OG data guaranteed to exist, article -->
+  {% if article %}
+  <meta property="og:title" content="{{ article.title }}" />
+  <meta property="og:url" content="{{ SITE_URL }}/{{ article.slug }}" />
+  <meta property="article:published_time" content="{{ article.date.strftime('%Y-%m-%d') }}" />
+  {% endif%}
+
+  <!-- OG data guaranteed to exist, page -->
+  {% if page %}
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:url" content="{{ SITE_URL }}/{{ page.slug }}" />
+  {% endif%}
+
+  <!-- OG description when available -->
+  {% if article and article.description -%}
+  <meta property="og:description" content="{{ article.description }}" />
+  {% elif page and page.description -%}
+  <meta name="og:description" content="{{ page.description }}"/>
+  {% elif not article and not page -%}
+  <meta name="og:description" content="{{ SITE_DESCRIPTION }}"/>
+  {%- endif%}
+
+  <!-- Twitter card guaranteed -->
+  {% if (article or page) and TWITTER_HANDLE %}
+  <meta name="twitter:site" content="@{{ TWITTER_HANDLE }}" />
+  <meta name="twitter:creator" content="@{{ TWITTER_HANDLE }}" />
+  {% endif %}
+
+  <!-- Twitter card when possible -->
+  {% if article and article.description -%}
+  <meta name="twitter:card" content="{{ article.description }}" />
+  {% elif page and page.description -%}
+  <meta name="twitter:card" content="{{ page.description }}"/>
+  {% elif not article and not page -%}
+  <meta name="twitter:card" content="{{ SITE_DESCRIPTION }}"/>
+  {%- endif %}
+
+  <!-- Canonical article -->
   {% if article %}
   <link rel="canonical" href="{{ SITE_URL }}/{{ article.slug }}"/>
   {% endif %}
 
+  <!-- Canonical page -->
   {% if page %}
   <link rel="canonical" href="{{ SITE_URL }}/{{ page.slug }}"/>
   {% endif %}
