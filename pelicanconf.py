@@ -3,6 +3,10 @@
 
 from __future__ import unicode_literals
 
+# LOCALE
+# Useful for dates format
+LOCALE = 'en_US.UTF-8'
+
 # PLUGINS
 PLUGINS = [
     'plugins.title-smart-break',
@@ -10,7 +14,6 @@ PLUGINS = [
     'plugins.sitemap',
     'plugins.readtime'
 ]
-
 
 # SITE INFORMATION
 AUTHOR = 'Geo'

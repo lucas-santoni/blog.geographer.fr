@@ -2,6 +2,7 @@
 title: The missing Pelican plugins guide
 slug: pelican-plugins
 date: 01/11/2020
+description: Learn how to develop plugins for the static site generator Pelican with this tutorial. We'll learn about plugin installation, signals, generators... And we'll also write a few example plugins.
 ---
 
 [Pelican](https://blog.getpelican.com/) is the static site generator that
@@ -341,7 +342,7 @@ class APIGenerator():
 
 The constructor receives quite a few parameters. Here they are:
 
-* `context` (dictionary), the same context object we talked about before. In the 
+* `context` (dictionary), the same context object we talked about before. In the
   constructor, it is almost the same as `settings`. However, it will be
   updated by other generators and eventually allow us to access all our
   articles and pages.

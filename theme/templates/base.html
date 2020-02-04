@@ -9,7 +9,7 @@
           <a href="/">{{ SITENAME }}</a>
         </p>
       </div>
-  
+
       <ul class="navbar">
         <li class="navbar-element"><a href="/about">About</a></li>
         <li class="navbar-element"><a href="/resume">Resume</a></li>
@@ -17,7 +17,7 @@
         <li class="navbar-element"><a href="{{ TWITTER_URL }}">Twitter</a></li>
       </ul>
     </div>
-  
+
     {% block content %}
     {% endblock %}
     <div class="footer">
@@ -26,6 +26,8 @@
       </p>
     </div>
   </div>
+
+  <script>twemoji.parse(document.body);</script>
 </body>
 
 
