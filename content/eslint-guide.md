@@ -65,7 +65,7 @@ A few alternatives I had the chance to try are:
     linter. Otherwise, we can definitely do better with ESLint. Moreover,
     standardJS also is available as a [standalone ESLint configuration](https://github.com/standard/eslint-config-standard)!
 
--   [gts](https://github.com/google/gts) is a TypesScript linter that
+-   [gts](https://github.com/google/gts) is a TypeScript linter that
     implements Google's style guide. It is a nice solution, especially
     if you are looking for something that works with 0 configuration.
     The thing is that `gts` actually uses ESLint under the hood and we
