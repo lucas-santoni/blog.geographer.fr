@@ -97,5 +97,5 @@
   <script src="/api.js"></script>
   <script src="/levenshtein.js"></script>
 
-  <title>{{ article and article.title or page and page.title or SITENAME }}</title>
+  <title>{{ (article and article.title or page and page.title or SITENAME) | striptags }}</title>
 </head>
