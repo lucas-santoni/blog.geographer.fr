@@ -17,7 +17,7 @@ PLUGINS = [
 
 # SITE INFORMATION
 AUTHOR = 'Geo'
-SITENAME = 'Geographer'
+SITENAME = 'Lucas Santoni'
 
 # CHANGE FREQUENCY
 # See sitemap plugin
@@ -93,9 +93,6 @@ SITE_DESCRIPTION = '''
 A blog about computer security and programming. With CTF writeups, side
 projects, memos...
 '''
-
-# FOOTER
-FOOTER_TEXT = 'Happily made in 🇫🇷, the most beautiful country in the world...'
 
 # PATH
 PATH = 'content'

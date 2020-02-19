@@ -3,8 +3,8 @@ title: About
 slug: about
 ---
 
-My name is Lucas SANTONI, this is my personal website. Most of my content is
-related to software development and/or computer security.
+Hey, this is my personal website. Most of my content is related to software
+development and/or computer security.
 
 Various links:
 
@@ -35,3 +35,5 @@ my visitors use Linux and may not even be able to display emojis correctly.
 This is why I use Twitter's [Twemoji](https://twemoji.twitter.com/) to ensure
 consistent and uniform emoji rendering across all browsers and operating
 systems.
+
+Happily made in 🇫🇷, the most beautiful country in the world...

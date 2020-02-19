@@ -3,10 +3,6 @@
     margin-left: 0;
   }
 
-  .navbar {
-    display: none;
-  }
-
   .highlight {
     margin-left: -12px;
     margin-right: -12px;
@@ -19,12 +15,8 @@
   .footer {
     margin-left: -12px;
     margin-right: -12px;
-  }
-
-  .footer-text {
-    max-width: 70%;
-    margin: 0 auto;
-    text-align: center;
+    margin-bottom: 5px;
+    padding: 10px 12px;
   }
 
   .post-date {
