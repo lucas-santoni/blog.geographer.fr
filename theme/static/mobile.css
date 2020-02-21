@@ -3,6 +3,14 @@
     margin-left: 0;
   }
 
+  .header-container {
+    margin: 10px 0 10px 0;
+  }
+
+  .site-title {
+    font-size: 2em;
+  }
+
   .highlight {
     margin-left: -12px;
     margin-right: -12px;

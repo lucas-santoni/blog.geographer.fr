@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat:400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,400i,700,700i&display=swap');
+
 @font-face {
   font-family: "Iosevka";
   font-style: italic;
   font-weight: 400;
-  src: url("/theme/fonts/iosevka-italic.woff2");
+  src: url("https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3/TypoPRO-iosevka-term-italic.woff");
   font-display: swap;
 }
 
@@ -10,7 +13,7 @@
   font-family: "Iosevka";
   font-style: italic;
   font-weight: 700;
-  src: url("/theme/fonts/iosevka-bolditalic.woff2");
+  src: url("https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3/TypoPRO-iosevka-term-bolditalic.woff");
   font-display: swap;
 }
 
@@ -18,7 +21,7 @@
   font-family: "Iosevka";
   font-style: normal;
   font-weight: 400;
-  src: url("/theme/fonts/iosevka-regular.woff2");
+  src: url("https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3/TypoPRO-iosevka-term-regular.woff");
   font-display: swap;
 }
 
@@ -26,47 +29,7 @@
   font-family: "Iosevka";
   font-style: normal;
   font-weight: 700;
-  src: url("/theme/fonts/iosevka-bold.woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Merriweather";
-  font-style: italic;
-  font-weight: 400;
-  src: url("/theme/fonts/merriweather-italic.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Merriweather";
-  font-style: italic;
-  font-weight: 700;
-  src: url("/theme/fonts/merriweather-bolditalic.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Merriweather";
-  font-style: normal;
-  font-weight: 300;
-  src: url("/theme/fonts/merriweather-light.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Merriweather";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/theme/fonts/merriweather-regular.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Merriweather";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/theme/fonts/merriweather-bold.ttf");
+  src: url("https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3/TypoPRO-iosevka-term-bold.woff");
   font-display: swap;
 }
 
@@ -131,7 +94,7 @@ blockquote p {
 }
 
 :not(pre) > code {
-  padding: 3px 3px;
+  padding: .2em .4em;
   word-break: break-all;
 }
 
@@ -148,7 +111,8 @@ blockquote p {
 }
 
 code {
-  background: #f8f8f8 !important;
+  background: rgb(238, 238, 238, .4) !important;
+  border-radius: 3px;
 }
 
 a {
@@ -172,11 +136,12 @@ a:hover {
 }
 
 .header-container {
-  margin: 30px 0 30px 0;
+  margin: 20px 0 20px 0;
 }
 
 .site-title {
-  font-size: 1.69em;
+  font-family: "Caveat";
+  font-size: 2.4em;
   margin: 0;
 }
 
@@ -194,7 +159,7 @@ a:hover {
 }
 
 .navbar-element a {
-  padding-right: 12px;
+  padding-right: 15px;
 }
 
 /* .navbar-element a:hover {
@@ -230,9 +195,7 @@ a:hover {
 
 .footer {
   border-top: 1px solid #eee;
-  padding-top: 10px;
-  margin: 0 0 20px 0;
-  font-size: 0.9em;
+  padding: 15px 0;
 }
 
 .emoji {
