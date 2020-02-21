@@ -2,7 +2,7 @@ const SW_PATH = '/service-worker.js';
 
 const CACHE_COMMON = 'common';
 const CACHE_PAGES = 'pages';
-const CACHE_VERSION = '13::';
+const CACHE_VERSION = '14::';
 
 const DEBUG = false;
 
@@ -14,16 +14,8 @@ const URLS_TO_CACHE = [
   '/theme/avatar.jpg',
   '/theme/mobile.css',
   '/theme/pygments.css',
+  '/theme/resume.css',
   '/theme/styles.css',
-  '/theme/fonts/iosevka-bold.woff2',
-  '/theme/fonts/iosevka-bolditalic.woff2',
-  '/theme/fonts/iosevka-italic.woff2',
-  '/theme/fonts/iosevka-regular.woff2',
-  '/theme/fonts/merriweather-bold.ttf',
-  '/theme/fonts/merriweather-bolditalic.ttf',
-  '/theme/fonts/merriweather-italic.ttf',
-  '/theme/fonts/merriweather-light.ttf',
-  '/theme/fonts/merriweather-regular.ttf'
 ];
 
 const log = msg => {

@@ -3,27 +3,21 @@
 <body>
   <div class="blog-wrapper">
     <div class="header-container">
-      <div class="avatar-container">
-        <img class="avatar" src="/{{ THEME_STATIC_DIR }}/avatar.jpg" alt="Avatar">
-        <p class="site-title">
-          <a href="/">{{ SITENAME }}</a>
-        </p>
-      </div>
-
-      <ul class="navbar">
-        <li class="navbar-element"><a href="/about">About</a></li>
-        <li class="navbar-element"><a href="/resume">Resume</a></li>
-        <li class="navbar-element"><a href="{{ GITHUB_URL }}">GitHub</a></li>
-        <li class="navbar-element"><a href="{{ TWITTER_URL }}">Twitter</a></li>
-      </ul>
+      <p class="site-title">
+        <a href="/">{{ SITENAME }}</a>
+      </p>
     </div>
 
     {% block content %}
     {% endblock %}
+
     <div class="footer">
-      <p class="footer-text">
-        {{ FOOTER_TEXT }}
-      </p>
+      <ul class="navbar">
+        <li class="navbar-element"><a href="{{ TWITTER_URL }}">Twitter</a></li>
+        <li class="navbar-element"><a href="{{ GITHUB_URL }}">GitHub</a></li>
+        <li class="navbar-element"><a href="/resume">Resume</a></li>
+        <li class="navbar-element"><a href="/about">About</a></li>
+      </ul>
     </div>
   </div>
 
