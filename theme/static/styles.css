@@ -158,7 +158,7 @@ a:hover {
   flex-direction: row;
 }
 
-.navbar-element a {
+.navbar-element {
   padding-right: 15px;
 }
 
