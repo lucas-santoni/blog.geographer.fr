@@ -2,7 +2,7 @@ const SW_PATH = '/service-worker.js';
 
 const CACHE_COMMON = 'common';
 const CACHE_PAGES = 'pages';
-const CACHE_VERSION = '14::';
+const CACHE_VERSION = '15::';
 
 const DEBUG = false;
 
