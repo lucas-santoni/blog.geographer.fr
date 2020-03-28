@@ -3,10 +3,10 @@ title: Cours de JavaScript (stream h25)
 slug: h25-js
 ---
 
-*Pourquoi ce document ?* Il s'agit d'une reprise écrite du cours j'ai
-pu donner pendant le stream de 25 heures organisé par h25 à l'occasion
-du confinement provoqué par l'épidémie de Coronavirus qui frappe
-actuellement l'Europe.
+*Pourquoi ce document ?* Il s'agit d'une reprise écrite du cours que j'ai pu
+donner pendant le stream de 25 heures organisé par h25 à l'occasion du
+confinement provoqué par l'épidémie de Coronavirus qui frappe actuellement
+l'Europe.
 
 ## Objectif
 
@@ -15,7 +15,7 @@ JavaScript, en particulier ceux utiles au joueur de *Capture The Flag*
 (CTF). Nous verrons :
 
 -   Comment gérer une épreuve tout ou partie écrite en JavaScript
--   Comment effectuer (plus efficacement?) des taches de *scripting* qui
+-   Comment effectuer (plus efficacement?) des tâches de *scripting* qui
     sont traditionellement réservées à Python ou Bash
 
 Aucune connaissance du langage JavaScript n'est requise.
@@ -221,7 +221,7 @@ Mais on peut aussi exécuter du JavaScript en dehors du navigateur, par exemple
 Si on part du principe que deux environnements d'exécution implémentent
 la même version du standard, tous les éléments de syntaxe que l'on
 vient d'étudier seront valables et produiront des résultats identiques
-dans les deux environnement.
+dans les deux environnements.
 
 En revanche, le contexte sera différent. Un bout de code JavaScript
 exécuté dans le navigateur peut accéder à l'objet `document`, qui
@@ -233,7 +233,7 @@ fichier (c'est [en train
 d'évoluer](https://developer.mozilla.org/en-US/docs/Web/API/FileSystem)
 ceci dit).
 
-En fonction de l'environnement, les connaissances requises pour gêrer
+En fonction de l'environnement, les connaissances requises pour gérer
 une épreuve peuvent être très différentes. Une épreuve qui se passe dans
 le navigateur pourra demander d'être à l'aise avec les manipulations
 du DOM tandis qu'une épreuve serveur demandera de connaitre le
@@ -261,9 +261,9 @@ for (i = 0; i < some_string.length; i++) {
 
 On remarque:
 
--   La méthode `charCodeAt(i)` qui, lorsque appliquée sur une chaine de
+-   La méthode `charCodeAt(i)` qui, lorsque appliquée sur une chaîne de
     caractère, nous renvoie la valeur numérique du i<sup>ème</sup> caractère de
-    la chaine.
+    la chaîne.
 -   La fonction `alert`, uniquement disponible dans le navigateur, qui
     permet de rapidement afficher un message. La fonction est utile pour
     du débogage car elle bloque entièrement le flux d'exécution.
@@ -282,11 +282,11 @@ for (const i in flag) {
 
 On remarque alors que `String.fromCharCode(i)` (méthode statique) permet
 l'opération inverse de `charCodeAt(i)`. On obtient alors le caractère
-(attention, il s'agit en fait d'une chaine de caractères de longueur
+(attention, il s'agit en fait d'une chaîne de caractères de longueur
 1) correspondant au nombre `i`.
 
 Utilisateurs de Python, attention, JavaScript permet l'opérateur `+`
-sur des chaines de caractère mais il ne permet pas la multiplication. On
+sur des chaînes de caractère mais il ne permet pas la multiplication. On
 utilise pour ça la méthode statique `String.repeat()`.
 
 On commence à comprendre que JavaScript fourni de très nombreux
@@ -307,7 +307,7 @@ pas plus rapidement qu'un code non-minifié. Il est simplement plus
 rapide à télécharger.*
 
 Dans le contexte d'un CTF, la minification devient une forme
-d'ofuscation. Le code suivant:
+d'obfuscation. Le code suivant:
 
 ```javascript
 const obj = {
@@ -331,12 +331,12 @@ console.log(getFullName(obj))
 
 On utilise alors le minimum de caractères possibles. Les espaces sont
 retirés, les noms sont manglés... Mais ce code est tout à fait lisible
-et on peut très facilement retomber proche du code initiale en utilisant
+et on peut très facilement retomber proche du code initial en utilisant
 un outil tel que
 [l'outil de formatage de Chrome](https://developers.google.com/web/tools/chrome-devtools/javascript/reference#format).
 
-Mais il existe aussi des outils proposant une ofuscation beaucoup plus
-franche. Par exemple, avec [JavaScript Obfucator](https://obfuscator.io/), notre code initiale devient:
+Mais il existe aussi des outils proposant une obfuscation beaucoup plus
+franche. Par exemple, avec [JavaScript Obfucator](https://obfuscator.io/), notre code initial devient:
 
 ```javascript
 const _0x1616=['lastname','firstname','Geo','Le\x20Berlingot'];(function(_0x177eb0,_0x1616a6){const _0x1e9abe=function(_0x204014){while(--_0x204014){_0x177eb0['push'](_0x177eb0['shift']());}};_0x1e9abe(++_0x1616a6);}(_0x1616,0xc6));const _0x1e9a=function(_0x177eb0,_0x1616a6){_0x177eb0=_0x177eb0-0x0;let _0x1e9abe=_0x1616[_0x177eb0];return _0x1e9abe;};const obj={'firstname':_0x1e9a('0x0'),'lastname':_0x1e9a('0x1')};function getFullName(_0xb6014e){return _0xb6014e[_0x1e9a('0x3')]+'\x20'+_0xb6014e[_0x1e9a('0x2')];}console['log'](getFullName(obj));
@@ -345,17 +345,17 @@ const _0x1616=['lastname','firstname','Geo','Le\x20Berlingot'];(function(_0x177e
 Et on a quelque chose qui est déjà beaucoup moins lisible. La
 méthodologie varie en fonction du temps que l'on peut investir et le
 type d'obfuscation mais dans le cas général, on peut commencer par
-faire passer le code dans un outil de déofuscation tel que
+faire passer le code dans un outil de déobfuscation tel que
 [de4js](https://lelinhtinh.github.io/de4js/) et ensuite terminer à la
 main. On va chercher principalement à :
 
 -   Renommer les noms de variables et functions
--   Extraire les différents éléments, notamment les chaines de
-    caractères, que les ofuscateurs ont tendance à regrouper dans des
+-   Extraire les différents éléments, notamment les chaînes de
+    caractères, que les obfuscateurs ont tendance à regrouper dans des
     tableaux
 -   Retirer le code inutile
 
-J'avais déjà évoqué l'ofuscation en JavaScript dans [ce
+J'avais déjà évoqué l'obfuscation en JavaScript dans [ce
 writeup](https://blog.geographer.fr/so-stealthy) d'une épreuve des
 qualifications de la Nuit Du Hack 2018.
 
@@ -363,10 +363,10 @@ qualifications de la Nuit Du Hack 2018.
 
 JavaScript donne accès, même sans dépendances, à plusieurs encodages dont les
 challenges ont tendance à abuser. Si on ne les connait pas, ils peuvent donner
-l'impression qu'on doit gêrer un chiffrement complexe ou une bizarrerie
+l'impression qu'on doit gérer un chiffrement complexe ou une bizarrerie
 JavaScript alors qu'un simple appel de fonction suffit. On a :
 
-- [`unescape()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/unescape) pour gêrer les séquences hexadécimales
+- [`unescape()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/unescape) pour gérer les séquences hexadécimales
 - [`decodeURI()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/decodeURI), semblable à `unescape()`
 - [base64](https://developer.mozilla.org/fr/docs/Web/API/WindowBase64/D%C3%A9coder_encoder_en_base64)
 - [API Buffer](https://nodejs.org/api/buffer.html), qui expose plusieurs fonctions intéressantes, notamment `toString` et `from`
@@ -525,34 +525,34 @@ On obtient donc une fonction `writeFilePromise` qui se substitue à
 `fs.writeFile`. Cette nouvelle fonction ne prend pas de callback en
 paramètre mais retourne immédiatement une variable `Promise`. La
 fonction à exécuter est passée en paramètre au constructeur `Promise`.
-Cette fonction reçoit deux autres fonction en paramètre : `resolve`, et
+Cette fonction reçoit deux autres fonctions en paramètre : `resolve`, et
 `reject`. La première sera appelée lorsqu'il faut transférer une valeur
 de retour qui n'est pas une erreur. La seconde sera appelée afin de
 transférer une erreur.
 
-Toujours au sein de la fonction anonyme passé en paramètre à `Promise`,
+Toujours au sein de la fonction anonyme passée en paramètre à `Promise`,
 on retrouve finalement l'appel à `fs.writeFile`. Ce dernier prend
 toujours un callback en paramètre mais maintenant que nous avons une
 promesse à disposition, nous pouvons utiliser sa fonction de résolution
 (`resolve`) et de rejet (`reject`) afin d'exfiltrer les valeurs de
 retour afin de ne pas créer de *callback hell*.
 
-Revenons au dernier bloc de code, l'appel à `writeFilePromise`. Nous
-savons maintenant que cette fonction retourne un objet `Promise`. Cet
-objet admet différentes méthodes, dont `then` et `catch`. La méthode
-`then` est appelée lorsque c'est `resolve` qui a été appelé dans le
-callack de promesse (donc, lorsqu'il n'y a pas eu d'erreur). La
-méthode `catch` est appelée lorsque c'est `reject` qui a été appelé
-dans le callback de promesse. Les méthodes `then` et `catch` admettent
-des fonctions en paramètre. Ces fonctions reçoivent elles-mêmes en
-paramètres les valeurs qui ont été passés à `resolve` et `reject`.
+Revenons au dernier bloc de code, l'appel à `writeFilePromise`. Nous savons
+maintenant que cette fonction retourne un objet `Promise`. Cet objet admet
+différentes méthodes, dont `then` et `catch`. La méthode `then` est appelée
+lorsque c'est `resolve` qui a été appelé dans le callback de promesse (donc,
+lorsqu'il n'y a pas eu d'erreur). La méthode `catch` est appelée lorsque c'est
+`reject` qui a été appelé dans le callback de promesse. Les méthodes `then` et
+`catch` admettent des fonctions en paramètre. Ces fonctions reçoivent
+elles-mêmes en paramètres les valeurs qui ont été passés à `resolve` et
+`reject`.
 
 Enfin, on peut noter qu'il est possible d'enchainer les promesses,
 comme on a pu le voir plus haut. On se retrouve alors avec une
-construction très lisible qu'on appelle une chaine de promesse. De ce
+construction très lisible qu'on appelle une chaîne de promesse. De ce
 fait découle la possibilité de ne placer qu'un seul `catch`, à la fin
-de la chaine. Celui-ci couvre les erreurs de l'intégralité de la
-chaine, ce qui allège considérablement le code (mais ammène d'autres
+de la chaîne. Celui-ci couvre les erreurs de l'intégralité de la
+chaîne, ce qui allège considérablement le code (mais ammène d'autres
 problèmes, malheureusement c'est hors-sujet).
 
 ### `Async`/`Await`
@@ -583,7 +583,7 @@ par les différents appels asynchrones. D'une part, le mot clé `await`
 fait office de barrière : on ne passe pas à l'instruction suivante tant
 que la promesse n'est pas résolue. D'autre part, il permet d'extraire
 le résultat de l'objet `Promise` (ce que l'on recevait auparavant dans
-le callback côté `then`) lors qu'il n'y a pas d'erreur.
+le callback côté `then`) lorsqu'il n'y a pas d'erreur.
 
 Il semble il y avoir un problème avec ce code : le cas d'erreur n'est
 pas gêré. C'est vrai : on aurait pu utiliser un `try`/`catch` afin de
