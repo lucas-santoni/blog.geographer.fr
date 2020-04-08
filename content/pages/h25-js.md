@@ -6,25 +6,24 @@ slug: h25-js
 *Pourquoi ce document ?* Il s'agit d'une reprise écrite du cours que j'ai pu
 donner pendant le stream de 25 heures organisé par h25 à l'occasion du
 confinement provoqué par l'épidémie de Coronavirus qui frappe actuellement
-l'Europe.
+l'Europe. Une rediffusion
+[est disponible ici](https://youtu.be/B13hGZhN3Qs?t=8053).
+
 
 ## Objectif
 
 Ce cours a pour objectif de présenter les aspects essentiels du langage
-JavaScript, en particulier ceux utiles au joueur de *Capture The Flag*
-(CTF). Nous verrons :
-
--   Comment gérer une épreuve tout ou partie écrite en JavaScript
--   Comment effectuer (plus efficacement?) des tâches de *scripting* qui
-    sont traditionellement réservées à Python ou Bash
+JavaScript, en particulier ceux utiles au joueur de *Capture The Flag* (CTF).
+En réalité, j'avais besoin d'un prétexte pour parler de JavaScript...
 
 Aucune connaissance du langage JavaScript n'est requise.
 
 **Attention ! On ne parlera pas ici de XSS ou autres vulnérabilités client.**
 
-## Mise en bouche
 
-JavaScript est un langage qui fait débat, toujours très controversé.  Plusieurs
+## Introduction
+
+JavaScript est un langage qui fait débat, toujours très controversé. Plusieurs
 enquêtes, notamment [celles de GitHub](https://octoverse.github.com/) (qui
 vient d'ailleurs d'acquérir `npm`), le placent en tête des langages les plus
 utilisés au monde (on peut débattre sur ce que *plus utilisé* signifie, certes)
@@ -49,6 +48,7 @@ lorsque le code étudié présente des fonctionnalités avancées de
 JavaScript, en particulier celles relatives à la programmation
 asynchrone.
 
+
 ## Fondamentaux
 
 Commençons par l'étude d'un bout de code qui va nous permettre de
@@ -62,7 +62,8 @@ confusion, du langage...
 // Il n'y a pas de fonction main
 // Chaque fichier est un script indépendant, évalué comme tel
 // Des fonctionnalités d'importation permettent de diviser les sources
-// en plusieurs fichiers
+// en plusieurs fichiers. Voir l'instruction "import" et la fonction
+// "require" pour plus d'informations.
 
 // Le mot clé var permet d'associer un identifiant (le "nom" de la variable)
 // a une valeur
@@ -76,10 +77,15 @@ name = 'some "other" value';
 name = 'some \'other\' value';
 
 // On peut aussi utiliser l'accent grave pour profiter des "template literals"
-// (en français : littéraux de gabarits, quel plaisir) et donc de
+// (en français : littéraux de gabarits, quel plaisir), et donc de
 // fonctionnalités d'interpolation
 // Les accents graves permettent également de faire du multi-lignes
 name = `I am ${Math.floor(Math.random() * 10)} years old!`;
+
+// (Optionnel)
+// Pour plus d'informations, voir le "hoisting"
+// https://www.w3schools.com/js/js_hoisting.asp
+// Les noms déclarés à l'aide de let et const ne SONT PAS hoistés
 
 // Le mot clé let est une autre manière d'associer un identifiant à une valeur
 // Tout comme var, on peut réaffecter l'identifiant
@@ -148,6 +154,7 @@ a => console.log(a);
 
 // Toutes les fonctions déclarées ci-dessus sont anonymes : ce sont des valeurs
 // qui n'ont pas été associées à un identifiant
+
 // A l'instar de var, function est parfois banni au profit de
 // la construction suivante
 const my_function = (arg1, arg2) => {
@@ -239,16 +246,17 @@ le navigateur pourra demander d'être à l'aise avec les manipulations
 du DOM tandis qu'une épreuve serveur demandera de connaitre le
 fonctionnement de la librairie [Express](https://expressjs.com/fr/).
 
+
 ## Constructions utiles
 
 Maintenant que nous avons les bases, voyons quelques constructions qui
 reviennent fréquemment en CTF...
 
+
 ### Manipulations ASCII
 
 *Bout de code adapté de l'étape 1 des Hexpresso FIC Quals 2019.
-[Write-up complet disponible
-ici.](/hexpresso-fic-1)*
+[Write-up complet disponible ici.](/hexpresso-fic-1)*
 
 ```javascript
 for (i = 0; i < some_string.length; i++) {
@@ -261,15 +269,14 @@ for (i = 0; i < some_string.length; i++) {
 
 On remarque:
 
--   La méthode `charCodeAt(i)` qui, lorsque appliquée sur une chaîne de
-    caractère, nous renvoie la valeur numérique du i<sup>ème</sup> caractère de
-    la chaîne.
--   La fonction `alert`, uniquement disponible dans le navigateur, qui
-    permet de rapidement afficher un message. La fonction est utile pour
-    du débogage car elle bloque entièrement le flux d'exécution.
--   Quelques opérateurs comme `+` et `*`, ici appliqués à des nombres.
-    D'autres existent, y compris les opérateurs
-    [bits à bits](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators).
+- La méthode `charCodeAt(i)` qui, lorsque appliquée sur une chaîne de
+  caractère, nous renvoie la valeur numérique du i<sup>ème</sup> caractère de
+  la chaîne.
+- La fonction `alert`, uniquement disponible dans le navigateur, qui
+  permet de rapidement afficher un message. La fonction est utile pour du
+  débogage car elle bloque entièrement le flux d'exécution.
+- Quelques opérateurs comme `+` et `*`, ici appliqués à des nombres.
+  D'autres existent, y compris les opérateurs [bits à bits](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators).
 
 Voyons un code solution :
 
@@ -293,6 +300,7 @@ On commence à comprendre que JavaScript fourni de très nombreux
 utilitaires. Le langage dispose également d'un écosystème imposant. Il
 est très rare de ne pas trouver une dépendance permettant de répondre à
 son problème.
+
 
 ### Minification
 
@@ -349,15 +357,15 @@ faire passer le code dans un outil de déobfuscation tel que
 [de4js](https://lelinhtinh.github.io/de4js/) et ensuite terminer à la
 main. On va chercher principalement à :
 
--   Renommer les noms de variables et functions
--   Extraire les différents éléments, notamment les chaînes de
-    caractères, que les obfuscateurs ont tendance à regrouper dans des
-    tableaux
--   Retirer le code inutile
+- Renommer les noms de variables et functions
+- Extraire les différents éléments, notamment les chaînes de
+  caractères, que les obfuscateurs ont tendance à regrouper dans des tableaux
+- Retirer le code inutile
 
-J'avais déjà évoqué l'obfuscation en JavaScript dans [ce
-writeup](https://blog.geographer.fr/so-stealthy) d'une épreuve des
-qualifications de la Nuit Du Hack 2018.
+J'avais déjà évoqué l'obfuscation en JavaScript dans
+[ce writeup](https://blog.geographer.fr/so-stealthy)
+d'une épreuve des qualifications de la Nuit Du Hack 2018.
+
 
 ### Encodages
 
@@ -373,29 +381,36 @@ JavaScript alors qu'un simple appel de fonction suffit. On a :
 
 Attention également à la fonction [`eval`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/eval).
 
+
 ### Quelques writeups
+
+Les writeups suivant couvrent bien le spectre d'épreuves qu'on peut rencontrer.
 
 - [JS SAFE 2.0 - Google CTF 2018, par LiveOverflow](https://www.youtube.com/watch?v=8yWUaqEcXr4)
 - [JS Kiddie - picoCTF 2019, par radekk](https://medium.com/@radekk/picoctf-2019-writeup-for-js-kiddie-7af4f0a20838)
 - [Javascript Obfusqué - Qualification SIGSEGV1, par Jean MARSAULT](https://www.securityinsider-wavestone.com/2018/10/ctf-quals-rtfm.html)
 - [Web 2.0 - Flare-On 5](https://blog.attify.com/flare-on-5-writeup-part3/)
 
+
 ## Concurrence
 
-JavaScript inplémente une boucle d'évènement (en anglais: *event
-loop*), qui l'ammène à ne pas être bloquant. En Python, lorsqu'on fait
-une requête HTTP avec le module `request`, il est impossible (du moins,
-sans efforts) d'exécuter plus de code pendant que cette requête a lieu.
-On dit alors que l'appel Python est bloquant, car il monopolise le
-*runtime* et ne \"rend pas la main\".
+JavaScript inplémente une boucle d'évènement (en anglais: *event loop*), qui
+l'ammène à ne pas être bloquant. En Python, lorsqu'on fait une requête HTTP
+avec le module `request`, il est impossible (du moins, sans efforts) d'exécuter
+plus de code pendant que cette requête a lieu.  On dit alors que l'appel Python
+est bloquant, car il monopolise le *runtime* et ne "rend pas la main".
+
+**Attention ! Si vous découvrez la concurrence, il est très important que vous
+preniez le temps d'exécuter les bouts de code fournis. Essayez de deviner la
+sortie puis voyez si votre prédiction est correcte.**
+
 
 ### Callbacks
 
-L'approche la plus simpliste est celle du *callback*. La fonction
-permettant de faire une requête HTTP prend alors un autre paramètre :
-une fonction, qui sera appelée lorsque le résultat sera disponible. Ce
-callback reçoit en paramètre le (ou les, y compris les erreurs) résultat
-de l'opération asynchrone.
+L'approche la plus simpliste est celle du *callback*. La fonction permettant de
+faire une requête HTTP prend alors un autre paramètre : une fonction, qui sera
+appelée lorsque le résultat sera disponible. Ce callback reçoit en paramètre le
+(ou les, y compris les erreurs) résultat(s) de l'opération asynchrone.
 
 ```javascript
 const request = require('request');
@@ -413,13 +428,12 @@ console.log('Where am I?');
 ```
 
 On remarque que la méthode `request.get` retourne immédiatement. Le flux
-d'exécution n'est donc pas bloqué pendant la requête HTTP, on peut
-continuer d'exécuter le code qui se trouve plus bas.
+d'exécution n'est donc pas bloqué pendant la requête HTTP, on peut continuer
+d'exécuter le code qui se trouve plus bas.
 
-Le callback, qui est ici une fonction anonyme, sera appelé une fois que
-le résultat de l'opération asynchrone sera disponible. Le runtime fera
-alors une pause dans l'exécution de son fil \"principal\" afin
-d'exécuter le callback.
+Le callback, qui est ici une fonction anonyme, sera appelé une fois que le
+résultat de l'opération asynchrone sera disponible. Le runtime fera alors une
+pause dans l'exécution de son fil "principal" afin d'exécuter le callback.
 
 ```javascript
 const request = require('request');
@@ -441,10 +455,10 @@ request.get('https://geographer.fr/', (err, result) => {
 console.log('AFTER request call!');
 ```
 
-Il est très rare de voir des callbacks aujourd'hui en raison du
-*callback hell*, cette situation où on se retrouve à imbriquer plusieurs
-callbacks, ce qui rend le code très peu lisible. Imaginons un code
-suivant : requête HTTP, sauvegarde du résultat dans un fichier texte,
+Il est plus rare de voir des callbacks aujourd'hui en raison du *callback
+hell*. C'est cette situation où on se retrouve à imbriquer plusieurs callbacks,
+ce qui rend le code très peu lisible. Imaginons un code qui effectue les
+actions suivantes : requête HTTP, sauvegarde du résultat dans un fichier texte,
 puis duplication de ce fichier. Le code aurait cette allure :
 
 ```javascript
@@ -478,6 +492,7 @@ request.get('https://geographer.fr/', (e, r) => {
 Quel plaisir... Il est trop difficile de suivre le fil de ce code, sans
 compter qu'il vire dangereusement à droite. Voyons comment les
 promesses peuvent nous aider !
+
 
 ### `Promise`
 
@@ -522,13 +537,12 @@ writeFilePromise('/tmp/hello.txt', 'Hello!')
 ```
 
 On obtient donc une fonction `writeFilePromise` qui se substitue à
-`fs.writeFile`. Cette nouvelle fonction ne prend pas de callback en
-paramètre mais retourne immédiatement une variable `Promise`. La
-fonction à exécuter est passée en paramètre au constructeur `Promise`.
-Cette fonction reçoit deux autres fonctions en paramètre : `resolve`, et
-`reject`. La première sera appelée lorsqu'il faut transférer une valeur
-de retour qui n'est pas une erreur. La seconde sera appelée afin de
-transférer une erreur.
+`fs.writeFile`. Cette nouvelle fonction ne prend pas de callback en paramètre
+mais retourne immédiatement une variable `Promise`. La fonction à exécuter est
+passée en paramètre au constructeur `Promise`.  Ce constructeur reçoit deux
+autres fonctions en paramètre : `resolve`, et `reject`. La première sera
+appelée lorsqu'il faut transférer une valeur de retour qui n'est pas une
+erreur. La seconde sera appelée afin de transférer une erreur.
 
 Toujours au sein de la fonction anonyme passée en paramètre à `Promise`,
 on retrouve finalement l'appel à `fs.writeFile`. Ce dernier prend
@@ -554,6 +568,7 @@ fait découle la possibilité de ne placer qu'un seul `catch`, à la fin
 de la chaîne. Celui-ci couvre les erreurs de l'intégralité de la
 chaîne, ce qui allège considérablement le code (mais ammène d'autres
 problèmes, malheureusement c'est hors-sujet).
+
 
 ### `Async`/`Await`
 
@@ -593,11 +608,12 @@ gêrée dans son scope courant, elle est remontée au scope parent.
 L'erreur sera donc gêrée au niveau du `main().catch()`. On comprend
 alors qu'une fonction marquée `async` retourne une `Promise`.
 
+
 ### Un crawler concurrent
 
 Pour conclure notre petite balade dans le monde féérique de la
 concurrence, nous allons nous faire un petit crawler qui visite des
-pages web et nous liste toutes celles contenant le mot \"JavaScript\".
+pages web et nous liste toutes celles contenant le mot "JavaScript".
 
 ```javascript
 const request = require('request-promise-native');
@@ -648,8 +664,8 @@ for e in list(filter(lambda r: r['result'], results)):
 ```
 
 Bien entendu, il est absurde de comparer une implémentation concurrente
-JavaScript avec une implémentation non-concurrente Python. Nous allons
-donc les comparer:
+JavaScript avec une implémentation non-concurrente Python. Nous allons donc les
+comparer:
 
 ```
 $ time node crawler.js > /dev/null
@@ -663,5 +679,5 @@ Executed in    1,48 secs   fish           external
    sys time   61,17 millis  487,00 micros   60,68 millis
 ```
 
-La version écrite en JavaScript est environ deux fois plus rapide. Le
-nombre de lignes écrites est très similaire.
+La version JavaScript concurrente est environ deux fois plus rapide. Le nombre
+de lignes écrites est très similaire.
