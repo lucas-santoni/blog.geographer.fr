@@ -62,7 +62,7 @@ MARKDOWN = {
 TWITTER_HANDLE = 'geographeur'
 MAIL = 'lucas.santoni@live.fr'
 SITE = 'blog.geographer.fr'
-SITE_URL = f'https://{SITE}'
+SITEURL = f'https://{SITE}'
 TWITTER_URL = 'https://twitter.com/' + TWITTER_HANDLE
 GITHUB_URL = 'https://github.com/geospace'
 MAIL_URL = 'mailto:' + MAIL
@@ -103,6 +103,7 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = 'en'
 
 # FEED
+FEED_ALL_RSS = 'rss.xml'
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None

@@ -33,14 +33,14 @@
   <!-- OG data guaranteed to exist, article -->
   {% if article %}
   <meta property="og:title" content="{{ article.title }}" />
-  <meta property="og:url" content="{{ SITE_URL }}/{{ article.slug }}" />
+  <meta property="og:url" content="{{ SITEURL }}/{{ article.slug }}" />
   <meta property="article:published_time" content="{{ article.date.strftime('%Y-%m-%d') }}" />
   {% endif%}
 
   <!-- OG data guaranteed to exist, page -->
   {% if page %}
   <meta property="og:title" content="{{ page.title }}" />
-  <meta property="og:url" content="{{ SITE_URL }}/{{ page.slug }}" />
+  <meta property="og:url" content="{{ SITEURL }}/{{ page.slug }}" />
   {% endif%}
 
   <!-- OG description  -->
@@ -76,12 +76,12 @@
 
   <!-- Canonical article -->
   {% if article %}
-  <link rel="canonical" href="{{ SITE_URL }}/{{ article.slug }}"/>
+  <link rel="canonical" href="{{ SITEURL }}/{{ article.slug }}"/>
   {% endif %}
 
   <!-- Canonical page -->
   {% if page %}
-  <link rel="canonical" href="{{ SITE_URL }}/{{ page.slug }}"/>
+  <link rel="canonical" href="{{ SITEURL }}/{{ page.slug }}"/>
   {% endif %}
 
   <link rel="icon" href="/favicon.ico" />
