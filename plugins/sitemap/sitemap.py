@@ -103,7 +103,7 @@ class SitemapGenerator():
                 date_formated = DATE_TEMPLATE.format(date.strftime('%Y-%m-%d'))
 
             # Join site url and content slug
-            url = urllib.parse.urljoin(self.context['SITE_URL'], c.slug)
+            url = urllib.parse.urljoin(self.context['SITEURL'], c.slug)
             # Update frequency
             frequency = get_content_change_frequency(c)
             # Document priority
@@ -118,7 +118,7 @@ class SitemapGenerator():
             ))
 
         buffer.append(URL_TEMPLATE.format(
-            loc=self.context['SITE_URL'],
+            loc=self.context['SITEURL'],
             lastmod=None,
             changefreq=CHANGE_FREQUENCIES['_index'],
             priority=PRIORITIES['_default']
