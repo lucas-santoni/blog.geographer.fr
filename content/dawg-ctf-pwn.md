@@ -178,7 +178,7 @@ The bug is as follows:
 * It is not removed from your inventory, but you get the bells
 * ...
 * You sell any other item to free some inventory space
-* You get the flag
+* You buy the flag
 
 ```python
 from pwn import *
