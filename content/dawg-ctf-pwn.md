@@ -57,17 +57,17 @@ There is a comment that tells us how the binary was compiled. It is a 32-bit,
 with no PIE and stack protection disable. We have no information regarding ASLR
 but this challenge is not worth many point so we guess it is disabled.
 
-The `get_audition_info` functions is the vulnerable one. Indeed `gets` is
-insecure and leads to a stack-based buffer overflow. Lucky us, we will
-not even have to inject a shellcode or anything in memory as we can use
-the `audition` function that can `cat` the flag for us.
+The `get_audition_info` function is the vulnerable one. Indeed, `gets` is
+insecure and leads to a stack-based buffer overflow. Lucky us, we will not even
+have to inject a shellcode or anything in memory as we can use the `audition`
+function that can `cat` the flag for us.
 
 But there is something else! The `audition` function, that we plan to jump to,
 receives two parameters. These two `int` variables must have a specific value,
 otherwise `system` will not be called for us. One could think that we can
 directly jump to the `system` call, that must be located at
 `audition+something`, but this is not possible as `flag` will not be
-initialized and `system(NULL)` will be called.
+initialized and `system` will be called with a bad pointer as parameter.
 
 We definitely need to pass the `time` and `room` parameters. In order to do so,
 we can prepare a payload that is similar to ret2libc. A standard ret2libc
@@ -118,8 +118,8 @@ else:
     log.success(r.recvline().decode())  # Outputs the flag
 ```
 
-The offsets are strictly the same locally and remotly. Also, our guess turned
-out correct and there is no ASLR. We get our flag immediately:
+The offsets are strictly the same locally and remotely. Also, our guess turned
+out correct as there is no ASLR. We get our flag immediately:
 
 ```
 [+] Opening connection to ctf.umbccd.io on port 4000: Done
@@ -148,23 +148,23 @@ nash> `<flag.txt`
 /bin/bash: line 1: DawgCTF{L1k3_H0W_gr3a+_R_sp@c3s_Th0uGh_0mg}: command not found
 ```
 
-I'm not a Bash guy but from what I understand, the `<` allows to retrieve
-the content of `flag.txt`. Then, the backticks introduce a subcommand. Thus
-Bash tries to run a command that is our flag.
+I'm not a Bash guy but from what I understand, the `<` allows to retrieve the
+content of `flag.txt`. Then, the backticks introduce a subcommand. Thus, Bash
+tries to run a command that is our flag.
 
 
 ## Tom Nook the Capitalist Raccoon
 
 This is an Animal Crossing themed challenge. We can do some business with our
-good friend Tom Nook, trading tarantulas for leaves... But the only thing that
+good friend Tom Nook, trading tarantulas for bells... But the only thing that
 we really want to buy is the flag. Which costs 420000 bells. That is a lot.
 
 We will not be able to make that much money the legal way so let's be an
-averrage Animal Crossing player and cheat.
+average Animal Crossing player and cheat.
 
 Source code is not provided but we have the [compiled binary](https://github.com/toomanybananas/dawgctf-2020-writeups/raw/master/pwn/animal_crossing/animal_crossing).
 To be honest, I did not even have to reverse it as I found the bug just by
-playing with the remote. The actual C source code is [available here](https://github.com/toomanybananas/dawgctf-2020-writeups/blob/master/pwn/animal_crossing/animal_crossing.c)
+playing with the remote instance. The actual C source code is [available here](https://github.com/toomanybananas/dawgctf-2020-writeups/blob/master/pwn/animal_crossing/animal_crossing.c)
 if you want to make an extended study.
 
 The bug is as follows:
