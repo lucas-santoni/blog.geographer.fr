@@ -54,8 +54,8 @@ int main(){
 ```
 
 There is a comment that tells us how the binary was compiled. It is a 32-bit,
-with no PIE and stack protection disable. We have no information regarding ASLR
-but this challenge is not worth many point so we guess it is disabled.
+with no PIE and stack protection disable. We have no information regarding
+ASLR.
 
 The `get_audition_info` function is the vulnerable one. Indeed, `gets` is
 insecure and leads to a stack-based buffer overflow. Lucky us, we will not even
@@ -118,8 +118,8 @@ else:
     log.success(r.recvline().decode())  # Outputs the flag
 ```
 
-The offsets are strictly the same locally and remotely. Also, our guess turned
-out correct as there is no ASLR. We get our flag immediately:
+The offsets are strictly the same locally and remotely. We don't care about
+ASLR as we are jumping to a non-randomized offset. We get our flag immediately:
 
 ```
 [+] Opening connection to ctf.umbccd.io on port 4000: Done
