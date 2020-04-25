@@ -235,7 +235,7 @@ executable.3720.exe: PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for M
 ```
 
 On est sur du .NET donc on va pouvoir sortir l'excellent
-[dnSpy](https://github.com/0xd4d/dnSpy). J'en avais déjà [parlé ici](/posts/so-stealthy) en cas de question.
+[dnSpy](https://github.com/0xd4d/dnSpy). J'en avais déjà [parlé ici](/so-stealthy) en cas de question.
 
 
 On se balade un peu dans le projet, on finit par tomber sur le `Form3` de

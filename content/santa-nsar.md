@@ -6,7 +6,7 @@ date: 23/12/2019
 
 **Before we start!** This post is authored by [@pwnh4](https://twitter.com/pwnh4).
 I'm really proud to have him for this guest post as he started computer security
-only a few months ago with my [2019 Piscine](https://blog.geographer.fr/posts/piscine-poc-2019)
+only a few months ago with my [2019 Piscine](/piscine-poc-2019)
 but already performs very well in CTF. Go follow him!
 
 ***
