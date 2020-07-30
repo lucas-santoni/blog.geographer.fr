@@ -24,7 +24,7 @@ As they [officially released the version 2.0](https://www.prisma.io/blog/announc
 I thought it could be interesting to share my experience.
 
 In this article, I will show you how and why you should build your next
-GraphQL API with Prisma. For demonstration propose we will build a simple API
+GraphQL API with Prisma. For demonstration purpose we will build a simple API
 that could be used for a basic blog application. The complete code can be
 found in [this GitHub repository](https://github.com/gabrielcolson/blog-prisma-graphql).
 
@@ -774,5 +774,6 @@ We now have a fully working GraphQL API connected to a PostgreSQL database
 which is fully typed (not a single `any` in the whole codebase!) thanks to
 code generation and we have a clear separation of concerns thanks to our code
 organization. For a more complete implementation, you can check out the
-GitHub repository and if you have any questions or remarks you can let me
-know on [Twitter](https://twitter.com/gabrielcolson_)!
+[GitHub repository](https://github.com/gabrielcolson/blog-prisma-graphql)
+and if you have any questions or remarks you can let me know on
+[Twitter](https://twitter.com/gabrielcolson_)!
