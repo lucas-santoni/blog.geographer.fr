@@ -9,6 +9,7 @@ description: Learn how to build a production ready GraphQL API endpoint using Pr
 Here are his links:
 
 * [GitHub](http://github.com/gabrielcolson)
+* [Twitter](https://twitter.com/gabrielcolson_)
 * [LinkedIn](https://www.linkedin.com/in/gabriel-colson/)
 
 Please, do not hesitate to reach out to him if you have any questions! Also,
