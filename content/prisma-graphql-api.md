@@ -1,7 +1,7 @@
 ---
 title: Build production grade API with Prisma and GraphQL
 slug: prisma-graphql-api
-date: 01/08/2020
+date: 08/01/2020
 description: Learn how to build a production ready GraphQL API endpoint using Prisma. This tutorial is aimed at beginners and covers all the basics.
 ---
 
