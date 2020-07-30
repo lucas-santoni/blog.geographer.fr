@@ -14,7 +14,7 @@ Here are his links:
 * [LinkedIn](https://www.linkedin.com/in/gabriel-colson/)
 
 Please, do not hesitate to reach out to him if you have any questions! Also,
-Grabriel is **currently available for freelance work**.
+Gabriel is **currently available for freelance work**.
 
 ***
 
