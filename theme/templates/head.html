@@ -79,6 +79,11 @@
   <meta name="twitter:description" content="{{ SITE_DESCRIPTION }}"/>
   {%- endif %}
 
+  <!-- Twitter image -->
+  {% if article and article.image %}
+  <meta name="twitter:image" content="{{ SITEURL }}/{{ article.image }}" />
+  {% endif %}
+
   <!-- Canonical article -->
   {% if article %}
   <link rel="canonical" href="{{ SITEURL }}/{{ article.slug }}"/>
