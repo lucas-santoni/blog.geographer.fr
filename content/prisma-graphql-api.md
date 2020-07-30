@@ -190,7 +190,7 @@ files.
 We will now spin up a PostgreSQL instance in a Docker container and connect it to
 Prisma.
 
-```bash
+```
 docker run                        \
   --name blog-api-db              \
   -e POSTGRES_PASSWORD=postgres   \
@@ -219,7 +219,7 @@ users and posts.
 
 The user is quite simple: an id, a name, and an email.
 
-```prisma
+```graphql
 model User {
   id    String @default(cuid()) @id
   name  String
@@ -230,7 +230,7 @@ model User {
 The post is simple as well: an id, a title, and a content. We also add a
 `slug` field so we can easily retrieve a post by its URL.
 
-```prisma
+```graphql
 model Post {
   id      String @default(cuid()) @id
   title   String
@@ -243,7 +243,7 @@ We now need to define the relation between a `User` and a `Post`. A user
 should be able to have multiple posts. This is a typical example of the "one
 to many" relation explained in the [Prisma docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-schema/relations#one-to-many-relations). 
 
-```prisma
+```graphql
 model User {
   id    String @default(cuid()) @id
   name  String
