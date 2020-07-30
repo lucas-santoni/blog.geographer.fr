@@ -5,13 +5,14 @@ date: 08/01/2020
 description: Learn how to build a production ready GraphQL API endpoint using Prisma. This tutorial is aimed at beginners and covers all the basics.
 ---
 
-**Before we start!** This article is a guest post by my friend and collegue
-Gabriel Colson. Here are his links:
+**Before we start!** This article is a guest post by my friend Gabriel Colson.
+Here are his links:
 
 * [GitHub](http://github.com/gabrielcolson)
 * [LinkedIn](https://www.linkedin.com/in/gabriel-colson/)
 
-Do not hesitate to reach out to him if you have any questions!
+Please, do not hesitate to reach out to him if you have any questions! Also,
+Grabriel is **currently available for freelance work**.
 
 ***
 
