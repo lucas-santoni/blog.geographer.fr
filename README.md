@@ -23,7 +23,7 @@ pipenv install
 pipenv shell
 ```
 
-Because this blog is deployed using [Now](https://zeit.co/), a
+Because this blog is deployed using [Vercel](https://vercel.com/), a
 `requirements.txt` file also has to be kept up to date. In order to update it:
 
 ```
@@ -33,7 +33,7 @@ pipenv lock -r > requirements.txt
 
 ## Contribute
 
-Just make a pull request. The Now bot will automatically reply to the pull
+Just make a pull request. The Vercel bot will automatically reply to the pull
 request with a link for you to preview your changes. I will merge it.
 
 I do not have any plans for translations right now. All articles have to be
