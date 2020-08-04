@@ -3,77 +3,44 @@
 
 from __future__ import unicode_literals
 
-# LOCALE
+#
+# SETTINGS
+# These are general settings related to Pelican
+#
+
 # Useful for dates format
 LOCALE = 'en_US.UTF-8'
+DEFAULT_LANG = 'en'
 
-# PLUGINS
-PLUGINS = [
-    'plugins.title-smart-break',
-    'plugins.api',
-    'plugins.sitemap',
-    'plugins.readtime'
-]
+# TODO Is it still relevant?
+TIMEZONE = 'Europe/Paris'
 
-# SITE INFORMATION
-AUTHOR = 'Geo'
-SITENAME = 'Lucas Santoni'
-
-# CHANGE FREQUENCY
-# See sitemap plugin
-CHANGE_FREQUENCIES = {
-    'resume': 'yearly'
-}
-
-# DOCUMENT PRIORITIES
-# See sitemap plugin
-PRIORITIES = {
-    'hexpresso-fic': 0.6
-}
-
-# EXCLUDE FROM SITE API
-# See API plugin
-API_EXCLUDE_SLUGS = [
-    '404',
-    'internet-error',
-    'posts',
-    'about'
-]
-
-# THEME
+# The theme is custom, see the theme/ folder
 THEME = 'theme'
 
-# MARKDOWN EXTENSIONS
+# Configure the Markdown processor
 MARKDOWN = {
     'extension_configs': {
         'markdown.extensions.codehilite': {
-            'css_class': 'highlight',
-            'guess_lang': False,
-            'linenums': False
+            'css_class': 'highlight',  # CSS class used for code snippets
+            'guess_lang': False,  # Try not to guess the language
+            'linenums': False,  # Do not input line numbers
         },
         'markdown.extensions.extra': {},
         'markdown.extensions.meta': {},
-        'markdown.extensions.toc': {}
+        'markdown.extensions.toc': {},
     },
-    'output_format': 'html5'
+    'output_format': 'html5',
 }
 
-# LINKS
-TWITTER_HANDLE = 'geographeur'
-MAIL = 'lucas.santoni@live.fr'
-SITE = 'blog.geographer.fr'
-SITEURL = f'https://{SITE}'
-TWITTER_URL = 'https://twitter.com/' + TWITTER_HANDLE
-GITHUB_URL = 'https://github.com/geospace'
-MAIL_URL = 'mailto:' + MAIL
-
-# STATIC_PATHS
+# Folders statically served
 STATIC_PATHS = ['assets', 'static-root']
 
-# STATIC FILES AT ROOT
+# Files in static-root/ must be added here, or moved to another directory
+# Indeed we want all files in static-root/ to be served at the root
+# We don't seem to have any way to enforce this unfortunately
 EXTRA_PATH_METADATA = {
     'static-root/levenshtein.js': {'path': 'levenshtein.js'},
-    'static-root/service-worker.js': {'path': 'service-worker.js'},
     'static-root/favicon.ico': {'path': 'favicon.ico'},
     'static-root/pwa-icon.png': {'path': 'pwa-icon.png'},
     'static-root/apple-touch-icon.png': {'path': 'apple-touch-icon.png'},
@@ -82,27 +49,10 @@ EXTRA_PATH_METADATA = {
     'static-root/keybase.txt': {'path': 'keybase.txt'}
 }
 
-# SITE INTRO
-SITE_INTRO = '''
-I am a computer science enthusiast. My fields of interest are cybersecurity
-and software development. Please, see the <a href="/about">about page</a> or
-read <a href="/resume">my resume</a> if you want to know more.
-'''
-
-# META DESCRIPTION
-SITE_DESCRIPTION = '''
-A blog about computer security and programming. With CTF writeups, side
-projects, memos...
-'''
-
-# PATH
+# TODO What is this?
 PATH = 'content'
 
-# TIME
-TIMEZONE = 'Europe/Paris'
-DEFAULT_LANG = 'en'
-
-# FEED
+# Feed settings
 FEED_ALL_RSS = 'rss.xml'
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -110,11 +60,11 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# GENERATE
+# What we want to generate
 PAGE_SAVE_AS = '{slug}.html'
 ARTICLE_SAVE_AS = '{slug}.html'
 
-# DO NOT GENERATE
+# What we DON'T want to generate
 AUTHOR_SAVE_AS = ''
 CATEGORY_SAVE_AS = ''
 TAG_SAVE_AS = ''
@@ -124,21 +74,92 @@ ARCHIVES_SAVE_AS = ''
 AUTHORS_SAVE_AS = ''
 CATEGORIES_SAVE_AS = ''
 TAGS_SAVE_AS = ''
+#
+# END OF SETTINGS
+#
 
-# BLOGROLL
-LINKS = ()
+#
+# VARIABLES
+# These variables are used in the template
+#
 
-# SOCIAL
-SOCIAL = ()
+# TODO Allow for different authors depending on the article/page
+AUTHOR = 'Lucas Santoni'
 
-# PAGINATION
-# DEFAULT_PAGINATION = 5
+SITENAME = 'Lucas Santoni'
+TWITTER_HANDLE = 'geographeur'
+MAIL = 'lucas.santoni@live.fr'
+SITE = 'blog.geographer.fr'
+SITEURL = f'https://{SITE}'
+TWITTER_URL = 'https://twitter.com/' + TWITTER_HANDLE
+GITHUB_URL = 'https://github.com/geospace'
+MAIL_URL = 'mailto:' + MAIL
 
-# RELATIVE
-# RELATIVE_URLS = True
+SITE_INTRO = '''
+I am a computer science enthusiast. My fields of interest are cybersecurity
+and software development. Please, see the <a href="/about">about page</a> or
+read <a href="/resume">my resume</a> if you want to know more.
+'''
 
+SITE_DESCRIPTION = '''
+A blog about computer security and programming. With CTF writeups, side
+projects, memos...
+'''
 
+#
+# END OF VARIABLES
+#
+
+#
+# PLUGINS
+# These are plugins configurations
+# Some of them are custom, just read the sources in plugins/ if not sure
+#
+
+PLUGINS = [
+    'plugins.title-smart-break',  # Avoid single words in titles
+    'plugins.api',  # Generate a client side index of all the content
+    'plugins.sitemap',  # Generate a sitemap
+    'plugins.readtime',  # Insert read times
+]
+
+# Change frequency for sitemap plugin
+CHANGE_FREQUENCIES = {
+    'resume': 'yearly',
+}
+
+# Result priorities for sitemap plugin
+PRIORITIES = {
+    'hexpresso-fic': 0.6,
+}
+
+# Slugs of the articles/pages we don't want to appear in the sitemap
+EXCLUDE_SLUGS = [
+    '404',  # The 404 page
+    'posts',  # The post index, does not really have content
+    'internet-error',  # The WPA internet error page, not relevant
+]
+
+# Slugs of the articles/pages we don't want to appear in the site API
+API_EXCLUDE_SLUGS = [
+    '404',  # See above for explanations
+    'internet-error',
+    'posts',
+    'about',
+]
+
+#
+# END OF PLUGINS
+#
+
+#
 # PROJECTS
+# Projects are displayed on the front page
+#
+
+# TODO Turn this into articles
+
+
 class project():
     pass
 
@@ -171,9 +192,12 @@ and visualize SQL injections. Easy to launch via Docker.
 <a href="https://github.com/Geospace/sqli-platform">Get it here.</a>
 '''
 
-# PROJECTS
 PROJECTS = [
     POOL_2019,
     THIS_BLOG,
     SQLI_PLATFORM
 ]
+
+#
+# END OF PROJECTS
+#
