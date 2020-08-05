@@ -6,7 +6,7 @@ date: 11/05/2019
 
 Here is the
 [ESLint configuration](https://gist.github.com/Geospace/2a5fdbe7054afc3d210f60f12c5a5b03)
-I'm using. TypeScript (TS) is about actually puting types so the use of `any`,
+I'm using. TypeScript (TS) is about actually putting types so the use of `any`,
 missing parameter types and missing return function types are forbidden.
 
 I'm using Create React App, with the following packages:
@@ -23,7 +23,7 @@ I'm using Create React App, with the following packages:
 This is the simplest case. Our component is a function that doesn't take
 anything and only returns a block of JSX.
 
-```tsx
+```jsx
 const Component = (): JSX.Element => (
   <p>Hello, World!</p>
 );
@@ -39,7 +39,7 @@ long as the project is configured to use TS, of course).
 This case is very similar to the previous one. Our component still does not
 implement any logic, but it takes props as parameters.
 
-```tsx
+```jsx
 interface Props {
   message: string;
 }
@@ -55,14 +55,14 @@ only.
 
 In case of a short type, the annotation may be **inline**:
 
-```tsx
+```jsx
 const Component = (props: { message: string }): JSX.Element => (
   ...
 ```
 
 The props may also be **deconstructed**:
 
-```tsx
+```jsx
 const Component = ({ message }: { message: string }): JSX.Element => (
   ...
 ```
@@ -72,7 +72,7 @@ const Component = ({ message }: { message: string }): JSX.Element => (
 `React.FunctionComponent` and `React.FC` are types describing a function
 component. One could do:
 
-```tsx
+```jsx
 interface Props {
   message: string;
 }
@@ -85,8 +85,8 @@ const Component: React.FunctionComponent<Props> = ({ message }: Props): JSX.Elem
 
 Because the configuration I use requires to annotate all the parameters and
 return values, **the type signature is now duplicated**. Anyway, I think it's
-better to put the annonations on the left and let the compiler deduce the
-type on the right hand side. Moreover, these typenames may change in the future
+better to put the annotations on the left and let the compiler deduce the
+type on the right hand side. Moreover, these type names may change in the future
 so I will avoid **tying my code** to them.
 
 The names `React.SFC` (Stateless Function(al ?) Component) and
@@ -157,10 +157,10 @@ class Component extends React.Component<Props> {
 ## Dealing with Higher Order Components
 
 An Higher Order Component (HOC) is all about injecting props into a component
-so we will have to add a few annonations. Here is an example with
+so we will have to add a few annotations. Here is an example with
 [React Router](https://reacttraining.com/react-router/web/guides/quick-start):
 
-```tsx
+```jsx
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 
@@ -217,7 +217,7 @@ allows us to access `this.props.location` without any problem.
 Sometimes, the exported props type requires a type parameter to work
 properly. For example:
 
-```tsx
+```jsx
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface MatchParams {
@@ -235,7 +235,7 @@ export default withRouter(Component);
 
 Now we can access `this.props.match.params.page`.
 
-Let's conclude with a few more or less related ressources:
+Let's conclude with a few more or less related resources:
 
 * [TypeScript JSX Manual](https://www.typescriptlang.org/docs/handbook/jsx.html)
 * [10++ TypeScript Pro tips/patterns with (or without) React](https://medium.com/@martin_hotell/10-typescript-pro-tips-patterns-with-or-without-react-5799488d6680)
