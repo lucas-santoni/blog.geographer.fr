@@ -20,6 +20,22 @@ body {
   color: var(--color-text)
 }
 
+hr {
+  display: flex;
+  justify-content: center;
+  border: none;
+  font-size: 120%;
+  font-weight: bold;
+  margin: 2em 0;
+  color: var(--color-faded);
+  height: 1em;
+}
+
+hr:before  {
+  content: "...";
+  letter-spacing: 0.7em;
+}
+
 h1, h2, h3 {
   color: var(--color-title);
   font-weight: bold;
@@ -84,8 +100,17 @@ img.emoji {
   vertical-align: -0.1em;
 }
 
+/* https://github.com/ApoorvSaxena/lozad.js/issues/188 */
+img[data-loaded="true"], [data-loaded="true"] img {
+  animation-name: lazyImageFadeIn;
+  animation-duration: 0.7s;
+  animation-fill-mode: both;
+}
+
+@keyframes lazyImageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 .header {
-  margin: 2.5em 0 2.5em 0;
+  margin: 2em 0 2em 0;
 }
 
 .site-title {
@@ -93,10 +118,6 @@ img.emoji {
   font-size: 22px;
   letter-spacing: 1px;
   color: var(--color-title);
-}
-
-.site-title-hl {
-  color: var(--color-primary);
 }
 
 .article-title {
@@ -118,6 +139,7 @@ img.emoji {
   display: block;
   max-width: 100%;
   margin: 2em auto 2em auto;
+  border: 1px solid rgba(27,31,35,.069);
 }
 
 .content pre {
@@ -129,8 +151,9 @@ img.emoji {
   padding: 1em 1.2em;
 }
 
-.content p {
-  margin: 1.337em 0;
+.content p, .content :not(li) > ul, .content :not(li) > ol {
+  margin-top: 1.337em;
+  margin-bottom: 1.337em;
 }
 
 .listing dl {
