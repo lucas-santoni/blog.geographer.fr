@@ -21,6 +21,7 @@ THEME = 'theme'
 # Configure the Markdown processor
 MARKDOWN = {
     'extension_configs': {
+        'extensions.lozad': {},
         'markdown.extensions.extra': {},
         'markdown.extensions.meta': {},
         'markdown.extensions.toc': {},
@@ -91,9 +92,10 @@ GITHUB_URL = 'https://github.com/geospace'
 MAIL_URL = 'mailto:' + MAIL
 
 SITE_INTRO = '''
-I am a computer science enthusiast. My fields of interest are cybersecurity
-and software development. Please, see the <a href="/about">about page</a> or
-read <a href="/resume">my resume</a> if you want to know more.
+👋 My name is Lucas Santoni, and I am a computer science enthusiast. My
+fields of interest are cybersecurity and software development. Please, see
+the <a href="/about">about page</a> or read <a href="/resume">my resume</a>
+if you want to know more.
 '''
 
 SITE_DESCRIPTION = '''

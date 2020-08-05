@@ -1,5 +1,9 @@
   <!-- We can do this one at the end -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
-  <script>hljs.configure({languages: []});hljs.initHighlightingOnLoad();</script>
+  <script>
+    hljs.configure({languages: []}); // Do not try to guess the language
+    hljs.initHighlightingOnLoad(); // Highlight code
 
+    observer.observe(); // Lazy loading
+  </script>
 </html>

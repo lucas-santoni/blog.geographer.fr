@@ -110,11 +110,17 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css">
-  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/styles.css">
+  <link rel="stylesheet" href="/{{ THEME_STATIC_DIR }}/styles.css">
 
   <!-- JavaScript -->
   <!-- There is more in the footer -->
-  <script src="//twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+  <script src="//twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+  <script>
+    const observer = lozad(); // Instantiate, see footer for run
+  </script>
+
   <script src="/api.js"></script>
   <script src="/levenshtein.js"></script>
 

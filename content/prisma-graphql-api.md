@@ -28,6 +28,10 @@ GraphQL API with Prisma. For demonstration propose we will build a simple API
 that could be used for a basic blog application. The complete code can be
 found in [this GitHub repository](https://github.com/gabrielcolson/blog-prisma-graphql).
 
+**Summary**
+
+[TOC]
+
 
 ## Requirements
 
