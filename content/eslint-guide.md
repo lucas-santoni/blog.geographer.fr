@@ -43,7 +43,9 @@ you wish to design your own configuration.
 
 **Summary**
 
-* [Why ESLint?](#why-eslint)
+[TOC]
+
+<!-- * [Why ESLint?](#why-eslint)
 * [ESLint installation](#eslint-installation)
 * [ESLint configuration file](#eslint-configuration-file)
 * [Getting Started / Plain JavaScript](#getting-started-plain-javascript)
@@ -52,7 +54,7 @@ you wish to design your own configuration.
     * [JavaScript Project](#javascript-project)
     * [TypeScript project](#typescript-project)
 * [VSCode configuration](#vscode-configuration)
-* [Final words](#final-words)
+* [Final words](#final-words) -->
 
 Complete ESLint configurations are available at the end of each section, when
 appropriate.
@@ -400,9 +402,9 @@ The linting now works for TypeScript, just like it used to for JavaScript. The
 works with TypeScript. You do not need to explicitly inherit from `airbnb-base`
 for this to work, as all the wrapping is done under the hood.
 
-Still, we don't have any TypeScript-specific rulling for now. We reproduced the
+Still, we don't have any TypeScript-specific rules for now. We reproduced the
 JavaScript setup we got before in TypeScript, but nothing more. In order to get
-TypeScript-specific rulling, we are going to inherit from another configuration:
+TypeScript-specific rules, we are going to inherit from another configuration:
 
 ```yaml
 extends:

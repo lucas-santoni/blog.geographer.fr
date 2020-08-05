@@ -1,1 +1,22 @@
+  <!-- We can do this one at the end -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+  <script>
+    hljs.configure({languages: []}); // Do not try to guess the language
+    hljs.initHighlightingOnLoad(); // Highlight code
+  </script>
+
+  <!-- Already loaded in the header, let's run it -->
+  <script>
+    observer.observe(); // Lazy loading
+  </script>
+
+  <!-- Faisable at the end too -->
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-155297229-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-155297229-1');
+  </script>
+
 </html>

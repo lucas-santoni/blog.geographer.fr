@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="content-box">
+<div>
   <h1>{{ page.title }}</h1>
   
-  <div class="content-content">
+  <div class="content">
     {{ page.content }}
     <p id="search-result"><i>Loading...</i></p>
 
@@ -12,6 +12,8 @@
   </div>
 </div>
 
+<script src="/levenshtein.js"></script>
+<script src="/api.js"></script>
 <script>
   const url_split = window.location.href.split("/");
   const last = url_split[url_split.length-1].replace('.html', '');

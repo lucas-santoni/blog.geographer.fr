@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<p class="site-intro">{{ SITE_INTRO }}</p>
+<div class="content">
+  <p>{{ SITE_INTRO }}</p>
 
-<div class="content-box">
-  <h2>Latest blog posts</h2>
+  <div class="listing">
+    <h2>Latest blog posts</h2>
 
-  <dl class="post-selection">
-  {% for article in articles[:5] %}
-    <div class="post-entry">
-      <dt class="post-date">{{ article.date.strftime('%d/%m/%Y') }}</dt>
-      <dd class="post-link"><a href="/{{ article.slug }}">{{ article.title }}</a></dd>
-    </div>
-  {% endfor %}
-  </dl>
+    <dl>
+    {% for article in articles[:5] %}
+      <div class="listing-entry">
+        <dt>{{ article.date.strftime('%B %d, %Y') }}</dt>
+        <dd><a href="/{{ article.slug }}">{{ article.title }}</a></dd>
+      </div>
+    {% endfor %}
+    </dl>
 
-  <p class="see-all-link"><a href="/posts">Browse all posts →</a></p>
-</div>
+    <p><a href="/posts">Browse all posts →</a></p>
+  </div>
 
-<div class="content-box">
   <h2>Projects selection</h2>
 
   {% for project in PROJECTS %}
-    <p class="project-title">{{ project.emoji }}&nbsp;&nbsp;{{ project.name }}</p>
-    <div class="project-description"><p>{{ project.description }}</p></div>
+    <p class="index-project-title">{{ project.emoji }}&nbsp;&nbsp;{{ project.name }}</p>
+    <p class="index-project-description">{{ project.description }}</p>
   {% endfor %}
 
   <p class="see-all-link"><a href="{{ GITHUB_URL }}">Browse more on GitHub →</a></p>

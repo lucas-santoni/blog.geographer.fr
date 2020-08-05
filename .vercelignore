@@ -1,7 +1,9 @@
 .vscode
+public
+output
+.DS_Store
+
 README.md
 Makefile
 Pipfile
 Pipfile.lock
-public
-output

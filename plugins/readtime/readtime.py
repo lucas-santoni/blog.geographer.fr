@@ -12,8 +12,8 @@ from html.parser import HTMLParser
 # Source code blocks are ignored
 # We are assuming that the HTML is well formated
 
-WPM = 230
-CODE_BLOCK_TAGS = ['pre']
+WPM = 230  # Words Per Minute
+CODE_BLOCK_TAGS = ['pre']  # We ignore blocks of code
 
 
 class MyHTMLParser(HTMLParser):

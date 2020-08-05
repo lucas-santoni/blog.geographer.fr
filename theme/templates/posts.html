@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="content-box">
+<div class="listing content">
   <h1>{{ page.title }}</h1>
 
-  <dl class="post-selection">
+  <dl>
   {% for article in articles %}
-    <div class="post-entry">
-      <dt class="post-date">{{ article.date.strftime('%d/%m/%Y') }}</dt>
-      <dd class="post-link"><a href="/{{ article.slug }}">{{ article.title }}</a></dd>
+    <div class="listing-entry">
+      <dt>{{ article.date.strftime('%B %d, %Y') }}</dt>
+      <dd><a href="/{{ article.slug }}">{{ article.title }}</a></dd>
     </div>
   {% endfor %}
   </dl>
 
-  <p class="see-all-link"><a href="/">← Back to the index</a></p>
+  <p><a href="/">← Back to the index</a></p>
 </div>
 
 {{ content }}

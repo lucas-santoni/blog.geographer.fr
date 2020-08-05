@@ -4,34 +4,44 @@ import urllib.parse
 from pelican import signals, contents
 
 # Generate an XML sitemap for the blog
+# The XML sitemap is NOT manually sent to Google but it is publicaly
+# available
 
+# The output filename
 FILENAME = 'sitemap.xml'
 
-EXCLUDE_SLUGS = [
-    '404',
-    'posts',  # The post index, does not really have content
-    'internet-error',  # The WPA internet error page, not relevant
-]
-
+# Table for change frequencies
+# These are default values that can be overriden in the configuration file
+# of the blog
+# The underscore values come from Pelican
 CHANGE_FREQUENCIES = {
     '_index': 'daily',
     '_articles': 'monthly',
     '_pages': 'monthly',
-    '_default': 'weekly'
+    '_default': 'weekly',
 }
 
+# Table for the priorities
+# These are default values that can be overriden in the configuration file
+# of the blog
 PRIORITIES = {
     '_default': 0.5
 }
 
+# In order to generate the sitemap, we use a bunch of Python templates
+# that we glue together
+
+# Last modificagtion template
 DATE_TEMPLATE = '\n    <lastmod>{}</lastmod>'
 
+# URL Template
 URL_TEMPLATE = '''  <url>
     <loc>{loc}</loc>{lastmod}
     <changefreq>{changefreq}</changefreq>
     <priority>{priority}</priority>
   </url>'''
 
+# Root template
 SITEMAP_TEMPLATE = '''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {}
@@ -39,6 +49,7 @@ SITEMAP_TEMPLATE = '''<?xml version="1.0" encoding="UTF-8"?>
 '''
 
 
+# Get the content priority associated with a Pelican content object
 def get_content_priority(content):
     if content.slug in PRIORITIES:
         return PRIORITIES[content.slug]
@@ -46,6 +57,7 @@ def get_content_priority(content):
     return PRIORITIES['_default']
 
 
+# Get the content change frequency associated with a Pelican content object
 def get_content_change_frequency(content):
     if content.slug in CHANGE_FREQUENCIES:
         return CHANGE_FREQUENCIES[content.slug]
@@ -59,6 +71,7 @@ def get_content_change_frequency(content):
     return CHANGE_FREQUENCIES['_default']
 
 
+# Get the last modification date for a Pelican content object
 def get_content_last_date(content):
     # Prioritize the last update date
     if hasattr(content, 'modified'):
@@ -79,6 +92,9 @@ class SitemapGenerator():
         CHANGE_FREQUENCIES.update(context['CHANGE_FREQUENCIES'])
         PRIORITIES.update(context['PRIORITIES'])
 
+        # Get slugs to exclude
+        self.exclude = self.context['API_EXCLUDE_SLUGS']
+
     def generate_output(self, writer):
         # Final file path
         path = os.path.join(self.output_path, FILENAME)
@@ -89,7 +105,7 @@ class SitemapGenerator():
             self.context['pages']
 
         # Remove the content that must be excluded
-        content = [c for c in content if c.slug not in EXCLUDE_SLUGS]
+        content = [c for c in content if c.slug not in self.exclude]
 
         # Store all the url blocks
         buffer = []
@@ -117,6 +133,7 @@ class SitemapGenerator():
                 priority=priority
             ))
 
+        # Don't forget the index page
         buffer.append(URL_TEMPLATE.format(
             loc=self.context['SITEURL'],
             lastmod=None,

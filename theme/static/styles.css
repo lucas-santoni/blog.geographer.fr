@@ -1,238 +1,96 @@
-@import url('https://fonts.googleapis.com/css?family=Caveat:400&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,400i,700,700i&display=swap');
+@import url('//fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
-@font-face {
-  font-family: "Iosevka";
-  font-style: italic;
-  font-weight: 400;
-  src: url("https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3/TypoPRO-iosevka-term-italic.woff");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Iosevka";
-  font-style: italic;
-  font-weight: 700;
-  src: url("https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3/TypoPRO-iosevka-term-bolditalic.woff");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Iosevka";
-  font-style: normal;
-  font-weight: 400;
-  src: url("https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3/TypoPRO-iosevka-term-regular.woff");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Iosevka";
-  font-style: normal;
-  font-weight: 700;
-  src: url("https://cdn.jsdelivr.net/npm/@typopro/web-iosevka@3/TypoPRO-iosevka-term-bold.woff");
-  font-display: swap;
-}
-
-html {
-  font-family: "Merriweather", serif;
-  font-size: 1.05em;
-  line-height: 1.5;
-  margin-left: calc(100vw - 100%);
+:root {
+  --color-primary: rgb(50, 100, 200);
+  --color-title: #111;
+  --color-text: #222;
+  --color-faded: #555;
 }
 
 body {
+  max-width: 40em;
+  margin: 0 auto;
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+  color: var(--color-text)
+}
+
+hr {
+  display: flex;
+  justify-content: center;
+  border: none;
+  font-size: 120%;
+  font-weight: bold;
+  margin: 2em 0;
+  color: var(--color-faded);
+  height: 1em;
+}
+
+hr:before  {
+  content: "...";
+  letter-spacing: 0.7em;
 }
 
 h1, h2, h3 {
-  line-height: 1.3em;
+  color: var(--color-title);
+  font-weight: bold;
 }
 
 h2, h3 {
-  margin-top: 1.7em;
+  margin: 1.69em 0 1em 0;
 }
 
 h1 {
-  font-size: 1.7em;
+  font-size: 1.8em;
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
-h3 {
-  font-size: 1.3em;;
+ul, ol {
+  margin: 0 2em 0 2em;
 }
 
-pre, code {
-  font-family: "Iosevka", monospace;
+a {
+  color: var(--color-primary);
+  text-decoration: none;
 }
 
-dl {
-  margin: 12px 0 10px 0;
+code {
+  font-family: 'Iosevka Slab', Courier, monospace;
+  color: inherit;
 }
 
-ul {
-  margin-right: 2em;
-}
-
-.blog-wrapper {
-  max-width: 42em;
-  margin: 0 auto;
-  padding: 0 12px;
-}
-
-blockquote {
-  margin: 0;
-  padding: .5em 0 .5em 1em;
-  border-left: 3px solid #eee;
-  font-style: italic;
-}
-
-blockquote p {
-  margin: 0 !important;
+code, code > * {
+  font-size: 95%;
 }
 
 :not(pre) > code {
   padding: .2em .4em;
+  margin: 0;
+  font-size: 95%;
+  background-color: rgba(27,31,35,.05);
+  border: 1px solid rgba(27,31,35,.069);
+  border-radius: 6px;
   word-break: break-all;
 }
 
-.highlight {
-  overflow: auto;
-  margin-left: -24px;
-  margin-right: -24px;
-  border-radius: 10px;
+p {
+  line-height: 1.42em;
 }
 
-.highlight pre {
-  margin: 1em;
-  display: inline-block;
+li {
+  margin: .2em 0 .2em 0;
 }
 
-code {
-  background: rgb(238, 238, 238, .4) !important;
-  border-radius: 3px;
-}
-
-a {
-  color: #004e98;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #00274d;
-}
-
-.title-meta {
-  margin: 0;
-  margin-bottom: 3px;
-}
-
-.content-meta {
-  margin: 0;
-  margin-bottom: 20px;
-  color: #555;
-}
-
-.header-container {
-  margin: 20px 0 20px 0;
-}
-
-.site-title {
-  font-family: "Caveat";
-  font-size: 2.4em;
-  margin: 0;
-}
-
-.site-title a {
-  text-decoration: none;
-  color: #111;
-}
-
-.navbar {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-}
-
-.navbar-element {
-  padding-right: 15px;
-}
-
-/* .navbar-element a:hover {
-  background-color: #eee;
-  border-radius: 3px;
-} */
-
-.see-all-link {
-  margin: 0;
-}
-
-.post-entry {
-  display: grid;
-  grid-template-columns: max-content auto;
-}
-
-.post-date {
-  grid-column-start: 1;
-  width: 100px;
-  text-align: right;
-}
-
-.post-link {
-  grid-column-start: 2;
-  margin: 0;
-  margin-left: 12px;
-}
-
-.project-description p {
-  margin: 3px 0 20px 0;
-  text-align: justify;
-}
-
-.footer {
-  border-top: 1px solid #eee;
-  padding: 15px 0;
-}
-
-.emoji {
-  font-style: normal;
-}
-
-.content-box {
-  margin-bottom: 40px;
-}
-
-.site-intro {
-  text-align: justify;
-  margin-bottom: 0;
-}
-
-.content-content p {
-  text-align: justify;
-}
-
-.content-content p, .content-content img, .highlight {
-  margin-bottom: 1.4em;
-}
-
-.content-content img:not(.emoji) {
-  margin: 20px auto 20px auto;
-  max-width: 100%;
-  display: block;
-  border: 1px solid #aaa;
-}
-
-.content-content hr {
-  max-width: 60%;
-  margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  border: 0;
-  border-top: 1px solid #ccc;
+.content img, .content pre {
+  border-radius: 6px;
 }
 
 img.emoji {
@@ -242,14 +100,135 @@ img.emoji {
   vertical-align: -0.1em;
 }
 
-img.avatar {
-  height: 3.37em;
-  width: auto;
-  border-radius: 50%;
-  border: 2px solid #ddd;
+/* https://github.com/ApoorvSaxena/lozad.js/issues/188 */
+img[data-loaded="true"], [data-loaded="true"] img {
+  animation-name: lazyImageFadeIn;
+  animation-duration: 0.7s;
+  animation-fill-mode: both;
 }
 
-.project-title {
+@keyframes lazyImageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.header {
+  margin: 2em 0 2em 0;
+}
+
+.site-title {
   font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--color-title);
+}
+
+.article-title {
+  margin-bottom: .25em;
+}
+
+.article-meta {
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+  margin-bottom: 2em;
+  color: var(--color-faded);
+}
+
+.content {
+  text-align: justify;
+  font-size: 17px;
+}
+
+.content img:not(.emoji) {
+  display: block;
+  max-width: 100%;
+  margin: 2em auto 2em auto;
+  border: 1px solid rgba(27,31,35,.069);
+}
+
+.content pre {
+  overflow: auto;
+  border: 1px solid rgba(27,31,35,.069);
+}
+
+.hljs {
+  padding: 1em 1.2em;
+}
+
+.content p, .content :not(li) > ul, .content :not(li) > ol {
+  margin-top: 1.337em;
+  margin-bottom: 1.337em;
+}
+
+.listing dl {
+  margin: 1.42em 0;
+}
+
+.listing-entry {
+  margin: 0.1666em 0;
+}
+
+.listing-entry dt {
+  width: 150px;
+  float: left;
+  text-align: right;
+}
+
+.listing-entry dd {
+  margin-left: 170px;
+}
+
+.index-project-title {
+  margin: 0 0 0.5em 0 !important;
+  font-weight: bold;
+}
+
+.index-project-description {
+  margin: 0 0 1.337em 0 !important;
+}
+
+.footer {
+  border-top: 1px solid #eee;
+  margin: 2em 0 1em 0;
+  padding-top: 1em;
+}
+
+.footer ul {
+  display: flex;
+  flex-direction: row;
   margin: 0;
+}
+
+.footer li {
+  list-style: none;
+}
+
+.footer li:not(.last) {
+  margin-right: .777em;
+}
+
+@media screen and (max-width: 42em) {
+  body {
+    margin: 0 1em;
+  }
+
+  .header {
+    margin: 1.5em 0 1.5em 0;
+  }
+
+  .listing-entry {
+    margin-bottom: 1em;
+  }
+
+  .listing-entry dt {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.1337em;
+  }
+
+  .listing-entry dd {
+    margin-left: 0;
+    display: inline-block;
+    text-align: initial;
+  }
+
+  .article-meta {
+    margin-bottom: 1em;
+  }
 }

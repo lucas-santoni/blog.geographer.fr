@@ -11,7 +11,7 @@ The sixth step is a WEB application that allows us to fetch an URL.
 In the source code of the page we can read:
 
 ```html
-<div class="col s12">
+<div>
     <!-- <span>PS: To get your flag go here: <a href="/secret">/secret</a></span> -->
 </div>
 ```

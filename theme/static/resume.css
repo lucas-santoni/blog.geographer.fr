@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,600,700&display=swap');
+@import url('//fonts.googleapis.com/css?family=Fira+Sans:400,600,700&display=swap');
+
+h3 {
+  color: #4a5568;
+}
+
+body {
+  max-width: 52em;
+}
 
 @media print {
   @page {
