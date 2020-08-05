@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="title-meta">{{ article.smart_title or article.title }}</h1>
-<p class="content-meta">
+<h1 class="article-title">{{ article.smart_title or article.title }}</h1>
+
+<p class="article-meta">
   Published {{ article.date.strftime('%B %d, %Y') }} • {{ article.readtime }} minute{{ 's' if article.readtime > 1 else '' }} read
 </p>
 
-<div class="content-content">
+<div class="content">
   {{ article.content}}
 </div>
 

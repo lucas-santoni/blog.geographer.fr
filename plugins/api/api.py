@@ -6,11 +6,13 @@ from pelican import signals
 # It is actually a JavaScript array that can be easily consumed
 # and allows to search for an article, via title or slug
 
+# Template for the content
 JS_BASE = '''const API = [
   {}
 ];
 '''
 
+# Output filename
 FILENAME = 'api.js'
 
 
@@ -18,6 +20,9 @@ class APIGenerator():
     def __init__(self, context, settings, path, theme, output_path):
         self.context = context
         self.output_path = output_path
+
+        # Slugs to exclude
+        self.exclude = self.context['API_EXCLUDE_SLUGS']
 
     def generate_output(self, writer):
         # Final file path
@@ -28,11 +33,8 @@ class APIGenerator():
             self.context['articles'] + \
             self.context['pages']
 
-        # Get slugs to exclude
-        exclude = self.context['API_EXCLUDE_SLUGS']
-
         # Remove the content that must be excluded
-        content = [c for c in content if c.slug not in exclude]
+        content = [c for c in content if c.slug not in self.exclude]
 
         # Get all the slugs, and titles
         slugs = [c.slug for c in content]

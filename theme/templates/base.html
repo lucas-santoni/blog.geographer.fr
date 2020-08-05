@@ -1,26 +1,22 @@
 {% include 'head.html' %}
 
 <body>
-  <div class="blog-wrapper">
-    <div class="header-container">
-      <p class="site-title">
-        <a href="/">{{ SITENAME }}</a>
-      </p>
-    </div>
+  <div class="header">
+    <a class="site-title" href="/"><span class="site-title-hl">L</span>ucas <span class="site-title-hl">S</span>antoni</a>
+  </div>
 
-    {% block content %}
-    {% endblock %}
+  {% block content %}
+  {% endblock %}
 
-    <div class="footer">
-      <ul class="navbar">
-        <li class="navbar-element"><a href="{{ TWITTER_URL }}">Twitter</a></li>
-        <li class="navbar-element"><a href="{{ GITHUB_URL }}">GitHub</a></li>
-        <li class="navbar-element"><a href="/resume">Resume</a></li>
-        <li class="navbar-element"><a href="/about">About</a></li>
-        <li class="navbar-element"><a href="/rss.xml">RSS</a></li>
+  <div class="footer">
+      <ul>
+        <li><a href="{{ TWITTER_URL }}">Twitter</a></li>
+        <li><a href="{{ GITHUB_URL }}">GitHub</a></li>
+        <li><a href="/resume">Resume</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="last"><a href="/rss.xml">RSS</a></li>
       </ul>
     </div>
-  </div>
 
   <script>twemoji.parse(document.body);</script>
 </body>

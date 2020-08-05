@@ -21,11 +21,6 @@ THEME = 'theme'
 # Configure the Markdown processor
 MARKDOWN = {
     'extension_configs': {
-        'markdown.extensions.codehilite': {
-            'css_class': 'highlight',  # CSS class used for code snippets
-            'guess_lang': False,  # Try not to guess the language
-            'linenums': False,  # Do not input line numbers
-        },
         'markdown.extensions.extra': {},
         'markdown.extensions.meta': {},
         'markdown.extensions.toc': {},
@@ -179,7 +174,7 @@ THIS_BLOG.emoji = '📖'
 THIS_BLOG.description = '''
 This blog is statically generated using
 <a href="https://blog.getpelican.com/">Pelican</a>, and hosted on
-<a href="https://zeit.co/dashboard">Now</a>. Feel free
+<a href="https://vercel.com">Vercel</a>. Feel free
 to <a href="https://github.com/Geospace/blog.geographer.fr">contribute</a>.
 '''
 

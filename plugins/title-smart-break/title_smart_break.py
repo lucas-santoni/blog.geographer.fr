@@ -6,13 +6,17 @@ from pelican.generators import ArticlesGenerator, PagesGenerator
 # Does not work if the last "word" of the title is an emoji
 # in the form of an image (like Twemoji)
 
+# Title has to be more than four words
+# in order to be considered
+SMART_BREAK_MIN_LEN = 4
+
 
 def smart_break(document):
     # Get the number of words
     splited = document.title.split(' ')
     length = len(splited)
 
-    if length > 4:
+    if length > SMART_BREAK_MIN_LEN:
         # Join the last two elements with a non-breaking space
         end = '&nbsp;'.join(splited[length - 2:])
         # Get the start of the title back

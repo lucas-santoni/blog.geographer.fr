@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ DEFAULT_LANG }}">
+
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155297229-1"></script>
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-155297229-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -18,6 +19,7 @@
   <meta name="author" content="{{ AUTHOR }}">
 
   <!-- General description information when available -->
+  <!-- Otherwise fallback to the site description -->
   {% if article and article.description -%}
   <meta name="description" content="{{ article.description }}">
   {% elif page and page.description -%}
@@ -26,7 +28,7 @@
   <meta name="description" content="{{ SITE_DESCRIPTION }}">
   {%- endif %}
 
-  <!-- OG data guaranteed to exist -->
+  <!-- OG data guaranteed to exist, all documents -->
   <meta property="og:site_name" content="{{ SITENAME }}" />
   <meta property="og:type" content="article" />
 
@@ -53,9 +55,12 @@
   {%- endif %}
 
   <!-- OG image -->
-  {% if article and article.image %}
-  <meta property="og:image" content="{{ SITEURL }}/{{ article.image }}" />
-  {% endif %}
+  {% if article and article.cover -%}
+  <meta property="og:image" content="{{ SITEURL }}/{{ article.cover }}" />
+  {% elif page and page.cover -%}
+  <meta property="og:image" content="{{ SITEURL }}/{{ page.cover }}" />
+  <!-- TODO Setup a default image cover -->
+  {%- endif %}
 
   <!-- Twitter card guaranteed -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -81,9 +86,12 @@
   {%- endif %}
 
   <!-- Twitter image -->
-  {% if article and article.image %}
-  <meta name="twitter:image" content="{{ SITEURL }}/{{ article.image }}" />
-  {% endif %}
+  {% if article and article.cover -%}
+  <meta name="twitter:image" content="{{ SITEURL }}/{{ article.cover }}" />
+  {% elif page and page.cover -%}
+  <meta name="twitter:image" content="{{ SITEURL }}/{{ page.cover }}" />
+  <!-- TODO Setup a default image cover -->
+  {%- endif %}
 
   <!-- Canonical article -->
   {% if article %}
@@ -95,16 +103,18 @@
   <link rel="canonical" href="{{ SITEURL }}/{{ page.slug }}"/>
   {% endif %}
 
+  <!-- More files -->
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/styles.css">
-  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/resume.css">
-  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/mobile.css">
-  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/pygments.css">
 
-  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
-  <script src="/service-worker.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css">
+  <link rel="stylesheet" type="text/css" href="/{{ THEME_STATIC_DIR }}/styles.css">
+
+  <!-- JavaScript -->
+  <!-- There is more in the footer -->
+  <script src="//twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
   <script src="/api.js"></script>
   <script src="/levenshtein.js"></script>
 
