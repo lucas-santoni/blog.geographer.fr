@@ -13,8 +13,6 @@ class FigureCaptionProcessor(BlockProcessor):
     def run(self, parent, blocks):
         raw_block = blocks.pop(0)
         parsed = self.RE.search(raw_block)
-        print(parsed.group('url'))
-        print(parsed.group('caption'))
 
         img = etree.SubElement(parent, 'img')
         img.set('data-src', parsed.group('url'))
