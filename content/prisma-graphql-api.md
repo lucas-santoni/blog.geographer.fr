@@ -223,7 +223,7 @@ This command starts a container running PostgreSQL and listen to the port
 All we have to do now is to replace the content of the `prisma/.env` file
 with this:
 
-```dotenv
+```
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blog?schema=public"
 ```
 
