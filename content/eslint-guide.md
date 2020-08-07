@@ -7,6 +7,8 @@ description: Learn how to use and configure ESLint in order to keep your JavaScr
 
 🗨️ You can discuss this article [on Reddit](https://www.reddit.com/r/javascript/comments/etaj6h/eslint_configuration_and_best_practices/).
 
+***
+
 ⚠️ Are you getting this error?
 
 ```
@@ -14,6 +16,8 @@ Error: Error while loading rule '@typescript-eslint/no-implied-eval': You have u
 ```
 
 See this [update article](/eslint-parser-services).
+
+***
 
 This post describes how I setup [ESLint](https://eslint.org/) in different
 scenarios. We'll start with a simple plain JavaScript project and then we'll

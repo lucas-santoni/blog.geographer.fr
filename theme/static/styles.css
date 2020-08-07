@@ -34,6 +34,7 @@ hr {
 hr:before  {
   content: "...";
   letter-spacing: 0.7em;
+  margin-right: -0.7em;
 }
 
 h1, h2, h3 {
