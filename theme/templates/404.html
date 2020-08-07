@@ -19,7 +19,7 @@
   const last = url_split[url_split.length-1].replace('.html', '');
 
   const distances = API.map(({ title, slug }) => ({ title, slug, score: levenshtein(last, slug) }));
-  const sorted = distances.sort((a, b) => a.score > b.score);
+  const sorted = distances.sort((a, b) => a.score - b.score);
   const results = sorted.slice(0, 5);
 
   const ul = document.createElement('ul');

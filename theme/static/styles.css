@@ -54,7 +54,8 @@ h2 {
 }
 
 ul, ol {
-  margin: 0 2em 0 2em;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 a {
@@ -151,7 +152,7 @@ img[data-loaded="true"], [data-loaded="true"] img {
   padding: 1em 1.2em;
 }
 
-.content p, .content :not(li) > ul, .content :not(li) > ol {
+.content p, .content > ul, .content > ol {
   margin-top: 1.337em;
   margin-bottom: 1.337em;
 }
