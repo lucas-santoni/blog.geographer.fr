@@ -1,4 +1,5 @@
 # https://github.com/rdegges/pelican-minify
+# Not used anymore, see gulpfile.js at root
 
 import os
 import htmlmin

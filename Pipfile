@@ -10,9 +10,6 @@ autopep8 = "*"
 [packages]
 pelican = "*"
 markdown = "*"
-htmlmin = "*"
-rcssmin = "*"
-jsmin = "*"
 
 [requires]
 python_version = "3.7"

@@ -107,12 +107,11 @@
   <!-- JavaScript -->
   <!-- There is more in the footer -->
   <!-- There are also scripts loaded in other templates, such as 404.html -->
-  <script src="//twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+  <script async src="//twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+  <script async src="//cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 
-  <script>
-    const observer = lozad(); // Instantiate, see footer for run
-  </script>
+  <script src="/head.js"></script>
+  <script>blog.head();</script>
 
   <title>{{ (article and article.title or page and page.title or SITENAME) | striptags }}</title>
 </head>

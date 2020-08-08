@@ -118,7 +118,6 @@ PLUGINS = [
     'plugins.api',  # Generate a client side index of all the content
     'plugins.sitemap',  # Generate a sitemap
     'plugins.readtime',  # Insert read times
-    'plugins.minify',  # Minify HTML/CSS/JavaScript
 ]
 
 # Change frequency for sitemap plugin
