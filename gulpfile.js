@@ -92,7 +92,13 @@ gulp.task('service-worker', () =>
 );
 
 gulp.task('content', cb =>
-  exec('pelican content -o public -s pelicanconf.py', cb)
+  exec('pelican content -o public -s pelicanconf.py', (err, stdout, stderr) => {
+    // eslint-disable-next-line no-console
+    console.log(stdout);
+    // eslint-disable-next-line no-console
+    console.log(stderr);
+    cb(err);
+  })
 );
 
 // The order is important, as uglify only works with ES5
@@ -107,7 +113,14 @@ gulp.task('default', gulp.series('content', 'minify', 'service-worker'));
 // Watch for new files while developing
 gulp.task('dev', () =>
   gulp.watch(
-    ['content/**/*', 'theme/**/*', 'pelicanconf.py'],
+    [
+      'content/**/*',
+      'theme/**/*',
+      'extensions/**/*',
+      'plugins/**/*',
+      'pelicanconf.py',
+    ],
+    { ignoreInitial: false },
     gulp.series('content', 'service-worker')
   )
 );
