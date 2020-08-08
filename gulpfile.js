@@ -4,7 +4,9 @@ const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
 const bro = require('gulp-bro');
+const workboxBuild = require('workbox-build');
 
+// Convert JS files to ES5 using Babel
 gulp.task('es5', () =>
   gulp
     .src('public/**/*.js')
@@ -17,14 +19,17 @@ gulp.task('es5', () =>
     .pipe(gulp.dest('public/'))
 );
 
+// Compress JS
 gulp.task('uglify', () =>
   gulp.src(['public/**/*.js']).pipe(uglify()).pipe(gulp.dest('public/'))
 );
 
+// Bundle JS
 gulp.task('browserify', () =>
   gulp.src('theme/static/*.js').pipe(bro()).pipe(gulp.dest('public/'))
 );
 
+// Compress HTML
 gulp.task('minify-html', () =>
   gulp
     .src('public/**/*.html')
@@ -39,6 +44,7 @@ gulp.task('minify-html', () =>
     .pipe(gulp.dest('public/'))
 );
 
+// Compress CSS
 gulp.task('minify-css', () =>
   gulp
     .src('public/**/*.css')
@@ -46,6 +52,47 @@ gulp.task('minify-css', () =>
     .pipe(gulp.dest('public/'))
 );
 
+// Generate a service-worker
+gulp.task('service-worker', () =>
+  workboxBuild.generateSW({
+    cleanupOutdatedCaches: true, // Delete older caches
+    sourcemap: false, // Do not generate a source map for the SW
+    mode: 'production', // I think it's the default anyway
+    offlineGoogleAnalytics: false, // Not a big deal
+    navigateFallback: '/internet-error', // When we don't have the thing in cache
+    navigationPreload: false, // We don't need it as we precache everything
+    globDirectory: 'public/', // Where our files are
+    globPatterns: [
+      '**/*.{html,css,js}',
+      'apple-touch-icon.png',
+      'favicon.ico',
+      'manifest.json',
+      'robots.txt',
+      'rss.xml',
+      'sitemap.xml',
+    ], // Are precached
+    globIgnores: ['404.html'], // Will never be cached
+    swDest: 'public/service-worker.js', // The SW destination
+    runtimeCaching: [
+      {
+        urlPattern: /\.(?:gif|ico|jpg|jpeg|pgm|png)$/, // Cached at runtime
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'resources',
+          expiration: {
+            maxEntries: 50,
+          },
+        },
+      },
+    ],
+  })
+);
+
+// The order is important, as uglify only works with ES5
 gulp.task('minify-js', gulp.series('browserify', 'es5', 'uglify'));
 
-gulp.task('default', gulp.parallel('minify-js', 'minify-html', 'minify-css'));
+// Can be run in parallel
+gulp.task('minify', gulp.parallel('minify-js', 'minify-html', 'minify-css'));
+
+// The service-worker generation has to run last
+gulp.task('default', gulp.series('minify', 'service-worker'));
