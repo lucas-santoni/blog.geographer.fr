@@ -1,10 +1,13 @@
+# Add the lozad class to img tags
+# so that they can be lazy-loaded
+
 from markdown import Extension
 from markdown.blockprocessors import BlockProcessor
 from markdown.util import etree
 import re
 
 
-class FigureCaptionProcessor(BlockProcessor):
+class LozadProcessor(BlockProcessor):
     RE = re.compile(r'!\[(?P<caption>.*?)\]\((?P<url>.*?)\)')
 
     def test(self, parent, block):
@@ -20,11 +23,14 @@ class FigureCaptionProcessor(BlockProcessor):
         img.set('class', 'lozad')
 
 
-class FigureCaptionExtension(Extension):
+class LozadExtension(Extension):
     def extendMarkdown(self, md, md_globals):
         md.parser.blockprocessors.add(
-            'figureAltcaption', FigureCaptionProcessor(md.parser), '<ulist')
+            'LozadExtension',
+            LozadProcessor(md.parser),
+            '<ulist',
+        )
 
 
 def makeExtension(**kwargs):
-    return FigureCaptionExtension(**kwargs)
+    return LozadExtension(**kwargs)
