@@ -55,6 +55,7 @@ gulp.task('minify-css', () =>
 // Generate a service-worker
 gulp.task('service-worker', () =>
   workboxBuild.generateSW({
+    skipWaiting: true, // Use new SW as soon as possible
     cleanupOutdatedCaches: true, // Delete older caches
     sourcemap: false, // Do not generate a source map for the SW
     mode: 'production', // I think it's the default anyway
@@ -71,7 +72,7 @@ gulp.task('service-worker', () =>
       'rss.xml',
       'sitemap.xml',
     ], // Are precached
-    // globIgnores: ['404.html'], // Will never be cached
+    // globIgnores: [''], // Will never be cached
     swDest: 'public/service-worker.js', // The SW destination
     runtimeCaching: [
       {
