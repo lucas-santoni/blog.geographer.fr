@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <div class="content">
   <p>{{ SITE_INTRO }}</p>
@@ -8,12 +7,12 @@
     <h2>Latest blog posts</h2>
 
     <dl>
-    {% for article in articles[:5] %}
+      {% for article in articles[:5] %}
       <div class="listing-entry">
         <dt>{{ article.date.strftime('%B %d, %Y') }}</dt>
         <dd><a href="/{{ article.slug }}">{{ article.title }}</a></dd>
       </div>
-    {% endfor %}
+      {% endfor %}
     </dl>
 
     <p><a href="/posts">Browse all posts →</a></p>
@@ -22,11 +21,15 @@
   <h2>Projects selection</h2>
 
   {% for project in PROJECTS %}
-    <p class="index-project-title">{{ project.emoji }}&nbsp;&nbsp;{{ project.name }}</p>
-    <p class="index-project-description">{{ project.description }}</p>
+  <p class="index-project-title">
+    {{ project.emoji }}&nbsp;&nbsp;{{ project.name }}
+  </p>
+  <p class="index-project-description">{{ project.description }}</p>
   {% endfor %}
 
-  <p class="see-all-link"><a href="{{ GITHUB_URL }}">Browse more on GitHub →</a></p>
+  <p class="see-all-link">
+    <a href="{{ GITHUB_URL }}">Browse more on GitHub →</a>
+  </p>
 </div>
 
 {% endblock %}

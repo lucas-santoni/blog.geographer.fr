@@ -92,10 +92,10 @@ GITHUB_URL = 'https://github.com/geospace'
 MAIL_URL = 'mailto:' + MAIL
 
 SITE_INTRO = '''
-👋 My name is Lucas Santoni, and I am a computer science enthusiast. My
-fields of interest are cybersecurity and software development. Please, see
-the <a href="/about">about page</a> or read <a href="/resume">my resume</a>
-if you want to know more.
+👋 My name is Lucas "Geographer" Santoni, and I am a computer science
+enthusiast. My fields of interest are cybersecurity and software development.
+Please, see the <a href="/about">about page</a> or read <a href="/resume">my
+resume</a> if you want to know more.
 '''
 
 SITE_DESCRIPTION = '''

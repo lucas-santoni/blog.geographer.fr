@@ -2,11 +2,12 @@
 
 <body>
   <div class="header">
-    <a class="site-title" href="/"><img src="/favicon.ico" alt="The Earth"/></a>
+    <a class="site-title" href="/"
+      ><img src="/favicon.ico" alt="The Earth"
+    /></a>
   </div>
 
-  {% block content %}
-  {% endblock %}
+  {% block content %} {% endblock %}
 
   <div class="footer">
     <ul>
@@ -18,6 +19,5 @@
     </ul>
   </div>
 </body>
-
 
 {% include 'end.html' %}
