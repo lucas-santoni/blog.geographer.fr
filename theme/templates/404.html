@@ -12,10 +12,10 @@
   </div>
 </div>
 
-<script async src="/api.js"></script>
-<script src="/404.js"></script>
-<script>blog.fill404();</script>
-
 {{ content }}
+
+<!-- We require api.js to be generated, see the api Pelican plugins -->
+<script src="/api.js"></script>
+<script src="/404.js"></script>
 
 {% endblock %}
