@@ -2,9 +2,9 @@
   "name": "blog.geographer.fr",
   "private": true,
   "scripts": {
-    "build": "pelican content -o public -s pelicanconf.py && gulp",
-    "lint": "eslint .",
-    "gulp": "gulp"
+    "build": "gulp",
+    "dev": "gulp dev",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",

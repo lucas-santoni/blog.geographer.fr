@@ -1,3 +1,5 @@
+const { exec } = require('child_process');
+
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
@@ -89,6 +91,10 @@ gulp.task('service-worker', () =>
   })
 );
 
+gulp.task('content', cb =>
+  exec('pelican content -o public -s pelicanconf.py', cb)
+);
+
 // The order is important, as uglify only works with ES5
 gulp.task('minify-js', gulp.series('browserify', 'es5', 'uglify'));
 
@@ -96,4 +102,12 @@ gulp.task('minify-js', gulp.series('browserify', 'es5', 'uglify'));
 gulp.task('minify', gulp.parallel('minify-js', 'minify-html', 'minify-css'));
 
 // The service-worker generation has to run last
-gulp.task('default', gulp.series('minify', 'service-worker'));
+gulp.task('default', gulp.series('content', 'minify', 'service-worker'));
+
+// Watch for new files while developing
+gulp.task('dev', () =>
+  gulp.watch(
+    ['content/**/*', 'theme/**/*', 'pelicanconf.py'],
+    gulp.series('content', 'service-worker')
+  )
+);
