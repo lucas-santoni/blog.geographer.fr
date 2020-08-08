@@ -1,0 +1,16 @@
+parserOptions:
+  ecmaVersion: 6
+
+env:
+  browser: true
+
+extends:
+  - eslint:recommended
+  - airbnb-base
+  - prettier
+
+plugins:
+  - prettier
+
+rules:
+  prettier/prettier: error

@@ -2,6 +2,30 @@
   "name": "blog.geographer.fr",
   "private": true,
   "scripts": {
-    "build": "pelican content -o public -s pelicanconf.py"
+    "build": "pelican content -o public -s pelicanconf.py && gulp",
+    "lint": "eslint .",
+    "gulp": "gulp"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-bro": "^2.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "prettier": "^2.0.5"
+  },
+  "dependencies": {
+    "highlight.js": "^10.1.2",
+    "js-levenshtein": "^1.1.6",
+    "lozad": "^1.15.0",
+    "twemoji": "^13.0.1"
   }
 }

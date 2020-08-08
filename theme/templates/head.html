@@ -104,15 +104,16 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css">
   <link rel="stylesheet" href="/{{ THEME_STATIC_DIR }}/styles.css">
 
-  <!-- JavaScript -->
-  <!-- There is more in the footer -->
-  <!-- There are also scripts loaded in other templates, such as 404.html -->
-  <script src="//twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+  <!-- JavaScript bundle, some pages may load more things -->
+  <script defer src="/app.js"></script>
 
+  <!-- Google Analytics -->
   <script>
-    const observer = lozad(); // Instantiate, see footer for run
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-155297229-1', 'auto');
+    ga('send', 'pageview');
   </script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
 
   <title>{{ (article and article.title or page and page.title or SITENAME) | striptags }}</title>
 </head>
