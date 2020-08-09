@@ -105,7 +105,11 @@
     <!-- CSS -->
     <link
       rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
     />
     <link rel="stylesheet" href="/{{ THEME_STATIC_DIR }}/styles.css" />
 
@@ -116,6 +120,14 @@
           navigator.serviceWorker.register('/service-worker.js');
         });
       }
+
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+
+        refreshing = true;
+        newVersionToast();
+      });
     </script>
 
     <!-- JavaScript bundle, some pages may load more things -->

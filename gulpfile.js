@@ -121,6 +121,6 @@ gulp.task('dev', () =>
       'pelicanconf.py',
     ],
     { ignoreInitial: false },
-    gulp.series('content', 'service-worker')
+    gulp.series('content', 'browserify', 'service-worker')
   )
 );

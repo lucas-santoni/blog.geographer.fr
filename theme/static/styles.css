@@ -1,4 +1,4 @@
-@import url('//fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 :root {
   --color-primary: rgb(50, 100, 200);
@@ -17,7 +17,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: var(--color-text)
+  color: var(--color-text);
 }
 
 hr {
@@ -31,18 +31,21 @@ hr {
   height: 1em;
 }
 
-hr:before  {
-  content: "...";
+hr:before {
+  content: '...';
   letter-spacing: 0.7em;
   margin-right: -0.7em;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--color-title);
   font-weight: bold;
 }
 
-h2, h3 {
+h2,
+h3 {
   margin: 1.69em 0 1em 0;
 }
 
@@ -54,7 +57,8 @@ h2 {
   font-size: 1.4em;
 }
 
-ul, ol {
+ul,
+ol {
   margin-left: 2em;
   margin-right: 2em;
 }
@@ -69,16 +73,17 @@ code {
   color: inherit;
 }
 
-code, code > * {
+code,
+code > * {
   font-size: 95%;
 }
 
 :not(pre) > code {
-  padding: .2em .4em;
+  padding: 0.2em 0.4em;
   margin: 0;
   font-size: 95%;
-  background-color: rgba(27,31,35,.05);
-  border: 1px solid rgba(27,31,35,.069);
+  background-color: rgba(27, 31, 35, 0.05);
+  border: 1px solid rgba(27, 31, 35, 0.069);
   border-radius: 6px;
   word-break: break-all;
 }
@@ -88,28 +93,37 @@ p {
 }
 
 li {
-  margin: .2em 0 .2em 0;
+  margin: 0.2em 0 0.2em 0;
 }
 
-.content img, .content pre {
+.content img,
+.content pre {
   border-radius: 6px;
 }
 
 img.emoji {
   height: 1em;
   width: 1em;
-  margin: 0 .05em 0 .1em;
+  margin: 0 0.05em 0 0.1em;
   vertical-align: -0.1em;
 }
 
 /* https://github.com/ApoorvSaxena/lozad.js/issues/188 */
-img[data-loaded="true"], [data-loaded="true"] img {
+img[data-loaded='true'],
+[data-loaded='true'] img {
   animation-name: lazyImageFadeIn;
   animation-duration: 0.7s;
   animation-fill-mode: both;
 }
 
-@keyframes lazyImageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lazyImageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .header {
   margin: 2em 0 2em 0;
@@ -123,7 +137,7 @@ img[data-loaded="true"], [data-loaded="true"] img {
 }
 
 .article-title {
-  margin-bottom: .25em;
+  margin-bottom: 0.25em;
 }
 
 .article-meta {
@@ -141,19 +155,21 @@ img[data-loaded="true"], [data-loaded="true"] img {
   display: block;
   max-width: 100%;
   margin: 2em auto 2em auto;
-  border: 1px solid rgba(27,31,35,.069);
+  border: 1px solid rgba(27, 31, 35, 0.069);
 }
 
 .content pre {
   overflow: auto;
-  border: 1px solid rgba(27,31,35,.069);
+  border: 1px solid rgba(27, 31, 35, 0.069);
 }
 
 .hljs {
   padding: 1em 1.2em;
 }
 
-.content p, .content > ul, .content > ol {
+.content p,
+.content > ul,
+.content > ol {
   margin-top: 1.337em;
   margin-bottom: 1.337em;
 }
@@ -202,7 +218,13 @@ img[data-loaded="true"], [data-loaded="true"] img {
 }
 
 .footer li:not(.last) {
-  margin-right: .777em;
+  margin-right: 0.777em;
+}
+
+.toastify {
+  color: #000;
+  border: 2px solid #000;
+  background: #fff;
 }
 
 @media screen and (max-width: 42em) {
