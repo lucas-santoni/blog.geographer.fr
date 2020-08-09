@@ -62,7 +62,7 @@ gulp.task('service-worker', () =>
     sourcemap: false, // Do not generate a source map for the SW
     mode: 'production', // I think it's the default anyway
     offlineGoogleAnalytics: true, // Not a big deal
-    navigateFallback: '/internet-error.html', // When we don't have the thing in cache
+    navigateFallback: '/404.html', // When we don't have the thing in cache
     navigationPreload: false, // We don't need it as we precache everything
     globDirectory: 'public/', // Where our files are
     globPatterns: [
