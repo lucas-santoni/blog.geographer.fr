@@ -9,18 +9,18 @@ cover: /assets/prisma/cover.png
 **Before we start!** This article is a guest post by my friend Gabriel Colson.
 Here are his links:
 
-* [GitHub](http://github.com/gabrielcolson)
-* [Twitter](https://twitter.com/gabrielcolson_)
-* [LinkedIn](https://www.linkedin.com/in/gabriel-colson/)
+- [GitHub](http://github.com/gabrielcolson)
+- [Twitter](https://twitter.com/gabrielcolson_)
+- [LinkedIn](https://www.linkedin.com/in/gabriel-colson/)
 
 Please, do not hesitate to reach out to him if you have any questions! Also,
 Gabriel is **currently available for freelance work**.
 
-***
+---
 
 I have been building real world applications with the Prisma Framework for
-the past few months.
-As they [officially released the version 2.0](https://www.prisma.io/blog/announcing-prisma-2-n0v98rzc8br1/),
+the past few months. As they
+[officially released the version 2.0](https://www.prisma.io/blog/announcing-prisma-2-n0v98rzc8br1/),
 I thought it could be interesting to share my experience.
 
 In this article, I will show you how and why you should build your next
@@ -32,14 +32,12 @@ found in [this GitHub repository](https://github.com/gabrielcolson/blog-prisma-g
 
 [TOC]
 
-
 ## Requirements
 
 In order to follow along in the best conditions, here are a few requirements:
 
 - Basic knowledge of TypeScript, Node.js, and GraphQL
 - Docker and Node.js installed
-
 
 ## Architecture
 
@@ -67,7 +65,6 @@ This is the layer responsible for presenting the data to the user. It will
 make the necessary transformations so that it can be sent via GraphQL,
 REST, or any other endpoint.
 
-
 ## The Tools
 
 **Prisma**
@@ -75,19 +72,19 @@ REST, or any other endpoint.
 There is usually 3 ways to interact with a database in Node.js:
 
 1. Raw SQL written in a string. You have absolutely no type safety,
-no auto completion, and no syntax highlighting. It is hard to write
-and hard to maintain.
+   no auto completion, and no syntax highlighting. It is hard to write
+   and hard to maintain.
 
 2. SQL query builders like [knex](http://knexjs.org/). It is basically
-raw SQL with a JavaScript syntax. You have close to zero autocompletion,
-no type safety, and a bloated code that you will probably hide behind a
-nicer abstraction that you have to write yourself.
+   raw SQL with a JavaScript syntax. You have close to zero autocompletion,
+   no type safety, and a bloated code that you will probably hide behind a
+   nicer abstraction that you have to write yourself.
 
 3. [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping) like
-[sequelize](https://sequelize.org/) where you redefine your SQL schema as
-JavaScript classes. It gives you a strong type safety but there is often
-a lot of boilerplate and you might lose some of the flexibility you have
-on query builders.
+   [sequelize](https://sequelize.org/) where you redefine your SQL schema as
+   JavaScript classes. It gives you a strong type safety but there is often
+   a lot of boilerplate and you might lose some of the flexibility you have
+   on query builders.
 
 Prisma took the best of the three worlds: from a single source of truth in
 the `schema.prisma` where you define the shape of your data, it creates
@@ -113,12 +110,12 @@ maintainable and fully typed GraphQL schemas. One of the advantages of this
 library is that it has a very good integration with Prisma through the
 [nexus-prisma plugin](https://github.com/graphql-nexus/nexus-plugin-prisma).
 
-*Note that `@nexus/schema` is a component of the
+_Note that `@nexus/schema` is a component of the
 [Nexus](https://github.com/graphql-nexus/nexus) Framework, but it can be used
 as a standalone as well. We will not use the Nexus Framework in this article
 because it is still not ready for production but, if you feel adventurous, it
 might remove some boilerplate and reduce even more the amount of code you
-have to write.*
+have to write._
 
 **Database**
 
@@ -217,8 +214,7 @@ docker run                        \
   postgres
 ```
 
-This command starts a container running PostgreSQL and listen to the port
-5432.
+This command starts a container running PostgreSQL and listen to the port 5432.
 
 All we have to do now is to replace the content of the `prisma/.env` file
 with this:
@@ -258,7 +254,7 @@ model Post {
 
 We now need to define the relation between a `User` and a `Post`. A user
 should be able to have multiple posts. This is a typical example of the "one
-to many" relation explained in the [Prisma docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-schema/relations#one-to-many-relations). 
+to many" relation explained in the [Prisma docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-schema/relations#one-to-many-relations).
 
 ```graphql
 model User {
@@ -320,9 +316,9 @@ const prisma = new PrismaClient();
 async function main() {
   await prisma.user.create({
     data: {
-      name: "Gabriel Colson",
-      email: 'gabriel@demo.com'
-    }
+      name: 'Gabriel Colson',
+      email: 'gabriel@demo.com',
+    },
   });
 
   await prisma.post.create({
@@ -332,10 +328,10 @@ async function main() {
       content: 'A super article',
       author: {
         connect: {
-          email: 'gabriel@demo.com'
-        }
-      }
-    }
+          email: 'gabriel@demo.com',
+        },
+      },
+    },
   });
 
   const post = await prisma.post.findOne({
@@ -346,7 +342,7 @@ async function main() {
   console.log(post);
 }
 
-main().finally(() => prisma.disconnect())
+main().finally(() => prisma.disconnect());
 ```
 
 This little script demonstrate how easy it is to use the Prisma Client. The
@@ -376,11 +372,11 @@ import { objectType } from '@nexus/schema';
 export const User = objectType({
   name: 'User',
   definition(t) {
-    t.id('id')
+    t.id('id');
     t.string('name');
     t.string('email');
     t.list.field('posts', { type: 'Post' });
-  }
+  },
 });
 
 // src/schema/Post.ts
@@ -389,12 +385,12 @@ import { objectType } from '@nexus/schema';
 export const Post = objectType({
   name: 'Post',
   definition(t) {
-    t.id('id')
+    t.id('id');
     t.string('title');
     t.string('content');
     t.string('slug');
     t.field('author', { type: 'User' });
-  }
+  },
 });
 ```
 
@@ -414,14 +410,17 @@ const schema = makeSchema({
   types: [User, Post],
   outputs: {
     schema: path.join(__dirname, '../../schema.graphql'),
-    typegen: path.join(__dirname, '../../node_modules/@types/nexus-typegen/index.d.ts'),
+    typegen: path.join(
+      __dirname,
+      '../../node_modules/@types/nexus-typegen/index.d.ts'
+    ),
   },
 });
 
 export default schema;
 ```
 
-Nexus will generate 2 different artifacts in development mode: 
+Nexus will generate 2 different artifacts in development mode:
 
 - A GraphQL schema, it gives us a clear view of how our final API looks like
 - The Nexus types, it ensures type safety in our resolvers.
@@ -437,6 +436,7 @@ To generate those files, we can add a script to our `package.json`:
 ```
 
 Run the script to see the generated files:
+
 ```bash
 npm run generate:nexus
 ```
@@ -481,7 +481,7 @@ export const User = objectType({
     t.model.name();
     t.model.email();
     t.model.posts();
-  }
+  },
 });
 
 // src/schema/Post.ts
@@ -493,7 +493,7 @@ export const Post = objectType({
     t.model.content();
     t.model.slug();
     t.model.author();
-  }
+  },
 });
 ```
 
@@ -597,7 +597,7 @@ const server = new ApolloServer({
 });
 
 server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`)
+  console.log(`🚀 Server ready at ${url}`);
 });
 ```
 
@@ -637,7 +637,7 @@ every request in its configuration:
 
 ```javascript
 // src/index.ts
-import { createContext } from "./Context";
+import { createContext } from './Context';
 
 const server = new ApolloServer({
   schema,
@@ -652,11 +652,12 @@ instance inside the context:
 // src/schema/index.ts
 const schema = makeSchema({
   // ...
-  plugins: [nexusSchemaPrisma({ prismaClient: (ctx) => ctx.db })],
+  plugins: [nexusSchemaPrisma({ prismaClient: ctx => ctx.db })],
 });
 ```
 
 We can now access `ctx.db` in every resolver:
+
 ```typescript
 export const UserQuery = extendType({
   type: 'Query',
@@ -689,10 +690,10 @@ const schema = makeSchema({
     sources: [
       {
         source: require.resolve('../Context'),
-        alias: 'Context'
-      }
-    ]
-  }
+        alias: 'Context',
+      },
+    ],
+  },
 });
 ```
 
@@ -722,7 +723,7 @@ import { User } from 'nexus-plugin-prisma/client';
 import { Context } from '../Context';
 
 async function findById(ctx: Context, id: string): Promise<User> {
-  const user = await ctx.db.user.findOne({ where: { id }});
+  const user = await ctx.db.user.findOne({ where: { id } });
   if (user === null) {
     throw new Error('user not found');
   }
@@ -742,8 +743,8 @@ export default { findById, createOne };
 ```
 
 We can then use it in our resolvers:
-```typescript
 
+```typescript
 export const UserQuery = extendType({
   type: 'Query',
   definition(t) {
