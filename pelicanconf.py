@@ -82,7 +82,7 @@ TAGS_SAVE_AS = ''
 # TODO Allow for different authors depending on the article/page
 AUTHOR = 'Lucas Santoni'
 
-SITENAME = 'geographer.fr'
+SITENAME = 'Lucas Santoni'
 TWITTER_HANDLE = 'geographeur'
 MAIL = 'lucas.santoni@live.fr'
 SITE = 'blog.geographer.fr'
