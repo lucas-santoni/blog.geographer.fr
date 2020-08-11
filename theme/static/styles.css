@@ -3,6 +3,8 @@
   --color-title: #111;
   --color-text: #222;
   --color-faded: #555;
+  --color-faded-max: #aaa;
+  --color-faded-transparent: rgb(100, 100, 100, 0.1);
 }
 
 body {
@@ -128,9 +130,16 @@ img[data-loaded='true'],
 }
 
 .site-title {
-  font-weight: bold;
-  font-size: 22px;
-  letter-spacing: 1px;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  color: var(--color-faded-max);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 0.5em 0.7em;
+  margin-left: -0.5em;
+}
+
+.site-title:hover {
+  background-color: var(--color-faded-transparent);
   color: var(--color-title);
 }
 
