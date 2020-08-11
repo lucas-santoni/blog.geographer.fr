@@ -103,15 +103,20 @@
     <link rel="manifest" href="/manifest.json" />
 
     <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
-      rel="stylesheet"
+      rel="prefetch stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+    />
+    <link
+      rel="prefetch stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-light.min.css"
     />
     <link
-      rel="stylesheet"
+      rel="prefetch stylesheet"
       href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
     />
-    <link rel="stylesheet" href="/{{ THEME_STATIC_DIR }}/styles.css" />
+    <link rel="prefetch stylesheet" href="/{{ THEME_STATIC_DIR }}/styles.css" />
 
     <!-- Register our serivce-worker -->
     <script>
