@@ -6,5 +6,25 @@
       "source": "/(.*)",
       "destination": "/404"
     }
+  ],
+  "headers": [
+    {
+      "source": "/service-worker.js",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "s-maxage=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "s-maxage=1, stale-while-revalidate"
+        }
+      ]
+    }
   ]
 }
