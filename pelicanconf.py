@@ -88,7 +88,7 @@ MAIL = 'lucas.santoni@live.fr'
 SITE = 'blog.geographer.fr'
 SITEURL = f'https://{SITE}'
 TWITTER_URL = 'https://twitter.com/' + TWITTER_HANDLE
-GITHUB_URL = 'https://github.com/geospace'
+GITHUB_URL = 'https://github.com/lucas-santoni'
 MAIL_URL = 'mailto:' + MAIL
 
 SITE_INTRO = '''

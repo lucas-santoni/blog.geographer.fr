@@ -11,7 +11,7 @@ Various links:
 
 * [Resume](/resume)
 * [Twitter](https://twitter.com/geographeur)
-* [GitHub](https://github.com/geospace)
+* [GitHub](https://github.com/lucas-santoni)
 * [LinkedIn](https://www.linkedin.com/in/lucas1337/)
 * [Root-Me profile](https://www.root-me.org/Geographer)
 
@@ -22,7 +22,7 @@ to be cited but really there is no license.
 
 This blog is statically generated using [Pelican](https://blog.getpelican.com/).
 It is hosted on [Vercel](https://vercel.com/), and managed
-on [GitHub](https://github.com/Geospace/blog.geographer.fr). The theme I use
+on [GitHub](https://github.com/lucas-santoni/blog.geographer.fr). The theme I use
 is in the repository.
 
 I like the idea that anyone can contribute to this blog simply by making a
