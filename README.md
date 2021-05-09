@@ -1,7 +1,6 @@
 # [blog.geographer.fr](https://blog.geographer.fr/)
 
-Personal blog, by Lucas SANTONI, also (not) known
-as [Geographer](https://twitter.com/geographeur).
+Personal blog, by Lucas SANTONI.
 
 
 ## Static engine
