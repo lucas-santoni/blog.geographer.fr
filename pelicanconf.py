@@ -18,6 +18,9 @@ TIMEZONE = 'Europe/Paris'
 # The theme is custom, see the theme/ folder
 THEME = 'theme'
 
+# Matching files will be copied over to the destination folder
+THEME_STATIC_PATHS = ['static']
+
 # Configure the Markdown processor
 MARKDOWN = {
     'extension_configs': {

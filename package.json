@@ -4,7 +4,8 @@
   "scripts": {
     "build": "gulp",
     "dev": "gulp dev",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "serve": "serve public"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
@@ -21,6 +22,7 @@
     "gulp-htmlmin": "^5.0.1",
     "gulp-uglify": "^3.0.2",
     "prettier": "^2.0.5",
+    "serve": "^11.3.2",
     "workbox-build": "^6.0.0-alpha.2"
   },
   "dependencies": {

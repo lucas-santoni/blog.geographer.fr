@@ -96,7 +96,7 @@ gulp.task('content', cb =>
     // eslint-disable-next-line no-console
     console.log(stdout);
     // eslint-disable-next-line no-console
-    console.log(stderr);
+    console.error(stderr);
     cb(err);
   })
 );
