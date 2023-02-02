@@ -26,7 +26,7 @@ common();
 window.newVersionToast = () => {
   toast({
     text:
-      'A new version of this page is available! <a href="#">Click to refresh!</a>',
+      'A new version of this page is available! Click to refresh!',
     duration: -1,
     close: false,
     gravity: 'bottom',
