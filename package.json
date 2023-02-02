@@ -7,27 +7,27 @@
     "lint": "eslint ."
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
-    "eslint": "^7.2.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^3.4.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-bro": "^2.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-uglify": "^3.0.2",
-    "prettier": "^2.0.5",
-    "workbox-build": "^6.0.0-alpha.2"
+    "prettier": "^2.8.3",
+    "workbox-build": "^6.5.4"
   },
   "dependencies": {
-    "highlight.js": "^10.4.1",
+    "highlight.js": "^10.7.3",
     "js-levenshtein": "^1.1.6",
-    "lozad": "^1.15.0",
-    "toastify-js": "^1.9.0",
-    "twemoji": "^13.0.1"
+    "lozad": "^1.16.0",
+    "toastify-js": "^1.12.0",
+    "twemoji": "^13.1.1"
   }
 }
