@@ -10,7 +10,6 @@ beautiful country in the world.
 Various links:
 
 * [Resume](/resume)
-* [Twitter](https://twitter.com/geographeur)
 * [GitHub](https://github.com/lucas-santoni)
 * [LinkedIn](https://www.linkedin.com/in/lucas1337/)
 * [Root-Me profile](https://www.root-me.org/Geographer)

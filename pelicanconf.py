@@ -83,12 +83,13 @@ TAGS_SAVE_AS = ''
 AUTHOR = 'Lucas Santoni'
 
 SITENAME = 'Lucas Santoni'
-TWITTER_HANDLE = 'geographeur'
-MAIL = 'lucas.santoni@live.fr'
 SITE = 'blog.geographer.fr'
 SITEURL = f'https://{SITE}'
+
+TWITTER_HANDLE = '_'
 TWITTER_URL = 'https://twitter.com/' + TWITTER_HANDLE
 GITHUB_URL = 'https://github.com/lucas-santoni'
+MAIL = 'lucas@cryptio.co'
 MAIL_URL = 'mailto:' + MAIL
 
 SITE_INTRO = '''
