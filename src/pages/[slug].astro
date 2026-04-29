@@ -1,0 +1,73 @@
+---
+import { getCollection, render } from 'astro:content';
+import readingTime from 'reading-time';
+import Base from '../layouts/Base.astro';
+import { formatDate } from '../utils/formatDate';
+import { smartTitleBreak } from '../utils/smartTitleBreak';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const pages = await getCollection('pages');
+
+  const reservedSlugs = new Set([
+    'index',
+    'posts',
+    'resume',
+    '404',
+  ]);
+
+  const entries = [
+    ...posts.map((entry) => ({ entry, kind: 'post' as const })),
+    ...pages.map((entry) => ({ entry, kind: 'page' as const })),
+  ].filter(({ entry }) => !reservedSlugs.has(entry.data.slug));
+
+  return entries.map(({ entry, kind }) => ({
+    params: { slug: entry.data.slug },
+    props: { entry, kind },
+  }));
+}
+
+const { entry, kind } = Astro.props;
+const { Content, body } = await renderEntry(entry);
+
+async function renderEntry(e: typeof entry) {
+  const rendered = await render(e);
+  return { Content: rendered.Content, body: e.body ?? '' };
+}
+
+const title = entry.data.title;
+const displayTitle = smartTitleBreak(title);
+const readtime = kind === 'post'
+  ? Math.max(1, Math.round(readingTime(body).minutes))
+  : null;
+const date = kind === 'post' ? (entry.data as { date: Date }).date : undefined;
+---
+
+<Base
+  title={title}
+  description={entry.data.description}
+  cover={entry.data.cover}
+  slug={entry.data.slug}
+  date={date}
+>
+  {kind === 'post' ? (
+    <>
+      <h1 class="article-title" set:html={displayTitle} />
+      <p class="article-meta">
+        Published {formatDate(date!)} • {readtime} minute{readtime! > 1 ? 's' : ''} read
+      </p>
+      <div class="content">
+        <Content />
+        <p><a href="/">← Back to the index</a></p>
+      </div>
+    </>
+  ) : (
+    <>
+      <h1 set:html={displayTitle} />
+      <div class="content">
+        <Content />
+        <p><a href="/">← Back to the index</a></p>
+      </div>
+    </>
+  )}
+</Base>

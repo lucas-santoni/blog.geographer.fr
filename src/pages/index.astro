@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { GITHUB_URL, SITE_INTRO } from '../config';
+import { PROJECTS } from '../data/projects';
+import { formatDate } from '../utils/formatDate';
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const latest = posts.slice(0, 5);
+---
+
+<Base>
+  <div class="content">
+    <p set:html={SITE_INTRO} />
+
+    <div class="listing">
+      <h2>Latest blog posts</h2>
+
+      <dl>
+        {
+          latest.map((post) => (
+            <div class="listing-entry">
+              <dt>{formatDate(post.data.date)}</dt>
+              <dd><a href={`/${post.data.slug}`} set:html={post.data.title} /></dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <p><a href="/posts">Browse all posts →</a></p>
+    </div>
+
+    <h2>Projects selection</h2>
+
+    {
+      PROJECTS.map((project) => (
+        <>
+          <p class="index-project-title">
+            {project.emoji}&nbsp;&nbsp;{project.name}
+          </p>
+          <p class="index-project-description" set:html={project.description} />
+        </>
+      ))
+    }
+
+    <p class="see-all-link">
+      <a href={GITHUB_URL}>Browse more on GitHub →</a>
+    </p>
+  </div>
+</Base>

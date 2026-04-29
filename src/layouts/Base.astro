@@ -1,0 +1,89 @@
+---
+import '@fontsource/roboto-condensed/300.css';
+import '@fontsource/roboto-condensed/400.css';
+import '@fontsource/roboto-condensed/700.css';
+import '@fontsource/roboto-condensed/300-italic.css';
+import '@fontsource/roboto-condensed/400-italic.css';
+import '@fontsource/roboto-condensed/700-italic.css';
+import '../styles/styles.css';
+import {
+  AUTHOR,
+  DEFAULT_LANG,
+  GITHUB_URL,
+  SITENAME,
+  SITE_DESCRIPTION,
+  SITE_URL,
+} from '../config';
+
+type Props = {
+  title?: string;
+  description?: string;
+  slug?: string;
+  cover?: string;
+  date?: Date;
+  bodyClass?: string;
+};
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  slug,
+  cover,
+  date,
+  bodyClass,
+} = Astro.props;
+
+const fullTitle = title ?? SITENAME;
+const plainTitle = fullTitle.replace(/<[^>]+>/g, '');
+const canonical = slug ? `${SITE_URL}/${slug}` : SITE_URL;
+const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
+---
+
+<!doctype html>
+<html lang={DEFAULT_LANG}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <meta name="author" content={AUTHOR} />
+    <meta name="description" content={description} />
+
+    <meta property="og:site_name" content={SITENAME} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={plainTitle} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:description" content={description} />
+    {date && (
+      <meta
+        property="article:published_time"
+        content={date.toISOString().slice(0, 10)}
+      />
+    )}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>{plainTitle}</title>
+  </head>
+  <body class={bodyClass}>
+    <div class="header">
+      <a class="site-title" href="/">geographer.fr</a>
+    </div>
+
+    <slot />
+
+    <div class="footer">
+      <ul>
+        <li><a href={GITHUB_URL}>GitHub</a></li>
+        <li><a href="/resume">Resume</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="last"><a href="/rss.xml">RSS</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

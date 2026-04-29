@@ -1,0 +1,60 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const page = await getEntry('pages', '404');
+const { Content } = page ? await render(page) : { Content: null };
+const title = page?.data.title ?? 'Content not found';
+---
+
+<Base title={title} slug="404">
+  <div>
+    <h1>{title}</h1>
+
+    <div class="content">
+      {Content && <Content />}
+      <p id="search-result"><i>Loading...</i></p>
+
+      <p><a href="/">← Back to the index</a></p>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import levenshtein from 'js-levenshtein';
+
+  type Entry = { title: string; slug: string };
+
+  const last = window.location.pathname
+    .split('/')
+    .pop()!
+    .replace(/\.html$/, '');
+
+  fetch('/api.json')
+    .then((r) => r.json() as Promise<Entry[]>)
+    .then((entries) => {
+      const top = entries
+        .map((e) => ({ ...e, score: levenshtein(last, e.slug) }))
+        .sort((a, b) => a.score - b.score)
+        .slice(0, 5);
+
+      const ul = document.createElement('ul');
+      for (const r of top) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `/${r.slug}`;
+        a.innerHTML = r.title;
+        li.appendChild(a);
+        ul.appendChild(li);
+      }
+
+      const wrapper = document.getElementById('search-result');
+      if (wrapper && wrapper.firstChild) {
+        wrapper.firstChild.replaceWith(ul);
+      }
+    })
+    .catch(() => {
+      const wrapper = document.getElementById('search-result');
+      if (wrapper) wrapper.textContent = '';
+    });
+</script>
