@@ -22,6 +22,8 @@ type Props = {
   cover?: string;
   date?: Date;
   bodyClass?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
 };
 
 const {
@@ -31,6 +33,8 @@ const {
   cover,
   date,
   bodyClass,
+  ogType = 'website',
+  jsonLd,
 } = Astro.props;
 
 const fullTitle = title ?? SITENAME;
@@ -51,7 +55,7 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
     <meta name="description" content={description} />
 
     <meta property="og:site_name" content={SITENAME} />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={plainTitle} />
     <meta property="og:url" content={canonical} />
     <meta property="og:description" content={description} />
@@ -69,6 +73,10 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
     <link rel="manifest" href="/manifest.json" />
 
     <title>{plainTitle}</title>
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
   </head>
   <body class={bodyClass}>
     <div class="header">

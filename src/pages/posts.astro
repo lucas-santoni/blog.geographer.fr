@@ -2,6 +2,7 @@
 import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { formatDate } from '../utils/formatDate';
+import { smartTitleBreak } from '../utils/smartTitleBreak';
 
 const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -21,7 +22,7 @@ const title = page?.data.title ?? 'All blog posts';
         posts.map((post) => (
           <div class="listing-entry">
             <dt>{formatDate(post.data.date)}</dt>
-            <dd><a href={`/${post.data.slug}`} set:html={post.data.title} /></dd>
+            <dd><a href={`/${post.data.slug}`} set:html={smartTitleBreak(post.data.title)} /></dd>
           </div>
         ))
       }

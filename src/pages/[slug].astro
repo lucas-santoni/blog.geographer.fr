@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import readingTime from 'reading-time';
 import Base from '../layouts/Base.astro';
+import { AUTHOR, SITE_URL, SITENAME } from '../config';
 import { formatDate } from '../utils/formatDate';
 import { smartTitleBreak } from '../utils/smartTitleBreak';
 
@@ -36,11 +37,28 @@ async function renderEntry(e: typeof entry) {
 }
 
 const title = entry.data.title;
+const plainTitle = title.replace(/<[^>]+>/g, '');
 const displayTitle = smartTitleBreak(title);
 const readtime = kind === 'post'
   ? Math.max(1, Math.round(readingTime(body).minutes))
   : null;
 const date = kind === 'post' ? (entry.data as { date: Date }).date : undefined;
+const url = `${SITE_URL}/${entry.data.slug}`;
+
+const jsonLd = kind === 'post' && date
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: plainTitle,
+      datePublished: date.toISOString(),
+      author: { '@type': 'Person', name: AUTHOR },
+      publisher: { '@type': 'Person', name: SITENAME },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      url,
+      ...(entry.data.description && { description: entry.data.description }),
+      ...(entry.data.cover && { image: `${SITE_URL}/${entry.data.cover}` }),
+    }
+  : undefined;
 ---
 
 <Base
@@ -49,6 +67,8 @@ const date = kind === 'post' ? (entry.data as { date: Date }).date : undefined;
   cover={entry.data.cover}
   slug={entry.data.slug}
   date={date}
+  ogType={kind === 'post' ? 'article' : 'website'}
+  jsonLd={jsonLd}
 >
   {kind === 'post' ? (
     <>

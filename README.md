@@ -18,6 +18,29 @@ URLs.
 
 ---
 
+## Local preview & build
+
+```sh
+npm run dev        # dev server with hot reload
+npm run build      # type-check + static build → dist/
+npm run preview    # serve dist/ locally
+npm run lint       # ESLint
+```
+
+`npm run build` runs `astro check` (TypeScript + Astro template type check)
+before building. Vercel runs the same on every deploy, so type errors fail
+the deploy and never reach production.
+
+`npm run lint` is **advisory only** — it is not part of `build`. CI
+(`.github/workflows/ci.yml`) runs both lint and check on every push and PR
+as a status check, but lint failures **do not** block Vercel deploys.
+Rationale: for a personal blog, blocking a deploy on a stylistic warning
+(unused import, missing semicolon) is friction without value. Type errors
+would actually break the site, so those still gate deploys via
+`astro check`.
+
+---
+
 ## Writing a new post
 
 ```sh
@@ -79,16 +102,6 @@ Files in `public/` are copied verbatim to the site root.
 | Theme CSS | `src/styles/styles.css` (and `resume.css` for the resume) |
 | Site head metadata, OG defaults, etc. | `src/layouts/Base.astro` |
 | Sitemap excludes / change frequency / priority | `astro.config.mjs` |
-
----
-
-## Local preview & build
-
-```sh
-npm run dev        # dev server with hot reload
-npm run build      # static build → dist/
-npm run preview    # serve dist/ locally
-```
 
 ---
 
