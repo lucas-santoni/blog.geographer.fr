@@ -1,0 +1,130 @@
+---
+import '@fontsource/roboto-condensed/300.css';
+import '@fontsource/roboto-condensed/400.css';
+import '@fontsource/roboto-condensed/700.css';
+import '@fontsource/roboto-condensed/300-italic.css';
+import '@fontsource/roboto-condensed/400-italic.css';
+import '@fontsource/roboto-condensed/700-italic.css';
+import '../styles/styles.css';
+import {
+  AUTHOR,
+  DEFAULT_LANG,
+  GITHUB_URL,
+  SITENAME,
+  SITE_DESCRIPTION,
+  SITE_URL,
+} from '../config';
+
+type Props = {
+  title?: string;
+  description?: string;
+  slug?: string;
+  cover?: string;
+  date?: Date;
+  bodyClass?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
+};
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  slug,
+  cover,
+  date,
+  bodyClass,
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
+
+const fullTitle = title ?? SITENAME;
+const plainTitle = fullTitle.replace(/<[^>]+>/g, '');
+const canonical = slug ? `${SITE_URL}/${slug}` : SITE_URL;
+const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
+---
+
+<!doctype html>
+<html lang={DEFAULT_LANG}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored ?? (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch {
+          // localStorage unavailable; leave default (light).
+        }
+      })();
+    </script>
+
+    <meta name="author" content={AUTHOR} />
+    <meta name="description" content={description} />
+
+    <meta property="og:site_name" content={SITENAME} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={plainTitle} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:description" content={description} />
+    {date && (
+      <meta
+        property="article:published_time"
+        content={date.toISOString().slice(0, 10)}
+      />
+    )}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>{plainTitle}</title>
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+  </head>
+  <body class={bodyClass}>
+    <div class="header">
+      <a class="site-title" href="/">geographer.fr</a>
+    </div>
+
+    <slot />
+
+    <div class="footer">
+      <ul>
+        <li><a href={GITHUB_URL}>GitHub</a></li>
+        <li><a href="/resume">Resume</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+        <li class="right">
+          <button class="theme-toggle" type="button" aria-label="Toggle theme">
+            <span class="theme-toggle-dark" aria-hidden="true">🌙</span>
+            <span class="theme-toggle-light" aria-hidden="true">☀️</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+      button?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try {
+          localStorage.setItem('theme', next);
+        } catch {
+          // localStorage unavailable; toggle still works for the session.
+        }
+      });
+    </script>
+  </body>
+</html>

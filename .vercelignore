@@ -1,10 +1,5 @@
 .vscode
-public
-output
-node_modules
 .DS_Store
-
+node_modules
+dist
 README.md
-Makefile
-Pipfile
-Pipfile.lock
