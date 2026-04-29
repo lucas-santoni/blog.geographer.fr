@@ -1,7 +1,12 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import astro from 'eslint-plugin-astro';
-import globals from 'globals';
+import js from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import astro from 'eslint-plugin-astro'
+import globals from 'globals'
+
+const styleRules = {
+  semi: ['error', 'never', { beforeStatementContinuationChars: 'always' }],
+  quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+}
 
 export default [
   {
@@ -17,5 +22,22 @@ export default [
         ...globals.node,
       },
     },
+    rules: {
+      ...styleRules,
+      '@typescript-eslint/semi': 'off',
+      '@typescript-eslint/quotes': 'off',
+    },
   },
-];
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: {
+      ...styleRules,
+    },
+  },
+  {
+    files: ['**/*.astro'],
+    rules: {
+      ...styleRules,
+    },
+  },
+]

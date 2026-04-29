@@ -23,4 +23,4 @@ export const PROJECTS: Project[] = [
     description:
       'A WEB application written in JavaScript that makes it simple to understand and visualize SQL injections. Easy to launch via Docker. <a href="https://github.com/Geospace/sqli-platform">Get it here.</a>',
   },
-];
+]

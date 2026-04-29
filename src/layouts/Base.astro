@@ -1,11 +1,11 @@
 ---
-import '@fontsource/roboto-condensed/300.css';
-import '@fontsource/roboto-condensed/400.css';
-import '@fontsource/roboto-condensed/700.css';
-import '@fontsource/roboto-condensed/300-italic.css';
-import '@fontsource/roboto-condensed/400-italic.css';
-import '@fontsource/roboto-condensed/700-italic.css';
-import '../styles/styles.css';
+import '@fontsource/roboto-condensed/300.css'
+import '@fontsource/roboto-condensed/400.css'
+import '@fontsource/roboto-condensed/700.css'
+import '@fontsource/roboto-condensed/300-italic.css'
+import '@fontsource/roboto-condensed/400-italic.css'
+import '@fontsource/roboto-condensed/700-italic.css'
+import '../styles/styles.css'
 import {
   AUTHOR,
   DEFAULT_LANG,
@@ -13,7 +13,7 @@ import {
   SITENAME,
   SITE_DESCRIPTION,
   SITE_URL,
-} from '../config';
+} from '../config'
 
 type Props = {
   title?: string;
@@ -35,11 +35,11 @@ const {
   bodyClass,
   ogType = 'website',
   jsonLd,
-} = Astro.props;
+} = Astro.props
 
-const fullTitle = title ?? SITENAME;
-const plainTitle = fullTitle.replace(/<[^>]+>/g, '');
-const canonical = slug ? `${SITE_URL}/${slug}` : SITE_URL;
+const fullTitle = title ?? SITENAME
+const plainTitle = fullTitle.replace(/<[^>]+>/g, '')
+const canonical = slug ? `${SITE_URL}/${slug}` : SITE_URL
 const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
 ---
 
@@ -54,14 +54,14 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
     <script is:inline>
       (() => {
         try {
-          const stored = localStorage.getItem('theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const theme = stored ?? (prefersDark ? 'dark' : 'light');
-          document.documentElement.setAttribute('data-theme', theme);
-        } catch {
+          const stored = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const theme = stored ?? (prefersDark ? 'dark' : 'light')
+    document.documentElement.setAttribute('data-theme', theme)
+  } catch {
           // localStorage unavailable; leave default (light).
         }
-      })();
+      })()
     </script>
 
     <meta name="author" content={AUTHOR} />
@@ -114,17 +114,17 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
     </div>
 
     <script>
-      const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
-      button?.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        try {
-          localStorage.setItem('theme', next);
-        } catch {
+      const button = document.querySelector<HTMLButtonElement>('.theme-toggle')
+button?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme')
+  const next = current === 'dark' ? 'light' : 'dark'
+  document.documentElement.setAttribute('data-theme', next)
+  try {
+          localStorage.setItem('theme', next)
+  } catch {
           // localStorage unavailable; toggle still works for the session.
         }
-      });
+      })
     </script>
   </body>
 </html>

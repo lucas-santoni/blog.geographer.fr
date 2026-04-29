@@ -1,14 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
-import Base from '../layouts/Base.astro';
-import { GITHUB_URL, SITE_INTRO } from '../config';
-import { PROJECTS } from '../data/projects';
-import { formatDate } from '../utils/formatDate';
-import { smartTitleBreak } from '../utils/smartTitleBreak';
+import { getCollection } from 'astro:content'
+import Base from '../layouts/Base.astro'
+import { GITHUB_URL, SITE_INTRO } from '../config'
+import { PROJECTS } from '../data/projects'
+import { formatDate } from '../utils/formatDate'
+import { smartTitleBreak } from '../utils/smartTitleBreak'
 
 const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+)
 const latest = posts.slice(0, 5);
 ---
 
