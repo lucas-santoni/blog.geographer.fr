@@ -35,8 +35,7 @@ const title = `${SITENAME} — Resume`;
       <div class="resume-intro">
         <div>
           <h1>Lucas Santoni</h1>
-          <p class="meta">Software Engineer from France</p>
-          <p></p>
+          <p class="meta">Software Engineer &amp; Tech Executive</p>
         </div>
       </div>
 
@@ -44,15 +43,70 @@ const title = `${SITENAME} — Resume`;
         <section>
           <h2>WORK EXPERIENCE</h2>
 
-          <section>
+          <section class="role-group">
             <h3>Cryptio</h3>
-            <p class="meta">Since 2021 | CTO</p>
+            <div class="role-history">
+              <section>
+                <p class="meta">Since 2026 — Principal Engineer, Strategic Technology Initiatives</p>
+                <p>
+                  Transitioned from CTO after the Series B to refocus on
+                  hands-on engineering. Leading the Platform Team on
+                  foundational projects centered on performance and
+                  scalability. Driving the adoption of AI coding tools across
+                  the engineering organization.
+                </p>
+              </section>
+
+              <section>
+                <p class="meta">2021–2026 — Chief Technical Officer</p>
+                <p>
+                  Joined at pre-seed to build the engineering organization and
+                  the foundations of the product from scratch. Recruited
+                  dozens of engineers, mentored ICs and middle managers,
+                  structured teams and delivery as the company grew to 110+
+                  people serving 450+ enterprises across 30+ countries,
+                  including Circle, Laser Digital, and Consensys.
+                </p>
+                <p>
+                  Took the product from MVP to millions in ARR and over $3T in
+                  processed transaction volume. As a member of the leadership
+                  team, supported the CEO on strategy and on the seed, Series
+                  A, and $45M Series B rounds. Owned the company's SOC 1 and
+                  SOC 2 audits with PwC.
+                </p>
+              </section>
+            </div>
+          </section>
+
+          <section>
+            <h3>Epitech</h3>
+            <p class="meta">Since 2019 — Cybersecurity Teacher</p>
             <p>
-              Scaled from an MVP to a fully-fledged product generating millions
-              in ARR. Structured the technical teams and their processes, from
-              a single developer to multiple autonomous squads. Assisted the
-              CEO with fundraising and strategy. Cryptio is an enterprise-grade
-              accounting, reporting, and audit software for digital assets.
+              Teaching cybersecurity modules to engineering students
+              (reverse engineering, binary exploitation, and web security)
+              through lectures, hands-on labs, and CTF-style assignments.
+            </p>
+          </section>
+
+          <section>
+            <h3>Vente-Privee (now Veepee)</h3>
+            <p class="meta">2018 — Software Engineer Intern</p>
+            <p>
+              Maintained open-source Go tool <a
+                href="https://github.com/strike-team/influxdb-relay"
+              >InfluxDB Relay</a> and contributed to a C++ driver for a
+              robotic system for automated product photography.
+            </p>
+          </section>
+
+          <section>
+            <h3>Thales</h3>
+            <p class="meta">2017 — Cybersecurity Engineer Intern</p>
+            <p>
+              Conducted research on deception applied to database security
+              under the supervision of Nizar Kheir, PhD, and eventually filed <a
+                href="https://patentscope.wipo.int/search/fr/detail.jsf?docId=EP243363815"
+              >a patent</a>.
             </p>
           </section>
 
@@ -60,46 +114,9 @@ const title = `${SITENAME} — Resume`;
             <h3>Freelance Work</h3>
             <p class="meta">Since 2017</p>
             <p>
-              Collaborated with various clients, such as Sony Music or
-              Vente-Privee (now Veepee). Worked on a wide range of projects,
-              from OCR softwares in Python to large scale web scraping in
-              JavaScript.
-            </p>
-          </section>
-
-          <section>
-            <h3>SkillZ</h3>
-            <p class="meta">2019 | Software Engineer Intern</p>
-            <p>
-              Worked on the <a href="https://tresorio.com/">Tresorio</a>
-              platform. Contributed to the front-end (React), as well as
-              various back-end services (Node, Python).
-            </p>
-          </section>
-
-          <section>
-            <h3>Vente-Privee (now Veepee)</h3>
-            <p class="meta">2018 | Software Engineer Intern</p>
-            <p></p>
-            <p>
-              Maintained open source Go tool
-              <a href="https://github.com/strike-team/influxdb-relay">
-                InfluxDB Relay
-              </a>
-              and contributed to a C++ driver for a robot solution allowing
-              automatic photo shooting.
-            </p>
-          </section>
-
-          <section>
-            <h3>Thales</h3>
-            <p class="meta">2017 | Intern Engineer</p>
-            <p>
-              Filed
-              <a href="https://patentscope.wipo.int/search/fr/detail.jsf?docId=EP243363815">
-                a patent
-              </a>. Conducted research on deception applied to database
-              security under the supervision of Nizar Kheir, PhD.
+              Collaborated with various clients, such as Sony Music. Worked
+              on a wide range of projects, from OCR pipelines in Python to
+              large scale web scraping in JavaScript.
             </p>
           </section>
         </section>
@@ -109,17 +126,17 @@ const title = `${SITENAME} — Resume`;
 
           <section>
             <h3>Master's degree in Information Technology</h3>
-            <p class="meta">Epitech Paris (France) | 2021</p>
+            <p class="meta">Epitech Paris (France) — 2021</p>
           </section>
 
           <section>
             <h3>MSc in Computational Intelligence</h3>
-            <p class="meta">University Of Kent (United Kingdom) | 2020</p>
+            <p class="meta">University Of Kent (United Kingdom) — 2020</p>
           </section>
 
           <section>
-            <h3>Certificate of Proficiency in English</h3>
-            <p class="meta">University Of Cambridge | 2015</p>
+            <h3>Certificate of Proficiency in English (C2)</h3>
+            <p class="meta">University Of Cambridge — 2015</p>
           </section>
         </section>
 
@@ -127,54 +144,39 @@ const title = `${SITENAME} — Resume`;
           <h2>SKILLS</h2>
 
           <section>
-            <h3>Programming Languages</h3>
-            <p class="meta">Code is SOLID and DRY</p>
-            <ul class="tags">
-              <li>Go</li>
-              <li>Rust</li>
-              <li>TypeScript</li>
-            </ul>
+            <h3>Engineering</h3>
+            <p>
+              Comfortable across the stack and across paradigms. Strong bias
+              for picking the right tool for the problem, rather than
+              defending a familiar language or framework.
+            </p>
           </section>
 
           <section>
-            <h3>Technologies</h3>
-            <p class="meta">The right tool</p>
-            <ul class="tags">
-              <li>React.js / Next.js</li>
-              <li>Svelte</li>
-              <li>AWS</li>
-              <li>PostgreSQL</li>
-              <li>Nest.js</li>
-              <li>Linear</li>
-              <li>Notion</li>
-            </ul>
+            <h3>Leadership &amp; Delivery</h3>
+            <p>
+              Hired and mentored dozens of engineers and middle managers.
+              Structured teams, processes, and delivery from a single developer
+              to multiple autonomous squads. Comfortable owning roadmap and
+              stakeholder communication alongside technical decisions.
+            </p>
           </section>
 
           <section>
             <h3>Computer Security</h3>
-            <p class="meta">Self-taught and passionate</p>
             <p>
-              Solid foundations in reverse engineering, binary exploitation,
-              web security. 5800+ points on
-              <a href="https://www.root-me.org/Geographer">Root-Me</a>.
+              Self-taught foundations in reverse engineering, binary
+              exploitation, and web security. Years of CTFs paired with
+              enterprise security work: compliance, audits, and operations.
             </p>
           </section>
 
           <section>
-            <h3>Soft Skills</h3>
-            <p class="meta">It's not all about code</p>
+            <h3>Languages &amp; Communication</h3>
             <p>
-              Impeccable English and French. I enjoy speaking in public. I have
-              a great sense of priorities, and a very hands-on approach.
+              Native French, fluent English. At ease with public
+              speaking and technical writing in either language.
             </p>
-
-            <ul class="tags">
-              <li>Scrum</li>
-              <li>Leadership</li>
-              <li>Team Structure</li>
-              <li>Recruitment</li>
-              <li>Project Management</li>
-            </ul>
           </section>
         </section>
 
@@ -183,23 +185,15 @@ const title = `${SITENAME} — Resume`;
 
           <section>
             <h3>PoC</h3>
-            <p class="meta">Student Organization | Co-Founder</p>
+            <p class="meta">2018 — Student Organization Co-Founder</p>
             <p>
-              Lead the cybersecurity department for two years. Gave dozens of
-              talks and trainings, organized
+              Co-founded <a href="https://poc-innovation.fr/">PoC</a> and led
+              its cybersecurity department for two years. Gave dozens of talks
+              and trainings, organized
               <a href="https://blog.geographer.fr/piscine-poc-2019">
-                a bootcamp
+                a cybersecurity bootcamp
               </a>.
             </p>
-          </section>
-
-          <section>
-            <h3>Capture The Flag</h3>
-            <p class="meta">With various teams</p>
-            <ul>
-              <li>🥇 Capture The FIC 2020 Qualifiers</li>
-              <li>🥈 Deloitte UK CTF 2019 Qualifiers</li>
-            </ul>
           </section>
         </section>
 
@@ -211,14 +205,15 @@ const title = `${SITENAME} — Resume`;
             <li>📨 Write at <a href={MAIL_URL}>{MAIL}</a></li>
             <li>📜 See code on <a href={GITHUB_URL}>GitHub Profile</a></li>
           </ul>
+
+          <p class="meta resume-updated">Updated May 2026</p>
         </section>
       </div>
 
       <div class="resume-footer">
         <div class="resume-live">
           <p>
-            🖨️ This page is print friendly! Use the built-in print
-            functionality of your browser to get a clean A4 paper, or a PDF!
+            🖨️ <button type="button" id="print-button" class="print-link">Use the built-in print functionality of your browser or click this to get a clean A4 paper or a PDF.</button>.
           </p>
         </div>
 
@@ -230,5 +225,10 @@ const title = `${SITENAME} — Resume`;
         </div>
       </div>
     </div>
+    <script>
+      document
+        .getElementById('print-button')
+        ?.addEventListener('click', () => window.print())
+    </script>
   </body>
 </html>

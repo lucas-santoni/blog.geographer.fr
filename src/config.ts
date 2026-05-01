@@ -4,7 +4,7 @@ export const SITE_URL = `https://${SITE}`
 export const AUTHOR = 'Lucas Santoni'
 export const SITENAME = 'Lucas Santoni'
 
-export const MAIL = 'lucas@cryptio.co'
+export const MAIL = 'lucas.santoni@live.fr'
 export const MAIL_URL = `mailto:${MAIL}`
 export const GITHUB_URL = 'https://github.com/lucas-santoni'
 
