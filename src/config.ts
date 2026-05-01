@@ -1,4 +1,4 @@
-export const SITE = 'blog.geographer.fr'
+export const SITE = 'blog.lucas.zip'
 export const SITE_URL = `https://${SITE}`
 
 export const AUTHOR = 'Lucas Santoni'

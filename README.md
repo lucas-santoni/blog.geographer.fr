@@ -1,4 +1,4 @@
-# [blog.geographer.fr](https://blog.geographer.fr/)
+# [blog.lucas.zip](https://blog.lucas.zip/)
 
 Personal blog by Lucas SANTONI. Built with [Astro](https://astro.build/),
 deployed on [Vercel](https://vercel.com/).
