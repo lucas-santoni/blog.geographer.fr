@@ -19,12 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-This license covers the source code of this repository (Astro components,
-TypeScript, CSS, build scripts, etc.) as well as any code snippets embedded
-in blog posts (fenced code blocks, inline code, example configs). The
-surrounding blog prose and authored images — under `src/content/posts/`,
-`src/content/pages/`, and `public/assets/` — are licensed separately under
-CC BY 4.0; see LICENSE-CONTENT.
