@@ -183,6 +183,21 @@ li {
   color: var(--color-faded);
 }
 
+.stale-notice {
+  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+  margin-bottom: 2em;
+  padding: 0.8em 1em;
+  background-color: rgba(220, 53, 69, 0.1);
+  border-left: 3px solid rgba(220, 53, 69, 0.6);
+  color: var(--color-text);
+  font-size: 0.95em;
+}
+
+:root[data-theme='dark'] .stale-notice {
+  background-color: rgba(255, 120, 130, 0.12);
+  border-left-color: rgba(255, 120, 130, 0.6);
+}
+
 .content {
   text-align: justify;
   font-size: 17px;

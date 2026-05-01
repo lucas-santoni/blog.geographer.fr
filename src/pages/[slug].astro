@@ -45,6 +45,10 @@ const readtime = kind === 'post'
 const date = kind === 'post' ? (entry.data as { date: Date }).date : undefined
 const url = `${SITE_URL}/${entry.data.slug}`
 
+const fiveYearsAgo = new Date()
+fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 5)
+const isStale = kind === 'post' && date ? date <= fiveYearsAgo : false
+
 const jsonLd = kind === 'post' && date
   ? {
       '@context': 'https://schema.org',
@@ -76,6 +80,12 @@ const jsonLd = kind === 'post' && date
       <p class="article-meta">
         Published {formatDate(date!)} • {readtime} minute{readtime! > 1 ? 's' : ''} read
       </p>
+      {isStale && (
+        <aside class="stale-notice">
+          Heads up: this post is over five years old. Some of it may be
+          inaccurate, outdated, or no longer reflect what I currently believe.
+        </aside>
+      )}
       <div class="content">
         <Content />
         <p><a href="/">← Back to the index</a></p>
