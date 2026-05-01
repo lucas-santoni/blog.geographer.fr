@@ -256,15 +256,6 @@ li {
   margin-left: 170px;
 }
 
-.index-project-title {
-  margin: 0 0 0.5em 0 !important;
-  font-weight: bold;
-}
-
-.index-project-description {
-  margin: 0 0 1.337em 0 !important;
-}
-
 .footer {
   border-top: 1px solid var(--color-footer-border);
   margin: 2em 0 1em 0;

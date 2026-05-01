@@ -95,7 +95,6 @@ Files in `public/` are copied verbatim to the site root.
 | What | Where |
 |---|---|
 | Site name, intro, email, GitHub link | `src/config.ts` |
-| Featured projects on the homepage | `src/data/projects.ts` |
 | Resume content | `src/pages/resume.astro` |
 | About page | `src/content/pages/about.md` |
 | 404 page text | `src/content/pages/404.md` |
@@ -114,7 +113,6 @@ src/
   content/
     posts/             one Markdown file per blog post
     pages/             non-post pages (about, 404, resume content, etc.)
-  data/projects.ts     featured projects on the homepage
   layouts/Base.astro   shared <head>, header, footer
   pages/               URL routes (Astro auto-routes)
   styles/              global CSS
