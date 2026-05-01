@@ -153,10 +153,6 @@ li {
   color: var(--color-faded);
 }
 
-.theme-toggle:hover {
-  background-color: var(--color-faded-transparent);
-}
-
 .theme-toggle .theme-toggle-light,
 .theme-toggle .theme-toggle-dark {
   display: none;
