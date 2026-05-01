@@ -61,14 +61,20 @@ hr:before {
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Fraunces', Georgia, serif;
   color: var(--color-title);
   font-weight: bold;
 }
 
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
   margin: 1.69em 0 1em 0;
 }
 
