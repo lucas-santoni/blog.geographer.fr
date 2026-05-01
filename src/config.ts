@@ -11,10 +11,11 @@ export const GITHUB_URL = 'https://github.com/lucas-santoni'
 export const DEFAULT_LANG = 'en'
 
 export const SITE_INTRO = `
-👋 My name is Lucas, and I am a computer science
-enthusiast. My fields of interest are cybersecurity and software development.
-Please, see the <a href="/about">about page</a> or read <a href="/resume">my
-resume</a> if you want to know more.
+👋 My name is Lucas Santoni, software engineer and tech executive with a
+focus on startups and fintech. My interests range across engineering team
+topologies and processes, developer tooling, teaching and mentoring, cybersecurity,
+crypto, and AI. More on the <a href="/about">about page</a> or in my
+<a href="/resume">resume</a>.
 `.trim()
 
 export const SITE_DESCRIPTION = `
