@@ -222,6 +222,22 @@ li {
   margin-bottom: 1.337em;
 }
 
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.content .intro-photo {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
+  border: 1px solid var(--color-code-border);
+}
+
 .listing dl {
   margin: 1.42em 0;
 }
@@ -280,6 +296,15 @@ li {
 
   .header {
     margin: 1.5em 0 1.5em 0;
+  }
+
+  .intro {
+    gap: 1em;
+  }
+
+  .content .intro-photo {
+    width: 75px;
+    height: 75px;
   }
 
   .listing-entry {
