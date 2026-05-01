@@ -14,8 +14,12 @@ Various links:
 * [LinkedIn](https://www.linkedin.com/in/lucas1337/)
 * [Root-Me profile](https://www.root-me.org/Geographer)
 
-You can do whatever you want with the content I authored. I always appreciate
-to be cited but really there is no license.
+## License
+
+Blog prose and images I authored are licensed under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — reuse them freely,
+just credit me. The site's source code and any code snippets embedded in
+posts are [MIT](https://opensource.org/licenses/MIT).
 
 ## About this blog
 

@@ -2,6 +2,7 @@
   "name": "blog.geographer.fr",
   "private": true,
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",

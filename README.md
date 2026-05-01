@@ -123,3 +123,10 @@ public/                assets and root files (favicon, robots.txt, manifest…)
 scripts/new-post.mjs   `npm run new` scaffold
 astro.config.mjs       Astro + Vercel + sitemap config
 ```
+
+---
+
+## License
+
+Source code and code snippets in posts are [MIT](LICENSE). Blog prose and
+authored images are [CC BY 4.0](LICENSE-CONTENT) — reuse them, just credit me.
