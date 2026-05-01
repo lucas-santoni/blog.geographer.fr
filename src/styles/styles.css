@@ -224,6 +224,10 @@ li {
   gap: 1.5em;
 }
 
+.content .intro p {
+  margin: 0;
+}
+
 .content .intro-photo {
   flex-shrink: 0;
   width: 100px;
@@ -286,12 +290,22 @@ li {
   }
 
   .intro {
-    gap: 1em;
+    display: block;
+  }
+
+  .intro::after {
+    content: '';
+    display: block;
+    clear: both;
   }
 
   .content .intro-photo {
     width: 75px;
     height: 75px;
+    float: left;
+    margin: 0 1em 0 0;
+    shape-outside: circle();
+    shape-margin: 0.5em;
   }
 
   .listing-entry {
