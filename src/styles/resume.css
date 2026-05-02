@@ -163,6 +163,15 @@ body.resume-page {
   .resume-footer {
     margin-top: 0 !important;
   }
+
+  .resume-live {
+    flex-direction: column;
+  }
+
+  .resume-live .theme-toggle {
+    align-self: center;
+    margin-top: 1em;
+  }
 }
 
 .resume-content h2 {
