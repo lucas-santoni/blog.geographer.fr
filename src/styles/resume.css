@@ -163,6 +163,15 @@ body.resume-page {
   .resume-footer {
     margin-top: 0 !important;
   }
+
+  .resume-live {
+    flex-direction: column;
+  }
+
+  .resume-live .theme-toggle {
+    align-self: center;
+    margin-top: 1em;
+  }
 }
 
 .resume-content h2 {
@@ -254,7 +263,7 @@ body.resume-page {
 
 .resume-live {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1em;
 }
@@ -274,4 +283,5 @@ body.resume-page {
   font: inherit;
   color: inherit;
   cursor: pointer;
+  text-align: left;
 }
