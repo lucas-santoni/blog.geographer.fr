@@ -76,11 +76,28 @@ body.resume-page {
 
   html {
     font-size: 12.288px !important;
+    min-width: 210mm !important;
+  }
+
+  body {
+    min-width: 210mm !important;
+  }
+
+  body.resume-page {
+    max-width: 210mm !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .resume-wrapper {
     margin-top: 0 !important;
     padding-top: 0 !important;
+    max-width: 200mm !important;
+  }
+
+  .resume-content {
+    column-count: 2 !important;
+    column-gap: 2.5rem !important;
   }
 
   .resume-intro {
