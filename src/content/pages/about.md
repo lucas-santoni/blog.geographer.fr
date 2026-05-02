@@ -6,7 +6,8 @@ slug: about
 My name is Lucas Santoni, and I work as a software engineer and tech executive,
 mostly in and around startups and fintech. My work tends to span both sides of
 that: writing code and designing systems, but also hiring, growing teams,
-owning delivery, and shaping the processes that make all of it work.
+owning delivery, and shaping the processes that make all of it work. You can
+find more details on my [resume](/resume).
 
 What I think and write about on this blog is broader. Topics include
 engineering team topologies and processes, developer tooling, teaching and
