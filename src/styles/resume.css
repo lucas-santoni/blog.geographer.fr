@@ -95,11 +95,6 @@ body.resume-page {
     margin-bottom: 0.9rem !important;
   }
 
-  .resume-content {
-    column-count: 2 !important;
-    column-gap: 2.5rem !important;
-  }
-
   .resume-footer {
     margin-top: 1.8em !important;
   }
@@ -152,17 +147,19 @@ body.resume-page {
 }
 
 .resume-content {
-  column-count: 2;
+  column-count: 1;
   column-gap: 2.5rem;
+}
+
+@media print, screen and (min-width: 42em) {
+  .resume-content {
+    column-count: 2;
+  }
 }
 
 @media screen and (max-width: 42em) {
   .resume-wrapper {
     margin: 0.5rem auto 0.4rem auto;
-  }
-
-  .resume-content {
-    column-count: 1;
   }
 
   .resume-footer {
