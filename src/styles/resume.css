@@ -95,6 +95,11 @@ body.resume-page {
     margin-bottom: 0.9rem !important;
   }
 
+  .resume-content {
+    column-count: 2 !important;
+    column-gap: 2.5rem !important;
+  }
+
   .resume-footer {
     margin-top: 1.8em !important;
   }
