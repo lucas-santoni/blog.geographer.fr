@@ -76,11 +76,28 @@ body.resume-page {
 
   html {
     font-size: 12.288px !important;
+    min-width: 210mm !important;
+  }
+
+  body {
+    min-width: 210mm !important;
+  }
+
+  body.resume-page {
+    max-width: 210mm !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .resume-wrapper {
     margin-top: 0 !important;
     padding-top: 0 !important;
+    max-width: 180mm !important;
+  }
+
+  .resume-content {
+    flex-direction: row !important;
+    gap: 2.5rem !important;
   }
 
   .resume-intro {
@@ -147,17 +164,25 @@ body.resume-page {
 }
 
 .resume-content {
-  column-count: 2;
-  column-gap: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media screen and (min-width: 42em) {
+  .resume-content {
+    flex-direction: row;
+    gap: 2.5rem;
+  }
 }
 
 @media screen and (max-width: 42em) {
   .resume-wrapper {
     margin: 0.5rem auto 0.4rem auto;
-  }
-
-  .resume-content {
-    column-count: 1;
   }
 
   .resume-footer {
