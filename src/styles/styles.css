@@ -59,9 +59,7 @@ hr {
 }
 
 hr:before {
-  content: '...';
-  letter-spacing: 0.7em;
-  margin-right: -0.7em;
+  content: '⁂';
 }
 
 h1,
