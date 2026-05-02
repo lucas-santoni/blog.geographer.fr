@@ -4,6 +4,7 @@ import '@fontsource/fira-sans/600.css'
 import '@fontsource/fira-sans/700.css'
 import '../styles/styles.css'
 import '../styles/resume.css'
+import { ClientRouter } from 'astro:transitions'
 import {
   AUTHOR,
   DEFAULT_LANG,
@@ -27,14 +28,18 @@ const title = `${SITENAME} — Resume`;
 
     <script is:inline>
       (() => {
-        try {
-          const stored = localStorage.getItem('theme')
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-          const theme = stored ?? (prefersDark ? 'dark' : 'light')
-          document.documentElement.setAttribute('data-theme', theme)
-        } catch {
-          // localStorage unavailable; leave default (light).
+        const applyTheme = () => {
+          try {
+            const stored = localStorage.getItem('theme')
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+            const theme = stored ?? (prefersDark ? 'dark' : 'light')
+            document.documentElement.setAttribute('data-theme', theme)
+          } catch {
+            // localStorage unavailable; leave default (light).
+          }
         }
+        applyTheme()
+        document.addEventListener('astro:after-swap', applyTheme)
       })()
     </script>
 
@@ -43,6 +48,8 @@ const title = `${SITENAME} — Resume`;
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
+
+    <ClientRouter />
   </head>
   <body class="resume-page">
     <div class="resume-wrapper">
@@ -244,20 +251,22 @@ const title = `${SITENAME} — Resume`;
       </div>
     </div>
     <script>
-      document
-        .getElementById('print-button')
-        ?.addEventListener('click', () => window.print())
+      document.addEventListener('astro:page-load', () => {
+        document
+          .getElementById('print-button')
+          ?.addEventListener('click', () => window.print())
 
-      const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle')
-      toggle?.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme')
-        const next = current === 'dark' ? 'light' : 'dark'
-        document.documentElement.setAttribute('data-theme', next)
-        try {
-          localStorage.setItem('theme', next)
-        } catch {
-          // localStorage unavailable; toggle still works for the session.
-        }
+        const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle')
+        toggle?.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme')
+          const next = current === 'dark' ? 'light' : 'dark'
+          document.documentElement.setAttribute('data-theme', next)
+          try {
+            localStorage.setItem('theme', next)
+          } catch {
+            // localStorage unavailable; toggle still works for the session.
+          }
+        })
       })
     </script>
   </body>

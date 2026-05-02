@@ -8,6 +8,7 @@ import '@fontsource/roboto-condensed/700-italic.css'
 import '@fontsource/fraunces/400.css'
 import '@fontsource/fraunces/700.css'
 import '../styles/styles.css'
+import { ClientRouter } from 'astro:transitions'
 import {
   AUTHOR,
   DEFAULT_LANG,
@@ -55,14 +56,18 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
 
     <script is:inline>
       (() => {
-        try {
-          const stored = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const theme = stored ?? (prefersDark ? 'dark' : 'light')
-    document.documentElement.setAttribute('data-theme', theme)
-  } catch {
-          // localStorage unavailable; leave default (light).
+        const applyTheme = () => {
+          try {
+            const stored = localStorage.getItem('theme')
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+            const theme = stored ?? (prefersDark ? 'dark' : 'light')
+            document.documentElement.setAttribute('data-theme', theme)
+          } catch {
+            // localStorage unavailable; leave default (light).
+          }
         }
+        applyTheme()
+        document.addEventListener('astro:after-swap', applyTheme)
       })()
     </script>
 
@@ -91,6 +96,8 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
+
+    <ClientRouter />
   </head>
   <body class={bodyClass}>
     <div class="header">
@@ -115,16 +122,18 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
     </div>
 
     <script>
-      const button = document.querySelector<HTMLButtonElement>('.theme-toggle')
-button?.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme')
-  const next = current === 'dark' ? 'light' : 'dark'
-  document.documentElement.setAttribute('data-theme', next)
-  try {
-          localStorage.setItem('theme', next)
-  } catch {
-          // localStorage unavailable; toggle still works for the session.
-        }
+      document.addEventListener('astro:page-load', () => {
+        const button = document.querySelector<HTMLButtonElement>('.theme-toggle')
+        button?.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme')
+          const next = current === 'dark' ? 'light' : 'dark'
+          document.documentElement.setAttribute('data-theme', next)
+          try {
+            localStorage.setItem('theme', next)
+          } catch {
+            // localStorage unavailable; toggle still works for the session.
+          }
+        })
       })
     </script>
   </body>
