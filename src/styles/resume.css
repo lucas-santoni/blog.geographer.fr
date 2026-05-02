@@ -96,8 +96,8 @@ body.resume-page {
   }
 
   .resume-content {
-    column-count: 2 !important;
-    column-gap: 2.5rem !important;
+    flex-direction: row !important;
+    gap: 2.5rem !important;
   }
 
   .resume-intro {
@@ -164,13 +164,19 @@ body.resume-page {
 }
 
 .resume-content {
-  column-count: 1;
-  column-gap: 2.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
-@media print, screen and (min-width: 42em) {
+.resume-col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media screen and (min-width: 42em) {
   .resume-content {
-    column-count: 2;
+    flex-direction: row;
+    gap: 2.5rem;
   }
 }
 
