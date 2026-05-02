@@ -24,6 +24,20 @@ const title = `${SITENAME} — Resume`;
     <meta charset="UTF-8" />
     <meta name="theme-color" content="#000000" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme')
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const theme = stored ?? (prefersDark ? 'dark' : 'light')
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch {
+          // localStorage unavailable; leave default (light).
+        }
+      })()
+    </script>
+
     <meta name="author" content={AUTHOR} />
     <link rel="canonical" href={`${SITE_URL}/resume`} />
     <link rel="icon" href="/favicon.ico" />
@@ -215,6 +229,10 @@ const title = `${SITENAME} — Resume`;
           <p>
             🖨️ <button type="button" id="print-button" class="print-link">Use the built-in print functionality of your browser or click this to get a clean A4 paper or a PDF.</button>.
           </p>
+          <button class="theme-toggle" type="button" aria-label="Toggle theme">
+            <span class="theme-toggle-dark" aria-hidden="true">🌙</span>
+            <span class="theme-toggle-light" aria-hidden="true">☀️</span>
+          </button>
         </div>
 
         <div class="resume-print">
@@ -229,6 +247,18 @@ const title = `${SITENAME} — Resume`;
       document
         .getElementById('print-button')
         ?.addEventListener('click', () => window.print())
+
+      const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle')
+      toggle?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme')
+        const next = current === 'dark' ? 'light' : 'dark'
+        document.documentElement.setAttribute('data-theme', next)
+        try {
+          localStorage.setItem('theme', next)
+        } catch {
+          // localStorage unavailable; toggle still works for the session.
+        }
+      })
     </script>
   </body>
 </html>

@@ -1,3 +1,25 @@
+.resume-wrapper {
+  --resume-text: #4a5568;
+  --resume-title: #44505f;
+  --resume-meta: #68778d;
+  --resume-h2-label: #8e9cb4;
+  --resume-tag-bg: #edf2f7;
+  --resume-tag-text: #44505f;
+  --resume-rule: #e2e8f0;
+  --resume-footer-border: #eee;
+}
+
+:root[data-theme='dark'] .resume-wrapper {
+  --resume-text: #c2cbd6;
+  --resume-title: #dbe1e8;
+  --resume-meta: #9aaac1;
+  --resume-h2-label: #a5b3c8;
+  --resume-tag-bg: rgba(255, 255, 255, 0.08);
+  --resume-tag-text: #dbe1e8;
+  --resume-rule: rgba(255, 255, 255, 0.12);
+  --resume-footer-border: rgba(255, 255, 255, 0.1);
+}
+
 .resume-wrapper h1,
 .resume-wrapper h2,
 .resume-wrapper h3,
@@ -8,7 +30,7 @@
 }
 
 .resume-wrapper h3 {
-  color: #4a5568;
+  color: var(--resume-text);
 }
 
 body.resume-page {
@@ -23,10 +45,33 @@ body.resume-page {
     margin-right: 0in;
   }
 
+  :root,
+  :root[data-theme='dark'] {
+    --color-bg: #ffffff;
+    --color-text: #222;
+    --color-faded: #555;
+    --color-faded-max: #aaa;
+    --color-faded-transparent: rgb(100, 100, 100, 0.1);
+    --color-footer-border: #eee;
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] .resume-wrapper {
+    --resume-text: #4a5568;
+    --resume-title: #44505f;
+    --resume-meta: #68778d;
+    --resume-h2-label: #8e9cb4;
+    --resume-tag-bg: #edf2f7;
+    --resume-tag-text: #44505f;
+    --resume-rule: #e2e8f0;
+    --resume-footer-border: #eee;
+  }
+
   body {
     -webkit-print-color-adjust: exact !important;
     color-adjust: exact !important;
     color: black !important;
+    background-color: #ffffff !important;
   }
 
   html {
@@ -59,7 +104,7 @@ body.resume-page {
   }
 
   .resume-live {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -67,12 +112,12 @@ body.resume-page {
   max-width: 52em;
   margin: 3rem auto 0.4rem auto;
   padding: 0.5rem;
-  color: #4a5568;
+  color: var(--resume-text);
   font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
 }
 
 .resume-wrapper .meta {
-  color: #68778d;
+  color: var(--resume-meta);
   font-size: 1.05rem;
   line-height: 1.45;
   margin: 0;
@@ -97,7 +142,7 @@ body.resume-page {
 .resume-intro h1 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #44505f;
+  color: var(--resume-title);
   margin: 0;
 }
 
@@ -121,7 +166,7 @@ body.resume-page {
 }
 
 .resume-content h2 {
-  color: #8e9cb4;
+  color: var(--resume-h2-label);
   font-size: 0.94em;
   letter-spacing: 0.1em;
   font-weight: 700;
@@ -152,8 +197,8 @@ body.resume-page {
   line-height: 1.6;
   margin-top: 0.4rem;
   margin-right: 0.4rem;
-  color: #44505f;
-  background-color: #edf2f7;
+  color: var(--resume-tag-text);
+  background-color: var(--resume-tag-bg);
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   font-size: 0.9rem;
@@ -178,7 +223,7 @@ body.resume-page {
 }
 
 .resume-content .role-history {
-  border-left: 1px solid #e2e8f0;
+  border-left: 1px solid var(--resume-rule);
   padding-left: 1rem;
 }
 
@@ -203,8 +248,19 @@ body.resume-page {
 .resume-footer {
   margin-top: 2.5em;
   padding-top: 10px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--resume-footer-border);
   font-size: 0.9em;
+}
+
+.resume-live {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.resume-live > p {
+  flex: 1;
 }
 
 .resume-print {
