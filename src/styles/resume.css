@@ -254,7 +254,7 @@ body.resume-page {
 
 .resume-live {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1em;
 }
@@ -274,4 +274,5 @@ body.resume-page {
   font: inherit;
   color: inherit;
   cursor: pointer;
+  text-align: left;
 }
