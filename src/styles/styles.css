@@ -54,7 +54,7 @@ hr {
   font-size: 120%;
   font-weight: bold;
   margin: 2em 0;
-  color: var(--color-faded);
+  color: var(--color-faded-max);
   height: 1em;
 }
 
