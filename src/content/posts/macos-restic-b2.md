@@ -9,10 +9,10 @@ I wanted unattended, encrypted, offsite backups of `$HOME` on my MacBook Pro:
 nightly, deduplicated, secrets in Keychain, retention managed for me and the
 laptop firing the job on its own while I sleep.
 
-This post walks the setup top to bottom. Sections 1 and 2 are enough to have
-a working backup we run by hand. Section 3 takes that and makes it run every
-night. Section 4 layers on _operational polish_: notifications, cosmetics...
-Section 5 covers the repo layout and the bits I haven't closed the loop on.
+This post walks the setup top to bottom. We start with the building blocks
+and run a backup by hand. Then we wire it into launchd so it runs every
+night. After that, _operational polish_: notifications and the small things
+that make the setup pleasant. And finally, the repo layout.
 
 The backups are uploaded to Backblaze B2 but the same setup works against any
 other restic backend (S3, SFTP, REST server...) with minor adjustments to the
@@ -21,7 +21,7 @@ credentials section.
 Versions used: `restic 0.18.1`, `resticprofile 0.33.1`, macOS 26.4.1
 (Tahoe) on an M1 MacBook Pro.
 
-## 1. The building blocks
+## The building blocks
 
 This section is an overview of the tools we are going to work with. It includes
 the pros and cons of each tool, plus the alternatives I considered.
@@ -76,13 +76,13 @@ delegates to the OS's scheduler. Once a profile has a `schedule` directive,
 running `resticprofile schedule` generates the appropriate scheduler
 configuration (a launchd plist on macOS) and registers it with the OS. From then
 on, the OS scheduler is what wakes the machine up (or catches the next wake,
-more on this in section 3) at the configured time and runs `resticprofile
+more on this later) at the configured time and runs `resticprofile
 run-schedule <command>@<profile>`, which in turn runs `restic <command>` with
 the flags from the profile.
 
 After each scheduled run completes, resticprofile inspects the exit code
 and invokes the matching `run-after` (success) or `run-after-fail`
-(failure) hook. The notification piece in section 4 hangs off those
+(failure) hook. The notification piece we wire up later hangs off those
 hooks.
 
 The alternative is a hand-rolled wrapper plus cron, which works fine and is a
@@ -109,7 +109,7 @@ zero-third-party option, given a spare box somewhere with redundant disks.
 It removes the cloud dependency and adds the operational one: someone (you 🫵🏻)
 has to own the disks and the uptime.
 
-## 2. A backup we run by hand
+## A backup we run by hand
 
 Goal of this section: end with a working command we can type to back up
 `$HOME` to B2, encrypted, with a sensible exclude list. No scheduling yet!
@@ -178,14 +178,14 @@ The first time we do this, macOS may show a Keychain access prompt for
 the entry. Click **Always Allow** so subsequent reads go through without
 further prompting. For interactive use from the terminal, clicking **Allow**
 each time would also work, since there's someone in front of the screen to
-dismiss the prompt. For the nightly schedule in section 3, **Always Allow** is
-mandatory: when the scheduled job runs while the laptop is unattended, there is
+dismiss the prompt. For the nightly schedule we set up later, **Always Allow**
+is mandatory: when the scheduled job runs while the laptop is unattended, there is
 no one to answer the prompt, and the read fails. The backup ends up blocked on
 a permission dialog.
 
 From now on, no secret needs to be typed or pasted anywhere. The next
 section initializes the repository by reading the three values straight
-out of Keychain, and the automation in section 3 wires the same lookup
+out of Keychain, and the automation we build later wires the same lookup
 into the scheduled job.
 
 ### Initialize the restic repository
@@ -346,7 +346,7 @@ this is cheap enough and we can afford to run it regularly.
 
 We have a working baseline with manual backups. Now let's automate!
 
-## 3. Make it run every night
+## Make it run every night
 
 We have at least two options on macOS: cron or launchd. cron most likely works
 fine (I haven't tested it) but it's less _integrated_ with macOS (cron jobs
@@ -427,7 +427,7 @@ small script that does.
 
 ### A wrapper script that bridges Keychain to environment
 
-The wrapper reads the three Keychain entries we stored in section 2
+The wrapper reads the three Keychain entries we stored earlier
 (`restic-repo-password`, `restic-b2-key-id`, `restic-b2-app-key`),
 exports them as the environment variables restic expects, then execs
 resticprofile with whatever arguments it was called with. Both
@@ -618,7 +618,7 @@ tried to avoid this as much as possible but after a lot of iterations, I
 actually don't think there is a way around it.
 
 The rest of this sub-section walks through, in order: the three concrete
-issues we hit when we hand the manual setup from section 2 to launchd,
+issues we hit when we hand the manual setup to launchd,
 the macOS security mechanisms behind those issues, the architecture
 to address these issues, and finally the build and signing steps.
 
@@ -910,7 +910,7 @@ already going" and doesn't poll. The directive that controls polling is
 `lock-wait`. Leave `schedule-lock-mode` on `default` and let `lock-wait` do the
 actual work.
 
-## 4. Operational polish
+## Operational polish
 
 This section covers notifications as well as some cosmetics.
 
@@ -981,14 +981,14 @@ identical rows with no way to tell backup from forget from prune from check.
 The toggle next to each row becomes useless: turning one off is basically a
 coin flip on which scheduled command stops running.
 
-Two small additions on top of the section 3 build fix this. First, add
+Two small additions on top of what we built above fix this. First, add
 `CFBundleName` to each bundle's `Contents/Info.plist`:
 
 ```xml
 <key>CFBundleName</key>  <string>Hercules Backup</string>
 ```
 
-Second, append one line to the plist patcher from section 3, so that
+Second, append one line to the plist patcher from earlier, so that
 each agent's `~/Library/LaunchAgents/<label>.plist` carries an
 `AssociatedBundleIdentifiers` pointing at the matching bundle:
 
@@ -1076,7 +1076,7 @@ from `Info.plist`:
 <key>CFBundleIconFile</key>  <string>icon.icns</string>
 ```
 
-## 5. The repo
+## The repo
 
 Everything in this post is published at
 [github.com/lucas-santoni/macos-backup-restic-b2](https://github.com/lucas-santoni/macos-backup-restic-b2).
