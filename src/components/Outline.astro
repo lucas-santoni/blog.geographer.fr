@@ -8,17 +8,7 @@ const shouldRender = items.length >= 3;
 ---
 
 {shouldRender && (
-  <>
-    <nav class="outline" aria-label="Article outline" data-outline id="article-outline">
-      <p class="outline-title">Contents</p>
-      <ol class="outline-list">
-        {items.map((h) => (
-          <li class:list={['outline-item', `outline-depth-${h.depth}`]} data-outline-item={h.slug}>
-            <a href={`#${h.slug}`} data-outline-link>{h.text}</a>
-          </li>
-        ))}
-      </ol>
-    </nav>
+  <nav class="outline" aria-label="Article outline" data-outline id="article-outline">
     <button
       type="button"
       class="outline-toggle"
@@ -27,14 +17,22 @@ const shouldRender = items.length >= 3;
       aria-controls="article-outline"
       data-outline-toggle
     >
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
         <path
           fill="currentColor"
           d="M4 6h12v2H4zM4 11h16v2H4zM4 16h10v2H4z"
         />
       </svg>
     </button>
-  </>
+    <p class="outline-title">Contents</p>
+    <ol class="outline-list">
+      {items.map((h) => (
+        <li class:list={['outline-item', `outline-depth-${h.depth}`]} data-outline-item={h.slug}>
+          <a href={`#${h.slug}`} data-outline-link>{h.text}</a>
+        </li>
+      ))}
+    </ol>
+  </nav>
 )}
 
 <script>
@@ -159,7 +157,7 @@ const shouldRender = items.length >= 3;
       footerObserver = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
-            toggle!.classList.toggle('is-hidden', entry.isIntersecting)
+            outline!.classList.toggle('is-hidden', entry.isIntersecting)
             if (entry.isIntersecting && isOpen()) closePanel()
           }
         },

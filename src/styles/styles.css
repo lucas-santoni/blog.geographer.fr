@@ -424,33 +424,29 @@ li {
 }
 
 .outline-toggle {
-  position: fixed;
-  right: 1em;
-  bottom: 1em;
-  z-index: 100;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.6em;
-  height: 2.6em;
   padding: 0;
-  background: var(--color-bg);
-  border: 1px solid var(--color-faded-max);
-  border-radius: 50%;
+  background: transparent;
+  border: none;
   color: var(--color-text);
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  /* On close, fade the icon back in after the popup has mostly retracted. */
+  transition: opacity 0.16s ease 0.14s;
 }
 
-@media (hover: hover) {
-  .outline-toggle:hover {
-    background: var(--color-faded-transparent);
-  }
+.outline[data-open='true'] .outline-toggle {
+  opacity: 0;
+  pointer-events: none;
+  /* On open, fade the icon out fast so the morph isn't muddied by the icon. */
+  transition: opacity 0.12s ease;
 }
 
-.outline-toggle.is-hidden {
+.outline.is-hidden {
   opacity: 0;
   pointer-events: none;
   transform: translateY(0.5em);
@@ -546,15 +542,15 @@ li {
     transition: opacity 0.18s ease 0.16s;
   }
 
-  /* Hide the button-shaped popup when the toggle is hidden near the footer. */
-  .outline:not([data-open='true']):has(+ .outline-toggle.is-hidden) {
-    opacity: 0;
-    pointer-events: none;
-  }
-
   /* Arrow tail dropped — the morph ties the popup back to the button. */
   .outline::after {
     display: none;
+  }
+
+  @media (hover: hover) {
+    .outline:not([data-open='true']):hover {
+      background: var(--color-faded-transparent);
+    }
   }
 }
 
@@ -635,12 +631,6 @@ li {
 
   .outline-item.outline-depth-3 > a {
     font-size: 0.95em;
-  }
-
-  .outline-toggle {
-    right: 1.5em;
-    width: 3.5em;
-    height: 3.5em;
   }
 
   .outline-toggle svg {
