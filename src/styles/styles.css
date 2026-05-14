@@ -579,4 +579,40 @@ li {
   .article-meta {
     margin-bottom: 1em;
   }
+
+  .outline {
+    bottom: calc(1em + 3em + 0.5em);
+    width: min(24em, calc(100vw - 2em));
+    padding: 1.1em 1.25em;
+    font-size: 1.0625rem;
+  }
+
+  .outline-title {
+    font-size: 0.8125em;
+    margin-bottom: 0.9em;
+  }
+
+  .outline-item > a {
+    padding: 0.5em 0 0.5em 1em;
+    font-size: 1em;
+  }
+
+  .outline-item.outline-depth-3 > a {
+    font-size: 0.95em;
+  }
+
+  .outline::after {
+    /* Re-center on the 3em toggle: button-half (1.5em) − tail-half (0.35em) − popup border (1px) */
+    right: calc(1.15em - 1px);
+  }
+
+  .outline-toggle {
+    width: 3em;
+    height: 3em;
+  }
+
+  .outline-toggle svg {
+    width: 22px;
+    height: 22px;
+  }
 }
