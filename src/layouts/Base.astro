@@ -121,6 +121,10 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
   <body class={bodyClass}>
     <div class="header">
       <a class="site-title" href="/">lucas.zip</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <span class="theme-toggle-dark" aria-hidden="true">🌙</span>
+        <span class="theme-toggle-light" aria-hidden="true">☀️</span>
+      </button>
     </div>
 
     <slot />
@@ -131,12 +135,6 @@ const ogImage = cover ? `${SITE_URL}/${cover}` : undefined;
         <li><a href="/resume">Resume</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/rss.xml">RSS</a></li>
-        <li class="right">
-          <button class="theme-toggle" type="button" aria-label="Toggle theme">
-            <span class="theme-toggle-dark" aria-hidden="true">🌙</span>
-            <span class="theme-toggle-light" aria-hidden="true">☀️</span>
-          </button>
-        </li>
       </ul>
     </div>
 

@@ -134,6 +134,9 @@ li {
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 2em 0 2em 0;
 }
 
@@ -363,10 +366,6 @@ li {
 
 .footer li + li {
   margin-left: 0.777em;
-}
-
-.footer li.right {
-  margin-left: auto;
 }
 
 .content :is(h2, h3, h4, h5, h6) {
