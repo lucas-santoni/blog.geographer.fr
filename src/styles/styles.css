@@ -584,8 +584,9 @@ li {
   }
 
   .outline {
-    bottom: calc(1em + 3.25em + 0.5em);
-    width: min(26em, calc(100vw - 1.5em));
+    right: 1.5em;
+    bottom: calc(1em + 3.5em + 0.5em);
+    width: min(26em, calc(100vw - 2em));
     padding: 1.25em 1.4em;
     font-size: 1.125rem;
   }
@@ -605,13 +606,14 @@ li {
   }
 
   .outline::after {
-    /* Re-center on the 3.25em toggle: button-half (1.625em) − tail-half (0.35em) − popup border (1px) */
-    right: calc(1.275em - 1px);
+    /* Re-center on the 3.5em toggle: button-half (1.75em) − tail-half (0.35em) − popup border (1px) */
+    right: calc(1.4em - 1px);
   }
 
   .outline-toggle {
-    width: 3.25em;
-    height: 3.25em;
+    right: 1.5em;
+    width: 3.5em;
+    height: 3.5em;
   }
 
   .outline-toggle svg {
