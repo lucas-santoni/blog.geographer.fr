@@ -4,7 +4,7 @@ type Props = { headings: Heading[] }
 
 const { headings } = Astro.props
 const items = headings.filter((h) => h.depth === 2)
-const shouldRender = items.length >= 3
+const shouldRender = items.length >= 3;
 ---
 
 {shouldRender && (
