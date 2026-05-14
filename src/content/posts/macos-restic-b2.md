@@ -217,6 +217,11 @@ This creates the repository structure (a few `keys/` entries and a
 those three variables in the environment, and we can always rerun the
 three `export` lines to populate them.
 
+(The `export VAR=$(...)` pattern above is fine here because we're in an
+interactive shell where a failure in `security` is immediately visible. The
+later wrapper script runs under `set -e` and has to be more careful; we'll
+get to that.)
+
 ### Write a minimal `profiles.toml`
 
 I keep mine at `~/Documents/backups/config/profiles.toml`:
@@ -407,8 +412,9 @@ registers each one with the running launchd instance via `launchctl
 bootstrap`, so the jobs become active immediately (no logout / login
 or reboot required). A plist here is just an Apple property-list XML file
 describing when to run the job, what binary to execute, and the runtime
-environment. We'll dissect one in a moment. On Linux (where resticprofile generates systemd units instead) we're basically
-done at this point. On macOS, various things still need fixing.
+environment. We'll dissect one in a moment. On Linux (where resticprofile
+generates systemd units instead) we're basically done at this point. On
+macOS, various things still need fixing.
 
 <aside class="note" data-type="NOTE">
 
@@ -515,7 +521,7 @@ attempted to open the repository with an empty password and printed
 `Fatal: an empty password is not allowed by default`.
 
 **`--log` and `--config` are injected only when the caller didn't pass
-them.** Interactive use shouldn't have to type the absolute config path.  The
+them.** Interactive use shouldn't have to type the absolute config path. The
 launchd plists already pass `--config`, and `run-schedule` already wires the
 `schedule-log` directive, so injecting `--log` on the schedule code path would
 double up and the notify hook (more on this later) would read the wrong section.
@@ -757,7 +763,7 @@ architectures):
 clang -O2 -arch arm64 -o "Hercules Backup" bin/launcher.c
 ```
 
-The launcher swaps `argv[0]` for `/bin/zsh` and execs zsh. The plist's
+The launcher replaces `argv[0]` with `/bin/zsh` and execs zsh. The plist's
 `ProgramArguments` is arranged as `[<launcher>, <wrapper-script>,
 --no-prio, --no-ansi, --config, ..., run-schedule, backup@default]`, so
 zsh inherits a modified argv that reads as a normal `zsh <wrapper>
@@ -1029,7 +1035,7 @@ distinctly-named bundles, four named rows, four working toggles.
 ### Custom icons
 
 I wanted to set up custom icons in place of the generic "exec" macOS icon for
-our .app bundles. These icons are visible multiple places: in Finder when
+our .app bundles. These icons are visible in multiple places: in Finder when
 browsing the folder containing the bundles, in the "Open at Login" Settings
 window, in the TCC grants window, etc.
 
