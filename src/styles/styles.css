@@ -435,7 +435,7 @@ li {
   height: 2.6em;
   padding: 0;
   background: var(--color-bg);
-  border: 1px solid var(--color-code-border);
+  border: 1px solid var(--color-faded-max);
   border-radius: 50%;
   color: var(--color-text);
   cursor: pointer;
@@ -483,57 +483,78 @@ li {
 }
 
 @media (max-width: 81.999em) {
+  /* Closed state mirrors the toggle button's box so that opening / closing
+     reads as the bubble morphing into the popup and back. */
   .outline {
     display: block;
     position: fixed;
     right: 1em;
-    bottom: calc(1em + 2.6em + 0.5em);
-    width: min(22em, calc(100vw - 2em));
-    padding: 1em 1.2em;
+    bottom: 1em;
+    width: 2.6em;
+    max-height: 2.6em;
+    padding: 0;
     background: var(--color-bg);
-    border: 1px solid var(--color-code-border);
-    border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--color-faded-max);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     z-index: 99;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0);
-    /* Origin sits at the toggle's center below the popup, so the popup
-       collapses into / expands out of the toggle button. */
-    transform-origin: calc(100% - 1.3rem) calc(100% + 1.8rem);
     transition:
-      opacity 0.14s ease-in,
-      transform 0.2s cubic-bezier(0.4, 0, 0.7, 0.2),
-      visibility 0s linear 0.2s;
+      right 0.26s cubic-bezier(0.4, 0, 0.7, 0.2),
+      bottom 0.26s cubic-bezier(0.4, 0, 0.7, 0.2),
+      width 0.26s cubic-bezier(0.4, 0, 0.7, 0.2),
+      max-height 0.26s cubic-bezier(0.4, 0, 0.7, 0.2),
+      padding 0.26s cubic-bezier(0.4, 0, 0.7, 0.2),
+      border-radius 0.26s cubic-bezier(0.4, 0, 0.7, 0.2),
+      box-shadow 0.26s ease,
+      opacity 0.2s ease;
   }
 
   .outline[data-open='true'] {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
+    bottom: calc(1em + 2.6em + 0.5em);
+    width: min(22em, calc(100vw - 2em));
+    max-height: 70vh;
+    padding: 1em 1.2em;
+    border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
     transition:
-      opacity 0.16s ease-out,
-      transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-      visibility 0s linear 0s;
+      right 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      bottom 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      max-height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      padding 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      border-radius 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.32s ease;
   }
 
   .outline-list {
-    max-height: calc(100vh - 11em);
+    max-height: calc(70vh - 5em);
     overflow-y: auto;
   }
 
+  /* Contents stay invisible while the popup is in its closed (button) shape,
+     and fade in once the morph is mostly done. */
+  .outline-title,
+  .outline-list {
+    opacity: 0;
+    transition: opacity 0.12s ease;
+  }
+
+  .outline[data-open='true'] .outline-title,
+  .outline[data-open='true'] .outline-list {
+    opacity: 1;
+    transition: opacity 0.18s ease 0.16s;
+  }
+
+  /* Hide the button-shaped popup when the toggle is hidden near the footer. */
+  .outline:not([data-open='true']):has(+ .outline-toggle.is-hidden) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Arrow tail dropped — the morph ties the popup back to the button. */
   .outline::after {
-    content: '';
-    position: absolute;
-    bottom: -0.45em;
-    /* Center on the 2.6em toggle button below: button-half (1.3em) − tail-half (0.35em) − popup border (1px) */
-    right: calc(0.95em - 1px);
-    width: 0.7em;
-    height: 0.7em;
-    background: var(--color-bg);
-    border-right: 1px solid var(--color-code-border);
-    border-bottom: 1px solid var(--color-code-border);
-    transform: rotate(45deg);
+    display: none;
   }
 }
 
@@ -585,14 +606,21 @@ li {
     margin-bottom: 1em;
   }
 
+  /* Closed-state dimensions in rem so they match the toggle (which sizes in
+     the root 1rem context) regardless of the popup's own font-size. */
   .outline {
-    right: 1.5em;
-    bottom: calc(1em + 3.5em + 0.5em);
-    width: min(26em, calc(100vw - 2em));
-    padding: 1.25em 1.4em;
+    right: 1.5rem;
+    bottom: 1rem;
+    width: 3.5rem;
+    max-height: 3.5rem;
     font-size: 1.125rem;
-    /* Re-anchor origin to the larger 3.5em toggle below. */
-    transform-origin: calc(100% - 1.5625rem) calc(100% + 2.875rem);
+  }
+
+  .outline[data-open='true'] {
+    bottom: calc(1rem + 3.5rem + 0.5rem);
+    width: min(26rem, calc(100vw - 2rem));
+    max-height: 70vh;
+    padding: 1.25em 1.4em;
   }
 
   .outline-title {
@@ -607,11 +635,6 @@ li {
 
   .outline-item.outline-depth-3 > a {
     font-size: 0.95em;
-  }
-
-  .outline::after {
-    /* Re-center on the 3.5em toggle: button-half (1.75em) − tail-half (0.35em) − popup border (1px) */
-    right: calc(1.4em - 1px);
   }
 
   .outline-toggle {
