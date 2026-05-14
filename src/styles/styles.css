@@ -440,11 +440,14 @@ li {
   color: var(--color-text);
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  -webkit-tap-highlight-color: transparent;
   transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
-.outline-toggle:hover {
-  background: var(--color-faded-transparent);
+@media (hover: hover) {
+  .outline-toggle:hover {
+    background: var(--color-faded-transparent);
+  }
 }
 
 .outline-toggle.is-hidden {
