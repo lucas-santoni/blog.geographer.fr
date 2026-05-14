@@ -14,6 +14,9 @@ and run a backup by hand. Then we wire it into launchd so it runs every
 night. After that, _operational polish_: notifications and the small things
 that make the setup pleasant. And finally, the repo layout.
 
+The code is on GitHub at
+[lucas-santoni/macos-backup-restic-b2](https://github.com/lucas-santoni/macos-backup-restic-b2).
+
 The backups are uploaded to Backblaze B2 but the same setup works against any
 other restic backend (S3, SFTP, REST server...) with minor adjustments to the
 credentials section.
@@ -427,7 +430,8 @@ small script that does.
 
 ### A wrapper script that bridges Keychain to environment
 
-The wrapper reads the three Keychain entries we stored earlier
+The [wrapper](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/restic-wrap.sh.tmpl)
+reads the three Keychain entries we stored earlier
 (`restic-repo-password`, `restic-b2-key-id`, `restic-b2-app-key`),
 exports them as the environment variables restic expects, then execs
 resticprofile with whatever arguments it was called with. Both
@@ -545,7 +549,8 @@ $ plutil -p ~/Library/LaunchAgents/local.resticprofile.default.backup.plist
 }
 ```
 
-And a small Python patcher that rewrites it in place:
+And a small [Python patcher](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/schedule-install.sh.tmpl)
+that rewrites it in place:
 
 ```python
 import plistlib, sys
@@ -720,7 +725,8 @@ Hercules Backup.app/
         └── Hercules Backup
 ```
 
-The launcher binary is twenty lines of C:
+The [launcher binary](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/launcher.c)
+is twenty lines of C:
 
 ```c
 #include <unistd.h>
@@ -920,7 +926,8 @@ The system has been running cleanly for two nights when I realize I have no
 idea whether it has run at all. The log directory is the only signal, and
 I don't really want to check logs every morning. 😬
 
-I run a small JSON-receiver gateway on a hosted box. The `restic-notify.sh`
+I run a small JSON-receiver gateway on a hosted box. The
+[`restic-notify.sh`](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/restic-notify.sh.tmpl)
 script POSTs to it with a Bearer token (also stored in Keychain, this thing is
 super convenient!) and the gateway pushes to Telegram. Any HTTP-accepting
 notifier works: [ntfy.sh](https://ntfy.sh) is the easiest drop-in, Slack
@@ -1020,7 +1027,8 @@ starting from an emoji...
 
 In order to avoid designing (or stealing) something, I decided to start from an
 emoji and render 💾 into a 1024x1024 PNG, then assemble an `.icns` from it.
-Here is a zsh wrapper that embeds a small Swift program and leverages various
+Here is [`emoji-to-icns.sh`](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/emoji-to-icns.sh),
+a zsh wrapper that embeds a small Swift program and leverages various
 built-in CLI tools to produce the final `.icns`:
 
 ```bash
