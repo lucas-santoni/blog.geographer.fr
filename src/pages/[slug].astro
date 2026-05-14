@@ -2,7 +2,6 @@
 import { getCollection, render } from 'astro:content'
 import readingTime from 'reading-time'
 import Base from '../layouts/Base.astro'
-import Outline from '../components/Outline.astro'
 import { AUTHOR, SITE_URL, SITENAME } from '../config'
 import { formatDate } from '../utils/formatDate'
 import { smartTitleBreak } from '../utils/smartTitleBreak'
@@ -30,15 +29,11 @@ export async function getStaticPaths() {
 }
 
 const { entry, kind } = Astro.props
-const { Content, body, headings } = await renderEntry(entry)
+const { Content, body } = await renderEntry(entry)
 
 async function renderEntry(e: typeof entry) {
   const rendered = await render(e)
-  return {
-    Content: rendered.Content,
-    headings: rendered.headings,
-    body: e.body ?? '',
-  }
+  return { Content: rendered.Content, body: e.body ?? '' }
 }
 
 const title = entry.data.title
@@ -97,7 +92,6 @@ const jsonLd = kind === 'post' && date
         <Content />
         <p><a href="/">← Back to the index</a></p>
       </div>
-      <Outline headings={headings} />
     </>
   ) : (
     <>
