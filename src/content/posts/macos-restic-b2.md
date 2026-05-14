@@ -25,8 +25,8 @@ The code is on GitHub at
 [lucas-santoni/macos-backup-restic-b2](https://github.com/lucas-santoni/macos-backup-restic-b2).
 
 The backups are uploaded to Backblaze B2 but the same setup works against any
-other restic backend (S3, SFTP, REST server...) with minor adjustments to the
-credentials section.
+other restic backend (S3, SFTP, REST server...) with adjustments to the
+credentials section and the repository URL.
 
 Versions used: `restic 0.18.1`, `resticprofile 0.33.1`, macOS 26.4.1
 (Tahoe) on an M1 MacBook Pro.
@@ -306,7 +306,7 @@ produced this notification the next morning: `processed 43147 files,
 8.015 TiB in 25:03, 554.388 MiB stored`. The numbers can't both be right
 on a 1 TB drive. I went hunting and found a single file:
 `/Users/lucas/Library/Group Containers/HUAQ24HBR6.dev.orbstack/data/data.img.raw`,
-an 8-TiB-capable sparse raw image with about 700 MiB physically allocated.
+an 8 TB sparse raw image with about 700 MiB physically allocated.
 The remaining terabytes are unwritten zero blocks that APFS doesn't back
 with real storage. Restic walks the file at logical size, then content-defined
 chunking deduplicates the multi-terabyte run of zeros down to almost nothing.
@@ -351,8 +351,8 @@ resticprofile -n default --config ~/Documents/backups/config/profiles.toml prune
 ```
 
 `forget` applies the retention policy and marks snapshots as deleted. `prune`
-reclaims the actual storage. Considering the amount of data we are managing,
-this is cheap enough and we can afford to run it regularly.
+reclaims the actual storage. Considering the modest data volume and B2's
+pricing for `prune`-style rewrites, we can afford to run it regularly.
 
 We have a working baseline with manual backups. Now let's automate!
 
@@ -407,9 +407,8 @@ registers each one with the running launchd instance via `launchctl
 bootstrap`, so the jobs become active immediately (no logout / login
 or reboot required). A plist here is just an Apple property-list XML file
 describing when to run the job, what binary to execute, and the runtime
-environment. We'll dissect one in a moment. On any non-macOS UNIX (where
-resticprofile generates systemd units instead) we're basically done at
-this point. On macOS, various things still need fixing.
+environment. We'll dissect one in a moment. On Linux (where resticprofile generates systemd units instead) we're basically
+done at this point. On macOS, various things still need fixing.
 
 <aside class="note" data-type="NOTE">
 
@@ -497,9 +496,14 @@ Homebrew.** A launchd-spawned process inherits a minimal `PATH`
 Resticprofile invokes `restic` by name, so the scheduled job fails with
 `cannot find restic` until we prepend Homebrew's bin directory.
 
-**`fetch_secret` exists because of a zsh-specific footgun with `set -e`.**
-It does not propagate command-substitution failures. An earlier version of
-the wrapper used:
+**`fetch_secret` exists because of a POSIX-shell footgun with `set -e`.**
+`set -e` does not propagate a command-substitution failure when it sits on
+the right-hand side of `export`, `local`, `declare`, or `readonly`: the
+builtin's own exit status (0 on a successful variable assignment) masks the
+inner command's failure. ShellCheck flags this as
+[SC2155](https://www.shellcheck.net/wiki/SC2155). It applies to bash and zsh
+equally; "POSIX-shell footgun" is the accurate framing. An earlier version
+of the wrapper used:
 
 ```zsh
 export RESTIC_PASSWORD="$(security find-generic-password -a "$USER" -s restic-repo-password -w)"
@@ -629,7 +633,7 @@ inside an `.app` bundle, codesigned, feels disproportionate to the task. I
 tried to avoid this as much as possible but after a lot of iterations, I
 actually don't think there is a way around it.
 
-The rest of this sub-section walks through, in order: the three concrete
+The rest of this sub-section walks through, in order: the two concrete
 issues we hit when we hand the manual setup to launchd,
 the macOS security mechanisms behind those issues, the architecture
 to address these issues, and finally the build and signing steps.
@@ -793,10 +797,15 @@ codesign --force --deep --sign - \
 ```
 
 `--sign -` is the ad-hoc form (no Apple Developer certificate needed).
-`--deep` signs everything inside the bundle, including the inner launcher.
-`--identifier` sets the signature's identifier to match the bundle ID. This is
-important as clang's default linker signature otherwise uses `launcher` as a
-placeholder, which TCC won't match against.
+`--deep` signs everything inside the bundle, including the inner launcher
+Mach-O. `--identifier` pins both the outer bundle and the inner Mach-O to
+the same identifier (`com.your-name.hercules.backup`). Without it, the
+outer bundle would still inherit its identifier from `CFBundleIdentifier`
+in `Info.plist`, but the inner Mach-O would get one derived from its
+filename, and the two pieces of the bundle would end up signed under
+different identities. TCC matches against the responsible process's
+signature, so keeping the identity consistent across the bundle and its
+contents is what makes the FDA grant stick.
 
 <aside class="note" data-type="NOTE">
 
@@ -826,8 +835,8 @@ designated => cdhash H"d7c6db3a73b30f7b7e40a4d985a9bf9dd824dd6f"
               or cdhash H"f31bc07c..."
 ```
 
-Two cdhashes joined by `or`: the bundle's structural cdhash and the inner
-Mach-O's cdhash. TCC checks both on every read.
+codesign emits two cdhashes for the same code (different hash algorithms,
+joined by `or` for compatibility). TCC accepts a match against either.
 
 At this point each scheduled command has its own signed `.app` bundle,
 each launchd plist points at the launcher inside its bundle, and one FDA
@@ -855,7 +864,7 @@ logical conclusion is:
 At least that's what seemed logical to me and what I thought happened. But
 it turns out MBPs actually sleep with one eye open!
 
-en macOS, closing the lid (or letting the screen turn off on battery)
+On macOS, closing the lid (or letting the screen turn off on battery)
 puts the machine into a layered sleep state. It alternates between
 deep sleep and short DarkWake intervals every 15-30 minutes. Each DarkWake
 lasts a few seconds to half a minute, brings the CPU online, services
@@ -897,7 +906,7 @@ forget at 03:00. On a Mac that's awake at 02:30, backup finishes well under 30
 minutes and the schedule is fine. With DarkWake-fragmented execution, backup
 might still be running (suspended, mostly) at 03:00. Both restic and
 resticprofile use locks but the default behavior is "fail immediately if
-locked" which is not ideal in case the laptop is asleep of if a backup takes
+locked" which is not ideal if the laptop is asleep or if a backup takes
 longer than usual for whatever reason.
 
 The fix is two directives, as there are two locks:
@@ -905,23 +914,26 @@ The fix is two directives, as there are two locks:
 ```toml
 [profiles.default.backup]
 lock-wait = "4h"     # resticprofile's profile lock
-retry-lock = "4h"    # forwarded to restic as --retry-lock=4h
+retry-lock = "4h"    # passed through to restic as --retry-lock=4h
 ```
 
-`lock-wait` is resticprofile's directive for its own profile lock (prevents
-two `resticprofile` invocations from running concurrently). `retry-lock` is
-forwarded to `restic backup` itself and covers restic's repository lock,
-which is a different lock living inside the B2 bucket. Both have to be
-set, on every command that touches the repo, because there is no "the job
-that holds" and "the job that waits": on wake, either can hold and either
-can wait.
+`lock-wait` is a resticprofile directive that controls how long it waits for
+its own profile lock (which prevents two `resticprofile` invocations from
+running the same profile concurrently). `retry-lock` is *not* a resticprofile
+directive: keys in a command section that resticprofile doesn't recognize are
+forwarded to restic as command-line flags, so `retry-lock = "4h"` becomes
+`--retry-lock=4h` on the underlying `restic backup` invocation. That flag
+covers restic's repository lock, which is a different lock living inside the
+B2 bucket. Both have to be set, on every command that touches the repo,
+because there is no "the job that holds" and "the job that waits": on wake,
+either can hold and either can wait.
 
-One last related gotcha. The directive `schedule-lock-mode` has three
-valid values: `default`, `fail`, `ignore`. `default` is *not* "wait the
-default timeout." It is closer to "don't run a second instance if one is
-already going" and doesn't poll. The directive that controls polling is
-`lock-wait`. Leave `schedule-lock-mode` on `default` and let `lock-wait` do the
-actual work.
+One last related gotcha. `schedule-lock-mode` has three valid values:
+`default`, `fail`, `ignore`. `default` is the waiting mode: it waits up to
+the configured lock-wait duration before giving up. `fail` aborts
+immediately on a lock conflict. `ignore` skips resticprofile's lock entirely
+(restic's repository lock is still honored). Leave it on `default` so the
+`lock-wait` / `retry-lock` directives above can do their job.
 
 ## Operational polish
 
@@ -1016,7 +1028,7 @@ distinctly-named bundles, four named rows, four working toggles.
 
 ### Custom icons
 
-I wanted to setup custom icons in place of the generic "exec" macOS icon for
+I wanted to set up custom icons in place of the generic "exec" macOS icon for
 our .app bundles. These icons are visible multiple places: in Finder when
 browsing the folder containing the bundles, in the "Open at Login" Settings
 window, in the TCC grants window, etc.
@@ -1029,7 +1041,7 @@ that the commercial binary has been signed using a paid certificate you get by
 subscribing to Apple Developer. I'm not ready to pay just to customise icons
 (I'm not even sure that's the root cause) so I just gave up.
 
-Anyways, here is how to customise the icon of an .app bundle programatically,
+Anyway, here is how to customise the icon of an .app bundle programmatically,
 starting from an emoji...
 
 In order to avoid designing (or stealing) something, I decided to start from an
