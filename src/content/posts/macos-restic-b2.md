@@ -1078,37 +1078,41 @@ from `Info.plist`:
 
 ## 5. The repo
 
-Everything in this post is in a small `~/Documents/backups/` tree that I
-keep under version control:
+Everything in this post is published at
+[github.com/lucas-santoni/macos-backup-restic-b2](https://github.com/lucas-santoni/macos-backup-restic-b2).
+On my Mac it lives at `~/Documents/backups/`, but the path doesn't matter.
+The repo only commits the templates and the per-machine example:
 
 ```
-backups/
+macos-backup-restic-b2/
 ├── README.md
-├── site.conf                    # per-machine values, gitignored
-├── site.conf.example            # committed example
+├── site.conf.example            # per-machine values, copy → site.conf
 ├── bin/
-│   ├── configure.sh             # renders *.tmpl from site.conf
-│   ├── install-bundles.sh       # builds + signs the four .app bundles
-│   ├── schedule-install.sh      # idempotent launchd installer/patcher
-│   ├── restic-wrap.sh           # Keychain → env → resticprofile
-│   ├── restic-notify.sh         # posts notification JSON via gateway
+│   ├── configure.sh             # renders bin/*.tmpl + config/*.tmpl
+│   ├── install-bundles.sh.tmpl  # builds + signs the four .app bundles
+│   ├── schedule-install.sh.tmpl # idempotent launchd installer/patcher
+│   ├── restic-wrap.sh.tmpl      # Keychain → env → resticprofile
+│   ├── restic-notify.sh.tmpl    # posts notification JSON via gateway
 │   ├── launcher.c               # tiny Mach-O launcher stub
-│   └── emoji-to-icns.sh         # renders 💾 to icon.icns
-├── bundles/                     # signed .app bundles, one per command
-├── config/
-│   ├── profiles.toml            # resticprofile config
-│   └── excludes.txt             # backup exclusions
-├── logs/                        # resticprofile + launchd output
-└── cache/                       # restic local cache
+│   ├── emoji-to-icns.sh         # renders 💾 to icon.icns
+│   └── test-notify.sh           # fixture-driven smoke test for notify
+└── config/
+    ├── profiles.toml.tmpl       # resticprofile schedules, retention, hooks
+    └── excludes.txt             # backup exclusions
 ```
 
-`site.conf` holds the five values that vary per machine (username, B2
-bucket URL, bundle ID prefix, bundle display-name prefix, notification
-endpoint). `bin/configure.sh` renders the `.tmpl` files in `bin/` and
-`config/` against those values, producing the runnable scripts and configs.
-The `.tmpl` files are committed; the rendered output is gitignored.
+Everything else is generated locally and gitignored: `site.conf` itself,
+the rendered `.sh` and `.toml` files next to their templates, the four
+`.app` bundles built into `bundles/`, plus `logs/` and `cache/`. This
+matters because `site.conf` contains values you don't want on GitHub
+(B2 bucket URL, bundle ID prefix, notification endpoint) and the rendered
+scripts inline those values verbatim.
 
-To adapt: fork, copy `site.conf.example` to `site.conf`, edit, run
+`site.conf` itself holds the five values that vary per machine (username,
+B2 bucket URL, bundle ID prefix, bundle display-name prefix, notification
+endpoint). `bin/configure.sh` renders the `.tmpl` files against those
+values, producing the runnable scripts and configs.
+
+To adapt: clone, copy `site.conf.example` to `site.conf`, edit, run
 `bin/configure.sh`, then the two install scripts in order
-(`install-bundles.sh`, `schedule-install.sh`). The public repo is at
-[TODO: insert URL].
+(`install-bundles.sh`, `schedule-install.sh`).
