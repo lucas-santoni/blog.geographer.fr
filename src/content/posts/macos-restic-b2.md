@@ -81,7 +81,7 @@ typing the same long restic invocation every night, we declare
 `[profiles.default.backup]` once in a configuration file, with all the flags,
 and call `resticprofile -n default backup`.
 
-For the nightly automation, resticprofile doesn't run a daemon of its own; it
+For the nightly automation, resticprofile doesn't run a daemon of its own: it
 delegates to the OS's scheduler. Once a profile has a `schedule` directive,
 running `resticprofile schedule` generates the appropriate scheduler
 configuration (a launchd plist on macOS) and registers it with the OS. From then
@@ -219,7 +219,7 @@ three `export` lines to populate them.
 
 (The `export VAR=$(...)` pattern above is fine here because we're in an
 interactive shell where a failure in `security` is immediately visible. The
-later wrapper script runs under `set -e` and has to be more careful; we'll
+later wrapper script runs under `set -e` and has to be more careful. We'll
 get to that.)
 
 ### Write a minimal `profiles.toml`
@@ -367,7 +367,7 @@ We have at least two options on macOS: cron or launchd. cron most likely works
 fine (I haven't tested it) but it's less _integrated_ with macOS (cron jobs
 don't appear in the macOS's Login Items UI, for example). launchd seems like
 it's the right tool for this, but it's also where the platform-specific
-complexity lives. Resticprofile knows how to generate launchd plists; the rest
+complexity lives. Resticprofile knows how to generate launchd plists. The rest
 of this section is the long list of things we'll have to fix on top of what it
 generates.
 
@@ -434,7 +434,7 @@ tells resticprofile to capture nothing at all.
 With the secrets kept out of the plist, the next question is how the
 scheduled job picks them up at runtime. Restic and resticprofile still
 need `RESTIC_PASSWORD`, `B2_ACCOUNT_ID`, and `B2_ACCOUNT_KEY` set in the
-environment when they actually run; we've just made sure those values
+environment when they actually run. We've just made sure those values
 aren't sitting in the plist on disk. Something has to fetch them from
 Keychain at exec time and put them in the environment, fresh, every time
 the job fires. resticprofile doesn't do this itself, so we wrap it in a
@@ -502,14 +502,13 @@ Homebrew.** A launchd-spawned process inherits a minimal `PATH`
 Resticprofile invokes `restic` by name, so the scheduled job fails with
 `cannot find restic` until we prepend Homebrew's bin directory.
 
-**`fetch_secret` exists because of a POSIX-shell footgun with `set -e`.**
+**`fetch_secret` exists because of a shell footgun with `set -e`.**
 `set -e` does not propagate a command-substitution failure when it sits on
 the right-hand side of `export`, `local`, `declare`, or `readonly`: the
 builtin's own exit status (0 on a successful variable assignment) masks the
 inner command's failure. ShellCheck flags this as
-[SC2155](https://www.shellcheck.net/wiki/SC2155). It applies to bash and zsh
-equally; "POSIX-shell footgun" is the accurate framing. An earlier version
-of the wrapper used:
+[SC2155](https://www.shellcheck.net/wiki/SC2155) and it applies to bash and zsh
+equally. An earlier version of the wrapper used:
 
 ```zsh
 export RESTIC_PASSWORD="$(security find-generic-password -a "$USER" -s restic-repo-password -w)"
@@ -786,12 +785,12 @@ treat as the executable. Ours is minimal:
 ```
 
 **Now that we have our bundles ready, let's sign them!** The example
-commands below are for the `backup` bundle; `forget`, `prune`, and `check`
+commands below are for the `backup` bundle. `forget`, `prune`, and `check`
 get the same treatment with their respective identifiers and paths.
 
 Ad-hoc codesigning gives the bundle a valid Designated Requirement that
 TCC can record and match against at runtime. Without signing, the DR is
-malformed; TCC writes the grant but every subsequent lookup fails to
+malformed: TCC writes the grant but every subsequent lookup fails to
 match, and the visible symptom is a fresh stack of "X wants to access
 files in your Documents folder" prompts every morning even after
 clicking Allow the day before.
@@ -902,7 +901,7 @@ Restic accumulates active CPU time across many such slices.
 
 The first time I noticed this, the backup's wall-clock
 duration was 7h13m and the active duration restic reported was 3:21.
-That's not a bug; that's the laptop spending 99% of those seven hours
+That's not a bug, that's the laptop spending 99% of those seven hours
 asleep. 😴
 
 </aside>
