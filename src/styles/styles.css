@@ -497,21 +497,23 @@ li {
     z-index: 99;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(0.4em) scale(0.96);
-    transform-origin: bottom right;
+    transform: scale(0);
+    /* Origin sits at the toggle's center below the popup, so the popup
+       collapses into / expands out of the toggle button. */
+    transform-origin: calc(100% - 1.3rem) calc(100% + 1.8rem);
     transition:
-      opacity 0.18s ease,
-      transform 0.18s ease,
-      visibility 0s linear 0.18s;
+      opacity 0.14s ease-in,
+      transform 0.2s cubic-bezier(0.4, 0, 0.7, 0.2),
+      visibility 0s linear 0.2s;
   }
 
   .outline[data-open='true'] {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
     transition:
-      opacity 0.18s ease,
-      transform 0.18s ease,
+      opacity 0.16s ease-out,
+      transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
       visibility 0s linear 0s;
   }
 
@@ -589,6 +591,8 @@ li {
     width: min(26em, calc(100vw - 2em));
     padding: 1.25em 1.4em;
     font-size: 1.125rem;
+    /* Re-anchor origin to the larger 3.5em toggle below. */
+    transform-origin: calc(100% - 1.5625rem) calc(100% + 2.875rem);
   }
 
   .outline-title {
