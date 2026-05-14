@@ -13,8 +13,8 @@ This is half setup guide, half tour of the macOS internals that make a backup
 like this awkward to wire up: TCC and how it binds consent to a codesigned
 identity, AMFI's rules about what launchd will execute, the user vs gui
 launchd domain split, DarkWake, and ad-hoc codesigning with Designated
-Requirements. The practical steps stand on their own; the internals are there
-as context for why each step looks the way it does.
+Requirements. The practical steps stand on their own while the internals are
+there as context for why each step looks the way it does.
 
 This post walks the setup top to bottom. We start with the building blocks
 and run a backup by hand. Then we wire it into launchd so it runs every
