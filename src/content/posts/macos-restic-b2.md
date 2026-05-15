@@ -1,27 +1,24 @@
 ---
-title: "Nightly encrypted offsite backup of $HOME on macOS"
+title: "Nightly encrypted offsite backup of <code>$HOME</code> on macOS"
 slug: macos-restic-b2
 date: 2026-05-12
-description: "A practical guide to setting up restic, resticprofile, and Backblaze B2 for nightly encrypted offsite backups on macOS, with the launchd, TCC, and codesigning details that aren't in the docs."
+description: "Half setup guide, half tour of the macOS internals (launchd, TCC,
+AMFI, codesigning, DarkWake) that make nightly encrypted offsite backups with
+restic, resticprofile, and Backblaze B2 trickier than they should be."
 ---
 
 I wanted unattended, encrypted, offsite backups of `$HOME` on my MacBook Pro:
 nightly, deduplicated, secrets in Keychain, retention managed for me and the
 laptop firing the job on its own while I sleep.
 
-This is half setup guide, half tour of the macOS internals that make a backup
-like this awkward to wire up: TCC and how it binds consent to a codesigned
-identity, AMFI's rules about what launchd will execute, the user vs gui
-launchd domain split, DarkWake, and ad-hoc codesigning with Designated
-Requirements. The practical steps stand on their own while the internals are
-there as context for why each step looks the way it does.
+This is half setup guide, half tour of the macOS security mechanisms and
+internals that make a backup like this awkward to wire up (for the end result I
+was aiming for, at least).
 
-This post walks the setup top to bottom. We start with the building blocks
-and run a backup by hand. Then we wire it into launchd so it runs every
-night. After that, _operational polish_: notifications and the small things
-that make the setup pleasant. And finally, the repo layout.
-
-The code is on GitHub at
+This post walks the setup top to bottom. We start with the building blocks and
+run a backup by hand. Then we wire it into launchd so it runs every night.
+After that, we work on some _polish_: notifications, costmetics...And finally,
+the repo layout. The code is on GitHub at
 [lucas-santoni/macos-backup-restic-b2](https://github.com/lucas-santoni/macos-backup-restic-b2).
 
 The backups are uploaded to Backblaze B2 but the same setup works against any
@@ -149,10 +146,9 @@ key ID, and the B2 application key. Putting them in plaintext on disk (a
 `.env`, a config file...) somewhat defeats the point of encrypting the backup
 in the first place. macOS's built-in Keychain is the right home for them.
 
-Keychain is the system-wide encrypted secrets store that macOS already
-uses for Wi-Fi passwords, Safari logins, certificates, SSH keys, and
-similar. The *login* keychain (the one we want here) unlocks
-automatically at user login and stays unlocked while the session is
+Keychain is macOS's built-in encrypted secrets store. Several keychains coexist
+(System, login, iCloud...) but the *login* keychain is the one we want here as
+it unlocks automatically at user login and stays unlocked while the session is
 active. Entries are encrypted on disk and per-entry ACLs control which
 processes can read them. There's a GUI app (Keychain Access) for browsing, but
 everything we need is available from the built-in `security` command.
@@ -184,14 +180,18 @@ re-add it:
 security delete-generic-password -a "$USER" -s restic-repo-password
 ```
 
-The first time we do this, macOS may show a Keychain access prompt for
-the entry. Click **Always Allow** so subsequent reads go through without
-further prompting. For interactive use from the terminal, clicking **Allow**
-each time would also work, since there's someone in front of the screen to
-dismiss the prompt. For the nightly schedule we set up later, **Always Allow**
-is mandatory: when the scheduled job runs while the laptop is unattended, there is
-no one to answer the prompt, and the read fails. The backup ends up blocked on
-a permission dialog.
+A Keychain access prompt may appear when a process tries to read the entry.
+Typically the interactive `security find-generic-password` call above won't
+prompt, because the same `security` binary created the entry and is already
+in its ACL. The prompt is most likely to appear later, when launchd's
+scheduled chain invokes `security` under a different responsible-code
+context. Click **Always Allow** when it does, so subsequent reads go through
+without further prompting. For interactive use from the terminal, clicking
+**Allow** each time would also work, since there's someone in front of the
+screen to dismiss the prompt. For the nightly schedule we set up later,
+**Always Allow** is mandatory: when the scheduled job runs while the laptop
+is unattended, there is no one to answer the prompt, and the read fails. The
+backup ends up blocked on a permission dialog.
 
 From now on, no secret needs to be typed or pasted anywhere. The next
 section initializes the repository by reading the three values straight
@@ -299,23 +299,22 @@ A starter list:
 **Full Disk Access** (FDA, from here on) is the macOS permission that lets a
 process read protected user data. It's granted per-binary and we'll actually
 set it up a bit later. But even with FDA, certain system-owned files remain
-unreadable to any user process (SQLite write-ahead logs held by daemons,
-entitled-only event streams, ML stores), which is why those paths get excluded
-outright. I'm discovering new locations from time to time and adding them to
-this list, although it has been stable for a few weeks now.
+unreadable to any user process, which is why those paths get excluded outright.
+I'm discovering new locations from time to time and adding them to this list,
+although it has been stable for a few weeks now.
 
 <aside class="note" data-type="NOTE">
 
-The first run of this backup, before [OrbStack](https://orbstack.dev/) was excluded,
-produced this notification the next morning: `processed 43147 files,
-8.015 TiB in 25:03, 554.388 MiB stored`. The numbers can't both be right
-on a 1 TB drive. I went hunting and found a single file:
-`/Users/lucas/Library/Group Containers/HUAQ24HBR6.dev.orbstack/data/data.img.raw`,
-an 8 TB sparse raw image with about 700 MiB physically allocated.
-The remaining terabytes are unwritten zero blocks that APFS doesn't back
-with real storage. Restic walks the file at logical size, then content-defined
-chunking deduplicates the multi-terabyte run of zeros down to almost nothing.
-Yet, it's best to exclude this file to avoid any confusion!
+The first backup run, before [OrbStack](https://orbstack.dev/) was excluded,
+produced this notification the next morning: `processed 43147 files, 8.015 TiB
+in 25:03, 554.388 MiB stored`. The numbers can't both be right on a 1 TB drive.
+I went hunting and found a single file: `/Users/lucas/Library/Group
+Containers/HUAQ24HBR6.dev.orbstack/data/data.img.raw`, an 8 TB sparse raw image
+with about 700 MiB physically allocated. The remaining terabytes are unwritten
+zero blocks that APFS doesn't back with real storage. Restic walks the file at
+logical size, then content-defined chunking deduplicates the multi-terabyte run
+of zeros down to almost nothing. Yet, it's best to exclude this file to avoid
+any confusion and unnecessary reads!
 
 </aside>
 
@@ -547,12 +546,13 @@ launchd reads a `.plist` file at `~/Library/LaunchAgents/<label>.plist`
 for each agent it manages, describing when to fire the job and what to
 exec. resticprofile generates one per scheduled command, but the default
 needs a few tweaks before it's usable for our setup. Here's what
-resticprofile gives us:
+resticprofile gives us (notice the empty `EnvironmentVariables`, thanks to
+`schedule-capture-environment = false`):
 
 ```
 $ plutil -p ~/Library/LaunchAgents/local.resticprofile.default.backup.plist
 {
-  "EnvironmentVariables" => { ... }       # empty (schedule-capture-environment = false)
+  "EnvironmentVariables" => {}
   "Label"                => "local.resticprofile.default.backup"
   "LimitLoadToSessionType" => "Background"
   "Program"              => "/opt/homebrew/bin/resticprofile"
@@ -666,18 +666,19 @@ to address these issues, and finally the build and signing steps.
   equivalent option: launchd itself isn't TCC-grantable, and a process it
   spawns has no signed code identity for TCC to attach a grant to unless we
   give it one. That gap is exactly what the bundle architecture fills. The
-  important property: TCC grants are keyed by *code identity* (an identifier
-  plus a cdhash, a cryptographic hash of the signed code pages that
+  important property: TCC grants are keyed by *code identity* (an
+  expression derived from the binary's signature, typically referencing
+  its cdhash, a cryptographic hash of the signed code pages that
   fingerprints the exact bytes of the binary) rather than path, and the
   identity TCC checks is the *responsible process* at the top of the exec
   chain, not the syscalling process. We need a stable, signed code identity to
   grant FDA to, sitting at the top of the chain.
 
-- **AMFI** causes (2). AMFI is the kernel-level codesigning enforcer.
-  It refuses launchd `Program`s pointing at unsigned or user-signed
-  shell scripts and kills them with `OS_REASON_CODESIGNING`. Apple-signed
-  binaries (and properly signed user binaries) pass. The launchd
-  `Program` has to be a signed Mach-O.
+- **macOS code-signing enforcement** causes (2). The launchd `Program` has to
+  be a signed Mach-O. Pointing it at a shell script (which lacks a Mach-O
+  signature) is rejected at exec time with `OS_REASON_CODESIGNING` before the
+  script runs. Apple-signed binaries and properly user-signed binaries
+  (including ad-hoc) pass.
 
 **The architecture** which solves all the problems above is a small `.app`
 bundle per scheduled command, ad-hoc-codesigned, containing a 20-line
@@ -700,10 +701,13 @@ This architecture works for the following reasons:
   `excludes.txt`, restic walking `$HOME`. One grant on the bundle covers all of
   it.
 
-- **(2) AMFI passes the launcher.** The launchd `Program` is now a real Mach-O
-  binary, signed, so AMFI lets it run. The launcher then execs `/bin/zsh` which
-  fires the rest. AMFI's check is against the launchd-launched binary only, so
-  zsh interpreting the wrapper script afterward is fine.
+- **(2) Every Mach-O in the chain satisfies code-signing enforcement.** The
+  launchd `Program` is now a real signed Mach-O, so it's accepted at launch.
+  AMFI then runs on every subsequent process execution in the chain: zsh
+  (Apple-signed), resticprofile and restic (at least ad-hoc signed) all pass
+  without any extra work from us. The wrapper script doesn't get an AMFI check
+  because zsh reads it as data via something like `open()`, which it's not a
+  proper process execution.
 
 <aside class="note" data-type="NOTE">
 
@@ -713,7 +717,7 @@ exercise here: contacts, calendar, photos, camera, location, various
 `~/Library` subtrees, the home folders, etc. Any time macOS surfaces an "X
 wants access to your Y" prompt, that's TCC. Decisions live in a per-user SQLite
 database at `~/Library/Application Support/com.apple.TCC/TCC.db` and a
-system-wide one at `/Library/Application Support/com.apple.TCC/`, and are
+system-wide one at `/Library/Application Support/com.apple.TCC/TCC.db`, and are
 consulted on each subsequent access. Each record carries a `csreq` field: a
 binary blob encoding the requester's [Designated
 Requirement](https://developer.apple.com/documentation/security/code_signing_services),
@@ -723,10 +727,12 @@ which is what the runtime identity check matches against.
 
 <aside class="note" data-type="NOTE">
 
-**AMFI** stands for Apple Mobile File Integrity. The "Mobile" is a
-historical artifact: AMFI started on iOS and was ported to macOS. Worth knowing
-for this section: AMFI checks the *launch target* only, not what the launched
-binary subsequently does.
+**AMFI** stands for Apple Mobile File Integrity. The "Mobile" is a historical
+artifact: AMFI started on iOS and was ported to macOS. AMFI is invoked on every
+process execution and validates the signature of the binary about to run. It
+does not inspect data that an already-running process subsequently reads, which
+is why a shell script interpreted by an already-running zsh isn't a problem
+here.
 
 </aside>
 
@@ -831,22 +837,10 @@ re-prompted on the next access, even though the row in `TCC.db` shows
 
 </aside>
 
-Verify:
-
-```
-$ codesign -d --requirements - "Hercules Backup.app"
-Executable=.../Hercules Backup.app/Contents/MacOS/Hercules Backup
-designated => cdhash H"d7c6db3a73b30f7b7e40a4d985a9bf9dd824dd6f"
-              or cdhash H"f31bc07c..."
-```
-
-codesign emits two cdhashes for the same code (different hash algorithms,
-joined by `or` for compatibility). TCC accepts a match against either.
-
 At this point each scheduled command has its own signed `.app` bundle,
 each launchd plist points at the launcher inside its bundle, and one FDA
 grant per bundle in System Settings is enough to unblock the whole exec
-chain (launcher → zsh → wrapper → resticprofile → restic) across
+chain (launcher → zsh → resticprofile → restic) across
 `~/Documents/`.
 
 To wire up those FDA grants: open `System Settings → Privacy & Security → Full
@@ -955,7 +949,7 @@ I run a small JSON-receiver gateway on a hosted box. The
 script POSTs to it with a Bearer token (also stored in Keychain, this thing is
 super convenient!) and the gateway pushes to Telegram. Any HTTP-accepting
 notifier works: [ntfy.sh](https://ntfy.sh) is the easiest drop-in, Slack
-webhooks work, Pushover works, an email-by-HTTP service works.
+webhooks work, Pushover works, an email-by-HTTP service works, etc.
 
 Resticprofile allows us to run something after the success or the failure of
 any command:
