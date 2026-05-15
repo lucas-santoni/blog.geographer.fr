@@ -16,7 +16,7 @@
     "@astrojs/vercel": "^10.0.6",
     "@fontsource/fira-sans": "^5.2.7",
     "@fontsource/fraunces": "^5.2.9",
-    "@fontsource/iosevka-curly-slab": "^5.2.5",
+    "@fontsource/iosevka": "^5.2.5",
     "@fontsource/roboto-condensed": "^5.2.8",
     "astro": "^6.1.10",
     "js-levenshtein": "^1.1.6",
