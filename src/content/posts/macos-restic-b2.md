@@ -377,7 +377,7 @@ We have a working baseline with manual backups. Now let's automate!
 
 We have at least two options on macOS: cron or launchd. cron most likely works
 fine (I haven't tested it) but it's less _integrated_ with macOS (cron jobs
-don't appear in the macOS's Login Items UI, for example). launchd seems like
+don't appear in macOS's Login Items UI, for example). launchd seems like
 it's the right tool for this, but it's also where the platform-specific
 complexity lives. Resticprofile knows how to generate launchd plists. The rest
 of this section is the long list of things we'll have to fix on top of what it
@@ -454,7 +454,7 @@ small script that does.
 
 ### A wrapper script that bridges Keychain to environment
 
-The [wrapper](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/restic-wrap.sh.tmpl)
+The [wrapper](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/macos-26.4-architecture/bin/restic-wrap.sh.tmpl)
 reads the three Keychain entries we stored earlier
 (`restic-repo-password`, `restic-b2-key-id`, `restic-b2-app-key`),
 exports them as the environment variables restic expects, then execs
@@ -578,7 +578,7 @@ $ plutil -p ~/Library/LaunchAgents/local.resticprofile.default.backup.plist
 }
 ```
 
-And a small [Python patcher](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/schedule-install.sh.tmpl)
+And a small [Python patcher](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/macos-26.4-architecture/bin/schedule-install.sh.tmpl)
 that rewrites it in place:
 
 ```python
@@ -719,7 +719,7 @@ This architecture works for the following reasons:
   AMFI then runs on every subsequent process execution in the chain: zsh
   (Apple-signed), resticprofile and restic (at least ad-hoc signed) all pass
   without any extra work from us. The wrapper script doesn't get an AMFI check
-  because zsh reads it as data via something like `open()`, which it's not a
+  because zsh reads it as data via something like `open()`, which is not a
   proper process execution.
 
 <aside class="note" data-type="NOTE">
@@ -760,7 +760,7 @@ Hercules Backup.app/
         └── Hercules Backup
 ```
 
-The [launcher binary](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/launcher.c)
+The [launcher binary](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/macos-26.4-architecture/bin/launcher.c)
 is twenty lines of C:
 
 ```c
@@ -958,7 +958,7 @@ idea whether it has run at all. The log directory is the only signal, and
 I don't really want to check logs every morning. 😬
 
 I run a small JSON-receiver gateway on a hosted box. The
-[`restic-notify.sh`](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/restic-notify.sh.tmpl)
+[`restic-notify.sh`](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/macos-26.4-architecture/bin/restic-notify.sh.tmpl)
 script POSTs to it with a Bearer token (also stored in Keychain, this thing is
 super convenient!) and the gateway pushes to Telegram. Any HTTP-accepting
 notifier works: [ntfy.sh](https://ntfy.sh) is the easiest drop-in, Slack
@@ -1058,7 +1058,7 @@ starting from an emoji...
 
 In order to avoid designing (or stealing) something, I decided to start from an
 emoji and render 💾 into a 1024x1024 PNG, then assemble an `.icns` from it.
-Here is [`emoji-to-icns.sh`](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/main/bin/emoji-to-icns.sh),
+Here is [`emoji-to-icns.sh`](https://github.com/lucas-santoni/macos-backup-restic-b2/blob/macos-26.4-architecture/bin/emoji-to-icns.sh),
 a zsh wrapper that embeds a small Swift program and leverages various
 built-in CLI tools to produce the final `.icns`:
 
@@ -1116,6 +1116,16 @@ from `Info.plist`:
 ```
 
 ## The repo
+
+<aside class="note" data-type="NOTE">
+
+The layout below matches the repo at the time of writing, preserved on the
+[`macos-26.4-architecture`](https://github.com/lucas-santoni/macos-backup-restic-b2/tree/macos-26.4-architecture)
+tag. The current `main` is simpler (no `.app` bundle, no Mach-O launcher, no
+icon plumbing) for the reasons explained in the May 2026 update at the top of
+this post.
+
+</aside>
 
 Everything in this post is published at
 [github.com/lucas-santoni/macos-backup-restic-b2](https://github.com/lucas-santoni/macos-backup-restic-b2).
