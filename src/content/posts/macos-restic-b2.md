@@ -7,6 +7,19 @@ AMFI, codesigning, DarkWake) that make nightly encrypted offsite backups with
 restic, resticprofile, and Backblaze B2 trickier than they should be."
 ---
 
+**Update, May 2026**: a macOS 26.5 update broke this setup soon after I was
+done writing it. I had Claude dig into it for a while and I made some
+experiments, but I couldn't get the pretty Login Items name and the custom icon
+working again without a paid Apple Developer certificate. I decided to drop the
+cosmetics entirely, which simplified the architecture considerably (no `.app`
+bundle, no Mach-O launcher, no codesigning step). The post below is accurate
+for **macOS 26.4.1 and earlier**; if you're on 26.5 or later, treat the bundle
+/ launcher / icon sections as historical context rather than instructions.
+If you know how to get a pretty name and / or a custom icon for a Login Items
+entry without a paid developer account, please reach out!
+
+---
+
 I wanted unattended, encrypted, offsite backups of `$HOME` on my MacBook Pro:
 nightly, deduplicated, secrets in Keychain, retention managed for me and the
 laptop firing the job on its own while I sleep.
@@ -17,7 +30,7 @@ was aiming for, at least).
 
 This post walks the setup top to bottom. We start with the building blocks and
 run a backup by hand. Then we wire it into launchd so it runs every night.
-After that, we work on some _polish_: notifications, costmetics...And finally,
+After that, we work on some _polish_: notifications, cosmetics...And finally,
 the repo layout. The code is on GitHub at
 [lucas-santoni/macos-backup-restic-b2](https://github.com/lucas-santoni/macos-backup-restic-b2).
 
